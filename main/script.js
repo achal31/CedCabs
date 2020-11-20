@@ -47,7 +47,7 @@ else
 {
 $.ajax({
 type: "POST",
-url: "index.php",
+url: "file.php",
 data: dataString,
 cache: false,
 success: function(result){
