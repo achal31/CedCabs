@@ -1,0 +1,57 @@
+.background-overlay {
+    width: 100%;
+    background:url("6.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position:cover;
+    color: #fff;
+    height: 800px;
+    padding-bottom: 100px;
+}
+
+.navbar-toggler {
+    color: white !important;
+    background-color: white !important;
+}
+.nav-bg{
+    background-color: black;
+    color: white;
+}
+.nav-link{
+    color: white !important;
+}
+a{
+    color: white;
+}
+
+select{
+    -webkit-appearance: none;
+    appearance: none;
+    }
+
+.form-inline{
+    margin-top: 12% ;
+}
+.btn-info {
+    background-color: #e7b94f !important;
+}
+.modal-header,.modal-content,.modal-footer{
+    background-color: #e7b94f !important;
+}
+.icon{
+    padding-top: 5% ;   
+}
+
+#contactus{
+    background:linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .2));
+    color: white;
+}
+@media only screen and (max-width: 780px) and (min-width : 260px) {
+    .navbar-brand{
+        width: 40%;
+    }
+  }
+.modal{
+    margin-top: 16% !important;
+}
+
