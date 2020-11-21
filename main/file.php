@@ -1,11 +1,13 @@
 <?php 
 $bill="";
 $location = array ( "Charbagh"=>0 ,"IndiraNagar"=>10,"BBD"=>30,"Barabanki"=>60,"Faizabad"=>100,"Basti"=>150,"Gorakhpur"=>210);
+
 $pickup=$_POST['pickup1'];
 $drop=$_POST['drop1'];
 $cabtype=$_POST['cabtype1'];
 $weight=$_POST['weight1'];
 
+/*--------Loop To Store Location Distance-----------*/
 foreach ($location as $i => $row)
 {
     switch($i)
@@ -14,7 +16,11 @@ foreach ($location as $i => $row)
         case ($i==$drop):$totaldistance=$row;
     }
 }
+/*------To Find The Total Distance Between To Location----------*/
 $totaldistance=abs($initialdistance-$totaldistance);
+
+
+/*-------------Switch Case To Calculate The Bill-----------------*/
 switch($totaldistance)
 {
     case $totaldistance<=10: 
@@ -57,6 +63,8 @@ switch($totaldistance)
         }
     break;  
 }
+
+/*-----Condition To Check Cab And Weight----------*/
 if($cabtype!=='CedMicro' && $weight!=0)
 {
 switch($weight)
@@ -71,5 +79,6 @@ switch($cabtype)
     default:  $bill=$bill+$charge;
 }
 }
+
 echo $bill;
 ?>

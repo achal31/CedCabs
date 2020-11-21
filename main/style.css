@@ -1,9 +1,9 @@
 .background-overlay {
     width: 100%;
-    background:url("6.jpg");
+    background: url("6.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    background-position:cover;
+    background-position: cover;
     color: #fff;
     height: 800px;
     padding-bottom: 100px;
@@ -13,45 +13,58 @@
     color: white !important;
     background-color: white !important;
 }
-.nav-bg{
+
+.nav-bg {
     background-color: black;
     color: white;
 }
-.nav-link{
+
+.nav-link,
+a {
     color: white !important;
 }
-a{
-    color: white;
-}
 
-select{
+select {
     -webkit-appearance: none;
     appearance: none;
-    }
-
-.form-inline{
-    margin-top: 12% ;
 }
+
+.form-inline {
+    margin-top: 12%;
+}
+
+.modal-header,
+.modal-content,
+.modal-footer,
 .btn-info {
     background-color: #e7b94f !important;
 }
-.modal-header,.modal-content,.modal-footer{
-    background-color: #e7b94f !important;
-}
-.icon{
-    padding-top: 5% ;   
+
+.icon {
+    padding-top: 5%;
 }
 
-#contactus{
-    background:linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .2));
+#contactus {
+    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .2));
     color: white;
 }
-@media only screen and (max-width: 780px) and (min-width : 260px) {
-    .navbar-brand{
+
+@media only screen and (max-width: 780px) and (min-width: 260px) {
+    .navbar-brand {
         width: 40%;
     }
-  }
-.modal{
+}
+
+.modal {
     margin-top: 16% !important;
 }
 
+#detailform {
+    margin-top: 10% !important;
+}
+
+i {
+    font-size: 30px;
+    color: #e7b94f;
+    padding: 0px 5px 0px 5px;
+}
