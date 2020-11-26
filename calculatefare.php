@@ -1,26 +1,26 @@
 <?php 
-$bill="";
-$location = array ( "Charbagh"=>0 ,"IndiraNagar"=>10,"BBD"=>30,"Barabanki"=>60,"Faizabad"=>100,"Basti"=>150,"Gorakhpur"=>210);
-
+include('config.php');
+$conn = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 $pickup=$_POST['pickup1'];
 $drop=$_POST['drop1'];
 $cabtype=$_POST['cabtype1'];
 $weight=$_POST['weight1'];
 
-/*--------Loop To Store Location Distance-----------*/
-foreach ($location as $i => $row)
-{
-    switch($i)
-    {
-        case ($i==$pickup):$initialdistance=$row;
-        case ($i==$drop):$totaldistance=$row;
-    }
+$pickuplocation="SELECT distance From tbl_location where `name`='$pickup'";
+ $displaydistance=mysqli_query($conn, $pickuplocation);
+
+while ($getdistance=mysqli_fetch_array($displaydistance)) {
+    $intialDistance=$getdistance['distance'];
 }
-/*------To Find The Total Distance Between To Location----------*/
-$totaldistance=abs($initialdistance-$totaldistance);
 
+$droplocation="SELECT distance From tbl_location where `name`='$drop'";
+ $displaydistance=mysqli_query($conn, $droplocation);
 
-/*-------------Switch Case To Calculate The Bill-----------------*/
+while ($getdistance=mysqli_fetch_array($displaydistance)) {
+    $finalDistance=$getdistance['distance'];
+}
+
+$totaldistance=abs($intialDistance-$finalDistance);
 switch($totaldistance)
 {
     case $totaldistance<=10: 
@@ -81,4 +81,5 @@ switch($cabtype)
 }
 
 echo $bill;
+
 ?>

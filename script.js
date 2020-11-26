@@ -1,17 +1,23 @@
 $(document).ready(function() {
 
+
     /*----------Function To Disable The Similar Drop Location--------------*/
-    $('#pickup').change(function() {
-        var drop = $(this).val();
-        $("#drop option").removeAttr("disabled");
-        $("#drop option[value=" + drop + "]").attr('disabled', 'disabled');
+    $("#pickup").change(function() {
+        if (this.val != "") {
+
+            var drop = $(this).val();
+
+            $("#drop option[value='" + drop + "']").attr("disabled", "disabled").siblings().removeAttr("disabled");
+        }
     });
 
     /*----------Function To Disable The Similar Pickup Location--------------*/
-    $('#drop').change(function() {
-        var pick = $(this).val();
-        $("#pickup option").removeAttr("disabled");
-        $("#pickup option[value=" + pick + "]").attr('disabled', 'disabled');
+    $("#drop").change(function() {
+        if (this.val != "") {
+            var pick = $(this).val();
+
+            $("#pickup option[value='" + pick + "']").attr("disabled", "disabled").siblings().removeAttr("disabled");
+        }
     });
 
     /*-----------Function To Validate The Input In The Weigth Field------------*/
@@ -38,35 +44,47 @@ $(document).ready(function() {
         }
     });
 
-    /*----------Function To Send Form Data To The Php File----------------------*/
+    $("#btnpass").click(function() {
+        $("#changepassword").css({ "display": "block" });
+        $("#changenumber").css({ "display": "none" });
+        $("#changename").css({ "display": "none" });
+    });
+
+    $("#btnnum").click(function() {
+        $("#changepassword").css({ "display": "none" });
+        $("#changenumber").css({ "display": "block" });
+        $("#changename").css({ "display": "none" });
+    });
+    $("#btnname").click(function() {
+        $("#changepassword").css({ "display": "none" });
+        $("#changenumber").css({ "display": "none" });
+        $("#changename").css({ "display": "block" });
+    });
+
     $("#submit").click(function() {
+        alert("fggf");
         var pickup = $("#pickup").val();
         var drop = $("#drop").val();
         var cabtype = $("#cabtype").val();
         var weight = $("#weight").val();
         var dataString = 'pickup1=' + pickup + '&drop1=' + drop + '&cabtype1=' + cabtype + '&weight1=' + weight;
         if (pickup == '' || drop == '' || cabtype == '' || weight == '') {
-            $("#statement").html("");
-            $("#way").html("");
-            $("#demo").html("Please Make Sure To Fill All The Fields");
-            $('#myModal').modal('show');
+            alert("Please fill all values")
 
         } else {
             $.ajax({
                 type: "POST",
-                url: "file.php",
+                url: "calculatefare.php",
                 data: dataString,
                 cache: false,
                 success: function(result) {
-                    var a = pickup + " To " + drop + " By " + cabtype;
-                    $("#statement").html("Your Total Calculated Fare is :")
-                    $("#way").html(a);
-                    $("#demo").html(result);
-                    $('#myModal').modal('show');
-
+                    $("#getfare").css({ "display": "block" });
+                    $("#getfare").val(result);
+                    $("#getfar").val(result);
                 }
             });
         }
         return false;
     });
+
 });

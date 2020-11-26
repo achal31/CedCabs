@@ -1,0 +1,38 @@
+
+<div class="sidebar-container">
+  <div class="sidebar-logo">
+    Welcome Admin
+  </div>
+  <ul class="sidebar-navigation">
+    <li>
+      <a href="rideRequest.php">
+        <i class="fas fa-info-circle" aria-hidden="true"></i> Manage Requests
+      </a>
+    </li>
+    <li>
+      <a href="manageUser.php">
+        <i class="fas fa-align-justify" aria-hidden="true"></i> Manage User
+      </a>
+    </li>
+    <li>
+      <a href="pastRides.php">
+        <i class="fa fa-taxi" aria-hidden="true"></i> Manage Rides
+      </a>
+    </li>
+    <li>
+      <a href="manageLocation.php">
+        <i class="fas fa-map-marker-alt" aria-hidden="true"></i> Manage Locations
+      </a>
+    </li>
+    <li>
+      <a href="totalEarning.php">
+        <i class="fas fa-dollar-sign" aria-hidden="true"></i> Manage Earnings
+      </a>
+    </li>
+    <li>
+      <a href="../login.php">
+        <i class="fa fa-info-circle" aria-hidden="true"></i> Logout
+      </a>
+    </li>
+  </ul>
+</div>
