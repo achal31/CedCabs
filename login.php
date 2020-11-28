@@ -1,15 +1,14 @@
-<?php 
+<?php
 include('header.php');
 include_once('function.php');
 // Object creation
-$userdata=new DB_con();
-if(isset($_POST['login']))
-{
-// Posted Values
-$name=$_POST['name'];
-$pasword=($_POST['password']);
-//Function Calling
-$sql=$userdata->signin($name,$pasword);
+$userdata = new DB_con();
+if (isset($_POST['login'])) {
+    // Posted Values
+    $name    = $_POST['name'];
+    $pasword = ($_POST['password']);
+    //Function Calling
+    $sql     = $userdata->signin($name, $pasword);
 }
 ?>
 <!DOCTYPE html>
@@ -32,12 +31,12 @@ $sql=$userdata->signin($name,$pasword);
         <p>
            <input type="password" name="password" placeholder="Enter The Password" class="detail" id="password" required>
         </p>
-       
+      
         <p>
             <input type="checkbox" onclick="myFunction()">Show Password
         </p>      
         <p>
-        <input type="submit" name="login" value="Login" id="detailbutton">   
+        <input type="submit" name="login" value="Login" class="detailbutton">  
         <a href="register.php" class="linkbutton">Create An Account</a> 
         </p>
         

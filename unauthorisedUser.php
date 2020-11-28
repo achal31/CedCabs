@@ -1,3 +1,7 @@
-<?php include('header.php');
-include('index.php');
+<?php 
+
+        include("header.php");
+        include("index.php");
+   
+
 ?>

@@ -1,4 +1,7 @@
 <?php 
-include("headeruser.php");
-include("index.php");
+
+        include("header.php");
+        include("index.php");
+   
+
 ?>

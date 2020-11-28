@@ -110,11 +110,7 @@ i {
     color: black!important;
 }
 
-#detailbutton,
-#addquestion,
-#quizbutton,
-#updatequestion,
-.quiz {
+.detailbutton {
     background-color: #e7b94f;
     border: 2px;
     border-radius: 10px;
@@ -123,9 +119,7 @@ i {
     padding: 12px 15px 12px 15px;
 }
 
-.detail,
-.ques,
-#quiz {
+.detail {
     width: 300px;
     background-color: transparent;
     border: none;
@@ -133,8 +127,7 @@ i {
     padding: 5px 10px;
 }
 
-.detail,
-#detailbutton,
+.detailbutton,
  :focus {
     outline: none;
 }
@@ -173,7 +166,7 @@ a {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333333;
+    background-color: white
 }
 
 .changes {
@@ -196,7 +189,24 @@ a {
 #setting>span {
     padding-left: 50px;
     margin-top: 50px;
+    color: #4CAF50;
+}
+
+.option {
+    background-color: white;
+    border: 0px;
+    color: #4CAF50;
+}
+
+button.option:hover {
+    background-color: #4CAF50;
     color: white;
+}
+
+button.option:focus {
+    background-color: red;
+    color: white;
+    outline: 0px;
 }
 
 #changepassword,
@@ -215,7 +225,7 @@ table {
 td,
 th {
     border: 1px solid #ddd;
-    padding: 4px 50px 4px 50px;
+    padding: 4px 30px 4px 30px;
 }
 
 tr:nth-child(even) {
@@ -232,4 +242,74 @@ th {
     text-align: left;
     background-color: #4CAF50;
     color: white;
+}
+
+.filter {
+    background-color: transparent;
+    color: black;
+    border: 0px;
+}
+
+#book {
+    display: none;
+}
+
+ul#filter li {
+    display: inline;
+}
+
+.filtera {
+    color: black !important;
+}
+
+.triggerbtn {
+    border-radius: 10px;
+    padding: 5px 15px 5px 15px;
+    background-color: transparent;
+    border: 0px;
+    color: #4CAF50;
+}
+
+button.triggerbtn:focus {
+    border: 0px;
+    outline: 0px;
+}
+
+button.triggerbtn:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+div.hide>li>a:hover,
+button.triggerbtn:focus {
+    background-color: red;
+    color: white !important;
+    text-decoration: none;
+}
+
+#previousridewrapper {
+    margin-left: 7%;
+}
+
+#tbl {
+    margin-left: 6%;
+}
+
+#heading {
+    margin-left: 40%;
+}
+
+.hide {
+    display: none;
+}
+
+div.hide {
+    margin-top: 2%;
+}
+
+div.hide>li>a {
+    border-radius: 10px;
+    padding: 3px 12px 3px 12px;
+    color: #4CAF50 !important;
+    text-decoration: none;
 }

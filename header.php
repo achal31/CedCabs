@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+    
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,15 +33,45 @@
             <li class="nav-item">
                     <a class="nav-link" href="unauthorisedUser.php">HOME</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.php">LOGIN</a>
+            <?php
+
+if (isset($_SESSION['username'])) {
+    if ($_SESSION['usertype'] == '1') {
+?>    
+            <li class="nav-item">
+                    <a class="nav-link" href="previousRides.php">PREVIOUS RIDES</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="register.php">REGISTER</a>
+                    <a class="nav-link" href="checkStatus.php">CHECK STATUS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">ABOUTUS</a>
+                    <a class="nav-link" href="userSettings.php">SETTINGS</a>
                 </li>
-            </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">LOGOUT</a>
+                </li>
+                
+            <?php
+        ;
+    } else {
+        header("location:adminfiles/adminpanel.php");
+    }
+} else {
+?>
+               <li class="nav-item">
+                            <a class="nav-link" href="login.php">LOGIN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register.php">REGISTER</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">ABOUTUS</a>
+                        </li>
+            <?php
+    ;
+}
+?>
+           </ul>
         </div>
     </nav>
+  

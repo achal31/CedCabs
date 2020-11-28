@@ -1,20 +1,11 @@
-<?php
-
-session_start();
-?>
-    <!------------------------Form Container--------------------------->
-    <div class="background-overlay">
+<!------------------------Form Container--------------------------->
+<div class="background-overlay">
         <div class="row">
 
             <!------------------Headings------------------------------->
             <div class="col-sm-2 col-md-2 col-lg-2"></div>
             <div class="col-sm-8 col-md-8 col-lg-8 text-center text-white py-5">
                 <h1>Book a City Taxi to your Destination in your Town
-                    <?php if (isset($_SESSION['username']))
-{
-    echo $_SESSION['username'];
-}
-?>
                 </h1>
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2"></div>
@@ -41,17 +32,20 @@ session_start();
                                 <select class="form-control" id="pickup" name="pickup" required>
                                     <option value="" disabled selected>Select The Pick Up Location</option>
                                     <?php
-include_once ('function.php');
+include_once('function.php');
 $location = new DB_con();
-$sql = $location->location();
-foreach ($sql as $locationdata)
-{
+$sql      = $location->location();
+foreach ($sql as $locationdata) {
 ?>
-                                        <option value="<?php echo $locationdata['name']; ?>"><?php echo $locationdata['name']; ?></option>
+                                       <option value="<?php
+    echo $locationdata['name'];
+?>"><?php
+    echo $locationdata['name'];
+?></option>
                                         <?php
 }
 ?>
-                                        
+                                       
                                         </select>
                             </div>
 
@@ -60,17 +54,20 @@ foreach ($sql as $locationdata)
                                 <select class="form-control" id="drop" name="drop" required>
 `                                   <option value="" disabled selected>Select The Drop Location</option>
                                 <?php
-include_once ('function.php');
+include_once('function.php');
 $location = new DB_con();
-$sql = $location->location();
-foreach ($sql as $locationdata)
-{
+$sql      = $location->location();
+foreach ($sql as $locationdata) {
 ?>
-                                        <option value="<?php echo $locationdata['name']; ?>"><?php echo $locationdata['name']; ?></option>
+                                       <option value="<?php
+    echo $locationdata['name'];
+?>"><?php
+    echo $locationdata['name'];
+?></option>
                                         <?php
 }
 ?>
-                                        
+                                       
         </select>
                             </div>
 
@@ -102,7 +99,7 @@ foreach ($sql as $locationdata)
                               <button type="button" class="btn btn-info form-control" id="submit">Calculate Fare</button>
                             </div>
                             <div class="col-sm-6 col-md-12 col-lg-4 my-4">
-                              <button type="submit" class="btn btn-info form-control" name="book">Book Cab</button>
+                              <button type="submit" class="btn btn-info form-control" name="book" id="book">Book Cab</button>
                             </div>
                             
 
@@ -175,3 +172,4 @@ foreach ($sql as $locationdata)
 </body>
 
 </html>
+Download 

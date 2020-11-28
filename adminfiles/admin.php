@@ -7,32 +7,83 @@ define('DB_NAME', 'cabservice'); // Database name
 
 class admin
 {
-
+    
     function __construct()
     {
-        $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+        $conn      = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
         $this->dbh = $conn;
-        if (mysqli_connect_errno())
-        {
+        if (mysqli_connect_errno()) {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
     }
-
+    
+    public function dashboard($tile)
+    {
+        switch ($tile) {
+            case 1:
+                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE  `status`='1'");
+                break;
+            case 2:
+                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE  `status`='2'");
+                break;
+            case 3:
+                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE `isblock`='1'");
+                break;
+            case 4:
+                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE  `status`='0'");
+                break;
+            case 5:
+                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE  `isblock`='0'");
+                break;
+            case 6:
+                $fetchRides = mysqli_query($this->dbh, "SELECT * FROM tbl_location WHERE `is_available`='0'");
+                break;
+        }
+        return mysqli_num_rows($fetchRides);
+        
+    }
+    
+    
+    
     public function riderequest($status)
     {
-        switch($status)
-        {
-            case 0: $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE  `status`='0'");break;
-            case 1: $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE  `status`='1'");break;
-            case 2: $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE  `status`='2'");break;
-        }
-        if (mysqli_num_rows($fetchRides) > 0)
-        {
+        $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE  `status`=$status");
+        if (mysqli_num_rows($fetchRides) > 0) {
             return $fetchRides;
+        } else {
+            return 0;
         }
-
     }
-
+    
+    public function ridefilter($status, $filter, $order)
+    {
+        switch ($filter) {
+            case 'distance':
+                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`=$status ORDER BY `total_distance` $order");
+                break;
+            case 'Fare':
+                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`=$status ORDER BY `total_fare` $order");
+                break;
+            case 'Name':
+                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`=$status ORDER BY `tripstart` $order");
+                break;
+            case 'Date':
+                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`=$status ORDER BY `ride_date` $order");
+                break;
+            case 'cab_type':
+                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`=$status AND `cab_type`='$order'");
+                break;
+        }
+        
+        if (mysqli_num_rows($fetchRides) > 0) {
+            return $fetchRides;
+        } else {
+            return 0;
+        }
+        
+    }
+    
+    
     public function acceptRide($userid)
     {
         $fetchRides = mysqli_query($this->dbh, "UPDATE tbl_ride SET `status`='2' WHERE ride_id='$userid'");
@@ -41,114 +92,168 @@ class admin
     {
         $fetchRides = mysqli_query($this->dbh, "UPDATE tbl_ride SET `status`='0' WHERE ride_id='$userid'");
     }
-
+    
+    
+    
     public function manageUser($status)
     {
-        switch($status)
-        {
-            case 0: $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE `isblock`='0'");break;
-            case 1: $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE `isblock`='1'");break;
-            case 2: $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user ");break;
+        if ($status == 2) {
+            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user");
+        } else {
+            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE `isblock`=$status");
         }
-       
-        if (mysqli_num_rows($fetchRides) > 0)
-        {
+        if (mysqli_num_rows($fetchRides) > 0) {
             return $fetchRides;
+        } else {
+            return 0;
         }
-
+        
     }
-
+    
+    
+    
+    public function filteruser($filter, $order, $request)
+    {
+        if ($request == '2') {
+            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user ORDER BY $filter $order");
+        } else {
+            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE `isblock`=$request ORDER BY $filter $order");
+        }
+        if (mysqli_num_rows($fetchRides) > 0) {
+            return $fetchRides;
+        } else {
+            return 0;
+        }
+    }
+    
+    
+    
     public function userStatus($userid)
     {
         $fetchdata = mysqli_query($this->dbh, "SELECT * FROM tbl_user WHERE `user_id`='$userid'");
-        while ($ridedata = mysqli_fetch_array($fetchdata))
-        {
-            if ($ridedata['isblock'] == '0')
-            {
+        while ($ridedata = mysqli_fetch_array($fetchdata)) {
+            if ($ridedata['isblock'] == '0') {
                 $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_user SET `isblock`='1' WHERE `user_id`='$userid'");
-            }
-            else
-            {
+            } else {
                 $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_user SET `isblock`='0' WHERE `user_id`='$userid'");
             }
-
+            
         }
     }
-
-    public function pastrides($filter)
+    
+    public function filter($filter, $order)
     {
-      switch($filter)
-      {
-        case "":$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`='2' OR `status`='0'");break;
-        case 'distance':$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`='2' OR `status`='0' ORDER BY `total_distance`");break;
-        case 'fare':$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`='2' OR `status`='0' ORDER BY `total_fare`");break;
-        case 'name':$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`='2' OR `status`='0' ORDER BY `tripstart`");break;
-        case 'date':$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`='2' OR `status`='0' ORDER BY `ride_date`");break;
+        if ($filter == "" && $order == "") {
+            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`='2' OR `status`='0'");
+        } else if ($filter == 1 && $order == 1) {
+            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`='2'");
+        } else if ($filter == 'cab_type') {
+            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `$filter`='$order'");
+        } else {
+            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`='2' OR `status`='0' ORDER BY `$filter` $order");
+            
         }
-        if (mysqli_num_rows($fetchRides) > 0)
-        {
+        if (mysqli_num_rows($fetchRides) > 0) {
             return $fetchRides;
+        } else {
+            return 0;
         }
     }
-
+    
+    
+    
+    
+    
     public function deleterideDetail($id)
     {
         $fetchUser = mysqli_query($this->dbh, "DELETE FROM tbl_ride  WHERE `ride_id`='$id'");
     }
-
-    public function managelocation()
+    
+    
+    
+    public function managelocation($filter, $order)
     {
-
-        $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_location");
-        if (mysqli_num_rows($fetchRides) > 0)
-        {
-            return $fetchRides;
+        if ($filter == "") {
+            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_location");
+        } else {
+            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_location ORDER BY `$filter` $order");
         }
-
+        
+        if (mysqli_num_rows($fetchRides) > 0) {
+            return $fetchRides;
+        } else {
+            return 0;
+        }
+        
     }
-
+    
+    
+    
     public function locationavailability($id)
     {
         
-        $fetchUser = mysqli_query($this->dbh, "SELECT * FROM `tbl_location` WHERE `id`='$id'");
-        while ($ridedata = mysqli_fetch_array($fetchUser))
-        {
-            if ($ridedata['is_available'] == '0')
-            {
+        $fetchUser = mysqli_query($this->dbh, "SELECT * FROM tbl_location WHERE `id`='$id'");
+        while ($ridedata = mysqli_fetch_array($fetchUser)) {
+            if ($ridedata['is_available'] == '0') {
                 $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `is_available`='1' WHERE `id`='$id'");
-            }
-            else
-            {
+            } else {
                 $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `is_available`='0' WHERE `id`='$id'");
             }
         }
-
+        
     }
-
+    
+    
+    
     public function locationdelete($id)
     {
         $fetchUser = mysqli_query($this->dbh, "DELETE FROM tbl_location  WHERE `id`='$id'");
     }
+    
+    
     public function newlocation($name, $distance)
     {
         $fetchUser = mysqli_query($this->dbh, "INSERT INTO tbl_location (`name`,`distance`,`is_available`) VALUES('$name','$distance','0')");
         echo "<script>window.location.href='manageLocation.php'</script>";
     }
+    
+    
     public function Updatelocation($id, $locationname, $distance)
     {
         $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `name`='$locationname' ,`distance`='$distance' WHERE `id`='$id'");
         echo "<script>window.location.href='manageLocation.php'</script>";
     }
-
+    
+    
+    
     public function totalearning()
     {
-        $total = 0;
+        $total     = 0;
         $fetchUser = mysqli_query($this->dbh, "SELECT * FROM tbl_ride WHERE `status`='2'");
-        while ($ridedata = mysqli_fetch_array($fetchUser))
-        {
-            $total = $total + (int)$ridedata['total_fare'];
+        while ($ridedata = mysqli_fetch_array($fetchUser)) {
+            $total = $total + (int) $ridedata['total_fare'];
         }
         echo $total;
+    }
+    
+    public function changepass($username, $current, $new, $confirm)
+    {
+        
+        
+        
+        $userdetail = mysqli_query($this->dbh, "SELECT * FROM tbl_user where `user_id`='$username' AND `password`='$current'");
+        $check      = mysqli_fetch_assoc($userdetail);
+        $result     = $userdetail->num_rows;
+        if ($result == 1) {
+            if ($new == $confirm) {
+                $update = mysqli_query($this->dbh, "UPDATE tbl_user SET `password`='$new' WHERE `user_id`='$username'");
+                echo "<script>alert('Updated Successfully');</script>";
+            } else {
+                echo "<script>alert('Wrong Detail Entered Please Check And Try Again');</script>";
+            }
+        } else {
+            echo "<script>alert('Wrong Detail Entered Please Cheack And Try Again');</script>";
+        }
     }
 }
 

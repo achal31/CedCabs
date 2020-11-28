@@ -1,16 +1,16 @@
-<?php 
+<?php
 include('header.php');
 include_once('function.php');
-$userdata=new DB_con();
+$userdata = new DB_con();
 if (isset($_POST['register'])) {
-  $name=$_POST['user_name'];
-  $fullname=$_POST['fullname'];
-  $number=$_POST['number'];
-  $password=$_POST['password'];
-  $repassword=$_POST['repassword'];
-  $date=date("Y/m/d");
-  if ($password==$repassword) {
-    $sql=$userdata->registration($name,$fullname,$date,$number,$password);
+    $name       = $_POST['user_name'];
+    $fullname   = $_POST['fullname'];
+    $number     = $_POST['number'];
+    $password   = $_POST['password'];
+    $repassword = $_POST['repassword'];
+    $date       = date("Y/m/d");
+    if ($password == $repassword) {
+        $sql = $userdata->registration($name, $fullname, $date, $number, $password);
     }
 }
 ?>
@@ -52,9 +52,9 @@ if (isset($_POST['register'])) {
             <input type="checkbox" onclick="myFunction()">Show Password
             
             <p></p>
-            <input type="submit" name="register" value="Register" id="detailbutton">   
+            <input type="submit" name="register" value="Register" class="detailbutton">  
             <a href="login.php" class="linkbutton">Already Have An Account</a> 
-           
+          
 </form>
 </div>
 <script>
