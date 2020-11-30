@@ -2,10 +2,11 @@ google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
+
     var active = parseInt(document.getElementById("unblockuser").value);
     var block = parseInt(document.getElementById("blockuser").value);
     var data = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
+        ['USERS', 'TYPE'],
         ['ACTIVEUSER', active],
         ['BLOCKEDUSER', block],
     ]);

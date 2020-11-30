@@ -57,24 +57,20 @@ class admin
     
     public function ridefilter($status, $filter, $order)
     {
-        switch ($filter) {
-            case 'distance':
-                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`=$status ORDER BY `total_distance` $order");
-                break;
-            case 'Fare':
-                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`=$status ORDER BY `total_fare` $order");
-                break;
-            case 'Name':
-                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`=$status ORDER BY `tripstart` $order");
-                break;
-            case 'Date':
-                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`=$status ORDER BY `ride_date` $order");
-                break;
-            case 'cab_type':
-                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`=$status AND `cab_type`='$order'");
-                break;
-        }
         
+        
+      if($filter=='cab_type')
+      {
+        $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`=$status AND `$filter`='$order'");
+      }
+      else {
+
+        if($filter == "total_distance") {
+            $filter = "cast(`$filter` AS unsigned)";
+        }
+        $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`=$status ORDER BY $filter $order");
+      }
+                    
         if (mysqli_num_rows($fetchRides) > 0) {
             return $fetchRides;
         } else {
@@ -143,6 +139,7 @@ class admin
     
     public function filter($filter, $order)
     {
+       
         if ($filter == "" && $order == "") {
             $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`='2' OR `status`='0'");
         } else if ($filter == 1 && $order == 1) {
@@ -172,11 +169,16 @@ class admin
     
     
     public function managelocation($filter, $order)
-    {
+    {  
+        
         if ($filter == "") {
             $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_location");
         } else {
-            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_location ORDER BY `$filter` $order");
+
+        if($filter != "name") {
+            $filter = "cast(`$filter` AS unsigned)";
+        }
+            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_location ORDER BY $filter $order");
         }
         
         if (mysqli_num_rows($fetchRides) > 0) {
@@ -185,21 +187,24 @@ class admin
             return 0;
         }
         
+
     }
     
     
     
-    public function locationavailability($id)
+    public function locationavailability($locationid)
     {
         
-        $fetchUser = mysqli_query($this->dbh, "SELECT * FROM tbl_location WHERE `id`='$id'");
-        while ($ridedata = mysqli_fetch_array($fetchUser)) {
-            if ($ridedata['is_available'] == '0') {
-                $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `is_available`='1' WHERE `id`='$id'");
-            } else {
-                $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `is_available`='0' WHERE `id`='$id'");
+        $fetchUser = mysqli_query($this->dbh, "SELECT * FROM tbl_location WHERE `id`= $locationid");
+  
+            while ($ridedata = mysqli_fetch_array($fetchUser)) {
+                if ($ridedata['is_available'] == '0') {
+                    $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `is_available`='1' WHERE `id`='$locationid'");
+                } else {
+                    $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `is_available`='0' WHERE `id`='$locationid'");
+                }
             }
-        }
+        
         
     }
     
@@ -236,16 +241,17 @@ class admin
         echo $total;
     }
     
-    public function changepass($username, $current, $new, $confirm)
+    public function changepass($username, $current1, $new1, $confirm)
     {
         
-        
+        $current=md5($current1);
         
         $userdetail = mysqli_query($this->dbh, "SELECT * FROM tbl_user where `user_id`='$username' AND `password`='$current'");
         $check      = mysqli_fetch_assoc($userdetail);
         $result     = $userdetail->num_rows;
         if ($result == 1) {
-            if ($new == $confirm) {
+            if ($new1 == $confirm) {
+                $new=md5($new1);
                 $update = mysqli_query($this->dbh, "UPDATE tbl_user SET `password`='$new' WHERE `user_id`='$username'");
                 echo "<script>alert('Updated Successfully');</script>";
             } else {
@@ -255,6 +261,8 @@ class admin
             echo "<script>alert('Wrong Detail Entered Please Cheack And Try Again');</script>";
         }
     }
+
+    
 }
 
 ?>

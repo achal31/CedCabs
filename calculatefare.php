@@ -6,6 +6,7 @@ $drop=$_POST['drop1'];
 $cabtype=$_POST['cabtype1'];
 $weight=$_POST['weight1'];
 
+/*--------------To Store Pickup Location----------------------*/
 $pickuplocation="SELECT distance From tbl_location where `name`='$pickup'";
  $displaydistance=mysqli_query($conn, $pickuplocation);
 
@@ -13,6 +14,7 @@ while ($getdistance=mysqli_fetch_array($displaydistance)) {
     $intialDistance=$getdistance['distance'];
 }
 
+/*--------------To Store Drop Location----------------------*/
 $droplocation="SELECT distance From tbl_location where `name`='$drop'";
  $displaydistance=mysqli_query($conn, $droplocation);
 
@@ -20,6 +22,7 @@ while ($getdistance=mysqli_fetch_array($displaydistance)) {
     $finalDistance=$getdistance['distance'];
 }
 
+/*--------------To Calculate Total Distance----------------------*/
 $totaldistance=abs($intialDistance-$finalDistance);
 switch($totaldistance)
 {

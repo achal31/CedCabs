@@ -15,6 +15,7 @@ class DB_con
         }
     }
     
+    /*--------------------Function Used to Register user to the database--------------------------*/
     public function registration($name, $fullname, $date, $number, $pass)
     {
         $checkusername = mysqli_query($this->dbh, "SELECT * FROM tbl_user WHERE `user_name`='$name'");
@@ -33,7 +34,8 @@ class DB_con
         }
     }
     
-    public function signin($name, $pasword)
+    /*---------------------Function Used to Sign In The User to the website-----------------------*/
+    public function signin($name, $pasword,$remember)
     {
         $password     = md5($pasword);
         $signindetail = mysqli_query($this->dbh, "SELECT * FROM tbl_user where user_name='$name' and Password='$password'");
@@ -44,15 +46,33 @@ class DB_con
             $username   = $userdata['user_id'];
             $userstatus = $userdata['isblock'];
             $checkadmin = $userdata['is_admin'];
+
+            /*----------Check Whether User is an admin-----------------*/
             if ($checkadmin == 0) {
                 $_SESSION['username'] = $username;
                 $_SESSION['usertype'] = '0';
                 echo "<script>window.location.href='adminfiles/adminpanel.php'</script>";
             } else {
+
+                /*--------------Condition to Check whether it is user--------------*/
                 if ($userstatus == 1) {
                     $_SESSION['usertype'] = '1';
                     $_SESSION['username'] = $username;
-                    echo "<script>window.location.href='userpanel.php'</script>";
+
+                    /*-------------Condition To Save Cookies--------------------*/
+                    if($remember!="")
+                    {
+                        setcookie ("member_login",$name,time()+ (10 * 365 * 24 * 60 * 60));  
+                    }
+                    else if($remember!='on'){
+                        if(isset($_COOKIE["member_login"]))  
+                        {
+                            {  
+                            setcookie ("member_login","");  
+                            }  
+                        }
+                    }
+                    echo "<script>window.location.href='index.php'</script>";
                 } else {
                     echo "<script>alert('Please Wait For Admin To Provide Access');</script>";
                 }
@@ -62,8 +82,10 @@ class DB_con
             echo "<script>alert('Wrong Password');</script>";
         }
     }
+
+    /*-------------------Function to fetch the available location on the landing page----------------------*/
     public function location()
-    {
+    { 
         $fetchLocation = mysqli_query($this->dbh, "SELECT * From tbl_location WHERE `is_available`='0'");
         if (mysqli_num_rows($fetchLocation) > 0) {
             return $fetchLocation;

@@ -30,14 +30,15 @@ if (!isset($_SESSION)) {
       </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
-            <li class="nav-item">
-                    <a class="nav-link" href="unauthorisedUser.php">HOME</a>
-                </li>
+           
             <?php
-
+/*------------List to show when the user is login ---------------*/
 if (isset($_SESSION['username'])) {
     if ($_SESSION['usertype'] == '1') {
 ?>    
+            <li class="nav-item">
+                    <a class="nav-link" href="index.php">HOME</a>
+                </li>
             <li class="nav-item">
                     <a class="nav-link" href="previousRides.php">PREVIOUS RIDES</a>
                 </li>
@@ -56,8 +57,13 @@ if (isset($_SESSION['username'])) {
     } else {
         header("location:adminfiles/adminpanel.php");
     }
-} else {
+} 
+/*------------List to show when the User is Not logged In ---------------*/
+else {
 ?>
+                        <li class="nav-item">
+                    <a class="nav-link" href="index.php">HOME</a>
+                </li>
                <li class="nav-item">
                             <a class="nav-link" href="login.php">LOGIN</a>
                         </li>

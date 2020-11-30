@@ -1,3 +1,11 @@
+<?php
+
+if(isset($_SESSION['userdata']))
+{
+    header("Location:confirmBooking.php");
+}
+include('header.php');
+?>
 <!------------------------Form Container--------------------------->
 <div class="background-overlay">
         <div class="row">
@@ -172,4 +180,3 @@ foreach ($sql as $locationdata) {
 </body>
 
 </html>
-Download 

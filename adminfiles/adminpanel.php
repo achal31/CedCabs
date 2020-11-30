@@ -22,8 +22,8 @@ if (!isset($_SESSION['username'])) {
     <meta name="author" content="">
 
     <title>SB Admin 2 - Dashboard</title>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -43,7 +43,7 @@ if (!isset($_SESSION['username'])) {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -241,11 +241,20 @@ if (!isset($_SESSION['username'])) {
 
 
 include_once('admin.php');
-
+$arraydate=[];
+$arrayorder=[];
+$arrayearning=[];
 $userdata = new admin();
 $userdata->totalearning();
 
+
+
+
+
 ?></div>
+<script>
+    
+</script>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -427,9 +436,9 @@ echo $sql;
 
 
 
-                        <div id="piechart"></div>
+                        <div id="piechart" onload="drawChart()"></div>
                         <div id="RIDERS"></div>
-                    
+                    <div id="bar"></div>
                         
                     </div>
 
@@ -497,6 +506,7 @@ echo $sql;
             <script src="js/demo/chart-area-demo.js"></script>
             <script src="js/demo/chart-pie-demo.js"></script>
 
+            
 </body>
 
 </html>

@@ -40,7 +40,7 @@ if (!isset($_SESSION['username'])) {
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
     </div>
@@ -252,6 +252,8 @@ if (isset($_POST['Save'])) {
 }
 ?>
 <div id="wrappers">
+
+<!--------------ADD LOCATION FORM----------------->
 <form action="addLocation.php" method="POST">
   
 <input type="text" name="location" class="addlocation" value="<?php
@@ -259,18 +261,21 @@ if (isset($_GET['edit'])) {
     echo $name;
 }
 ?>" placeholder="Enter The Location" required>
+
     <p></p>
     <input type="text" name="distance" placeholder="Enter The distance" class="addlocation" id="dynamic" value="<?php
 if (isset($_GET['edit'])) {
     echo $distance;
 }
 ?>" required>
+
     <p></p>
     <input type="hidden" name="id"  class="triggerbtn" value="<?php
 if (isset($_GET['edit'])) {
     echo $id;
 }
 ?>">
+
     <input type="submit" name="Save" class="triggerbtn"  value="<?php
 if (isset($_GET['edit'])) {
     echo "Update Location";

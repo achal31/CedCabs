@@ -40,11 +40,11 @@ if (isset($_POST['Save'])) {
 
     <div id="changepassword">
         <form action="userSettings.php" method="POST"> 
-        <input placeholder="Enter Current Passsword" name="current" class="detail" required>
+        <input type="password" placeholder="Enter Current Passsword" name="current" class="detail" required>
         <p></p>
-        <input placeholder="Enter New Passsword" name="new" class="detail" required>
+        <input type="password" placeholder="Enter New Passsword" name="new" class="detail" required>
         <p></p>
-        <input placeholder="Please Confirm Passsword" name="conf" class="detail" required>
+        <input type="password" placeholder="Please Confirm Passsword" name="conf" class="detail" required>
         <p></p>
         <input type="submit" value="UpdatePassword" name="Save" class="detailbutton">
         </form>
@@ -64,11 +64,11 @@ if (isset($_POST['Save'])) {
 
     <div id="changename">
     <form action="userSettings.php" method="POST">
-        <input placeholder="Enter Current Full Name" name="current"  class="detail" required>
+        <input  placeholder="Enter Current Full Name" name="current"  class="detail" required>
         <p></p>
-        <input placeholder="Enter New Full Name" name="new" class="detail" required>
+        <input  placeholder="Enter New Full Name" name="new" class="detail" required>
         <p></p>
-        <input placeholder="Please Confirm Full Name" name="conf" class="detail" required>
+        <input  placeholder="Please Confirm Full Name" name="conf" class="detail" required>
         <p></p>
         <input type="submit" value="UpdateUsername" name="Save" class="detailbutton">
         </form>

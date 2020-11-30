@@ -1,4 +1,5 @@
 <?php
+/*------If User Session is Not Created header will take the user out--------------*/
 include("header.php");
 if (!isset($_SESSION)) {
     session_start();
@@ -10,11 +11,12 @@ if (!isset($_SESSION['username'])) {
 } else if ($_SESSION['usertype'] == '0') {
     header("adminfiles/adminpanel.php");
 }
-
-
 ?>
+
 <div id="heading"><h2>CHECK STATUS</h2></div>
 <div id="previousridewrapper">
+
+<!----------Drop Down Toggle Switch--------------->
 <div id="filtermenu">
 <ul id="filter">
 <button class="triggerbtn" id="distance1">SORT BY DISTANCE</button>
@@ -25,7 +27,7 @@ if (!isset($_SESSION['username'])) {
 <button class="triggerbtn" id="cab1">FILTER BY CABS</button>
 <button class="triggerbtn" id="status1">FILTER BY STATUS</button>
 
-
+<!---------------Drop Down Panel--------------------->
 <div id="status" class="hide">
 <li><a href="checkStatus.php?status=2" class="filtera">COMPLETED</a></li>
 <li><a href="checkStatus.php?status=1" class="filtera">PENDING</a></li>
@@ -61,12 +63,15 @@ if (!isset($_SESSION['username'])) {
 <li><a href="checkStatus.php?cab=cab_type&order=CedMicro" class="filtera">CedMicro</a></li>
 <li><a href="checkStatus.php?cab=cab_type&order=CedRoyal" class="filtera">CedRoyal</a></li>
 <li><a href="checkStatus.php?cab=cab_type&order=CedSUV" class="filtera">CedSUV</a></li>
-
 </div>
 </ul> 
     </div>
 </div>
+
+
 <div id="tbl">
+    
+<!----------------------------Calling Function For each Filter------------------------------->
 <?php
 include_once('user.php');
 if (isset($_GET['status'])) {
@@ -103,6 +108,13 @@ $html .= "<th>Luguage</th>";
 $html .= "<th>Total Fare</th>";
 $html .= "<th>Status</th>";
 $html .= "</tr>";
+if($sql=='0')
+{
+    echo"<h2>No Data Available</h2>";
+}
+else{
+
+
 foreach ($sql as $result) {
     $html .= "<tr>";
     $html .= "<td>$i</td>";
@@ -126,6 +138,6 @@ foreach ($sql as $result) {
 }
 $html .= "</table>";
 echo $html;
-
+}
 ?>
 </div>

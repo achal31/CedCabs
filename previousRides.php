@@ -1,3 +1,5 @@
+<!------------------PAGE IS USED TO CHECK THE PREVIOUS RIDES--------------------------->
+<!---------------CONDITION TO CHECK WHTHER USER LOGIN SESSION CREATED OT NOT----------->
 <?php
 include('header.php');
 
@@ -19,6 +21,7 @@ if (!isset($_SESSION['username'])) {
 <div id="heading"><h2>COMPLETED RIDES</h2></div>
 <div id="previousridewrapper">
 
+<!-------------TOGGLE BUTTON TO TARGET DROP DOWN------------------->
 <div id="filtermenu">
 <ul id="filter">
 <button class="triggerbtn" id="distance1">SORT BY DISTANCE</button>
@@ -29,7 +32,7 @@ if (!isset($_SESSION['username'])) {
 <button class="triggerbtn" id="cab1">FILTER BY CABS</button>
 
 
-
+<!----------------DROP DOWN TO SHOW FILTER OPTION ---------------------->
 <div id="distance" class="hide">
 <li><a href="previousRides.php?filter=total_distance&order=ASC" class="filtera">Ascending Order</a></li>
 <li><a href="previousRides.php?filter=total_distance&order=DESC" class="filtera">Descending Order</a></li>
@@ -68,6 +71,8 @@ if (!isset($_SESSION['username'])) {
 </div>
 
 <div id="tbl">
+
+<!------------CALLING FUNCTIONS TO PROVIDE FILTERED AND SORTED LIST TO THE USER------------->
 <?php
 
 include_once('user.php');

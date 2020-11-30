@@ -1,3 +1,4 @@
+<!----------------USER CLASS FILE--------------------->
 <?php
 define('DB_SERVER', 'localhost'); // Your hostname
 define('DB_USER', 'root'); // Databse username
@@ -16,6 +17,7 @@ class user
         }
     }
     
+    /*----------------FUNCTION USED TO RETURN THE FILTED LIST TO THE USER------------------*/
     public function rideDetail($username, $filter, $order, $type)
     {
         
@@ -31,11 +33,11 @@ class user
                 $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE `customer_user_id` ='$username' AND DATE(`ride_date`) BETWEEN '$filter' AND '$order'");
                 break;
             case '3':
-                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `customer_user_id`='$username' AND `cab_type`='$order'");
+                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `customer_user_id`='$username' AND `cab_type`='$order' AND `status`='2'");
                 break;
             case '4':
                 $week       = (substr($filter, -2) - 1);
-                $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE `customer_user_id` = '$username' AND WEEK(`ride_date`)='$week'");
+                $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE `customer_user_id` = '$username' AND WEEK(`ride_date`)='$week' AND `status`='2'");
                 break;
                 
         }
@@ -48,6 +50,7 @@ class user
         
     }
     
+    /*------FUNCTION USED TO CALCULATE THE TOTAL DISTANCE AND INSERT NEW RIDE IN THE DATABASE---------*/
     public function calculateFare($username, $pickup, $drop, $weight, $fare, $cabtype)
     {
         
@@ -67,17 +70,35 @@ class user
         return $totaldistance;
     }
     
-    public function usersettings($username, $change, $current, $new, $confirm)
+    /*------------FUNCTION USED TO EXECUTE THE USERSETTINGS------------------*/
+    public function usersettings($username, $change, $current1, $new1, $confirm1)
     {
         
-        
+        if($change=='password')
+        {
+            $current=md5($current1);
+           
+        }
+        else{
+
+            $current=$current1;
+        }
+       
         $userdetail = mysqli_query($this->dbh, "SELECT * FROM tbl_user where `user_id`='$username' AND `$change`='$current'");
         $check      = mysqli_fetch_assoc($userdetail);
         $result     = $userdetail->num_rows;
         if ($result == 1) {
-            if ($new == $confirm) {
+            if ($new1 == $confirm1) {
+                if($change=='password')
+                {
+        $new=md5($new1);
+                }else{
+                    $new=$new1;
+                }
+                echo $new;
                 $update = mysqli_query($this->dbh, "UPDATE tbl_user SET `$change`='$new' WHERE `user_id`='$username'");
                 echo "<script>alert('Updated Successfully');</script>";
+                echo "<script>window.location.href='logout.php'</script>";
             } else {
                 echo "<script>alert('Wrong Detail Entered Please Check And Try Again');</script>";
             }
@@ -85,6 +106,8 @@ class user
             echo "<script>alert('Wrong Detail Entered Please Cheack And Try Again');</script>";
         }
     }
+
+    /*-------------FUNCTION USED TO RETURN THE FILTERED LIST-----------------------*/
     public function getStatus($username, $status)
     {
         if ($status == "") {
@@ -94,6 +117,9 @@ class user
         }
         if (mysqli_num_rows($fetchRides) > 0) {
             return $fetchRides;
+        }
+        else {
+            return 0;
         }
     }
 }

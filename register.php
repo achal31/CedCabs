@@ -1,3 +1,4 @@
+<!-----------------------PAGE USED TO REGISTER THE USER TO THE DATABASE--------------->
 <?php
 include('header.php');
 include_once('function.php');
@@ -9,6 +10,8 @@ if (isset($_POST['register'])) {
     $password   = $_POST['password'];
     $repassword = $_POST['repassword'];
     $date       = date("Y/m/d");
+
+    /*---------------PASSING THE REGISTERED VALUES TO THE FUNCTION ----------------*/
     if ($password == $repassword) {
         $sql = $userdata->registration($name, $fullname, $date, $number, $password);
     }

@@ -41,7 +41,7 @@ if (!isset($_SESSION['username'])) {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
     </div>
@@ -229,14 +229,14 @@ if (!isset($_SESSION['username'])) {
 <button data-toggle="collapse" data-target="#Ride" class="triggerbtn">FILTER BY RIDE</button>
 
 <div id="distance" class="collapse">
-<li><a href="rideRequest.php?filter=distance&order=ASC&status=<?php
+<li><a href="rideRequest.php?filter=total_distance&order=ASC&status=<?php
 if (isset($_GET['status'])) {
     echo $_GET['status'];
 } else {
     echo "0";
 }
 ?>">Ascending Order</a></li>
-<li><a href="rideRequest.php?filter=distance&order=DESC&status=<?php
+<li><a href="rideRequest.php?filter=total_distance&order=DESC&status=<?php
 if (isset($_GET['status'])) {
     echo $_GET['status'];
 } else {
@@ -245,14 +245,14 @@ if (isset($_GET['status'])) {
 ?>">Descending Order</a></li>
 </div>
 <div id="Fare" class="collapse">
-<li><a href="rideRequest.php?filter=Fare&order=ASC&status=<?php
+<li><a href="rideRequest.php?filter=total_fare&order=ASC&status=<?php
 if (isset($_GET['status'])) {
     echo $_GET['status'];
 } else {
     echo "0";
 }
 ?>">Ascending Order</a></li>
-<li><a href="rideRequest.php?filter=Fare&order=DESC&status=<?php
+<li><a href="rideRequest.php?filter=total_fare&order=DESC&status=<?php
 if (isset($_GET['status'])) {
     echo $_GET['status'];
 } else {
@@ -261,14 +261,14 @@ if (isset($_GET['status'])) {
 ?>">Descending Order</a></li>
 </div>
 <div id="Date" class="collapse">
-<li><a href="rideRequest.php?filter=Date&order=ASC&status=<?php
+<li><a href="rideRequest.php?filter=ride_date&order=ASC&status=<?php
 if (isset($_GET['status'])) {
     echo $_GET['status'];
 } else {
     echo "0";
 }
 ?>">Ascending Order</a></li>
-<li><a href="rideRequest.php?filter=Date&order=DESC&status=<?php
+<li><a href="rideRequest.php?filter=ride_date&order=DESC&status=<?php
 if (isset($_GET['status'])) {
     echo $_GET['status'];
 } else {
@@ -277,14 +277,14 @@ if (isset($_GET['status'])) {
 ?>">Descending Order</a></li>
 </div>
 <div id="Name" class="collapse">
-<li><a href="rideRequest.php?filter=Name&order=ASC&status=<?php
+<li><a href="rideRequest.php?filter=tripstart&order=ASC&status=<?php
 if (isset($_GET['status'])) {
     echo $_GET['status'];
 } else {
     echo "0";
 }
 ?>">Ascending Order</a></li>
-<li><a href="rideRequest.php?filter=Name&order=DESC&status=<?php
+<li><a href="rideRequest.php?filter=tripstart&order=DESC&status=<?php
 if (isset($_GET['status'])) {
     echo $_GET['status'];
 } else {
