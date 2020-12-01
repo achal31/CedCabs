@@ -386,7 +386,7 @@ if (isset($_GET['status'])) {
             if ($result['status'] == 0) {
                 $html .= "<td>Cancelled</td>";
             } else if ($result['status'] == 1) {
-                $html .= "<td><a href='rideRequest.php?rideid=$result[ride_id]&approve=1&status=2' class='approve'>Approve</a><a href='rideRequest.php?rideid=$result[ride_id]&decline=1&status=0' class='decline'>Decline</a></td>";
+                $html .= "<td><a class='link' href='rideRequest.php?rideid=$result[ride_id]&approve=1&status=2'>Approve</a><a href='rideRequest.php?rideid=$result[ride_id]&decline=1&status=0'  class='link'>Decline</a></td>";
             } else {
                 $html .= "<td>Completed</td>";
             }

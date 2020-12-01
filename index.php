@@ -1,9 +1,4 @@
 <?php
-
-if(isset($_SESSION['userdata']))
-{
-    header("Location:confirmBooking.php");
-}
 include('header.php');
 ?>
 <!------------------------Form Container--------------------------->

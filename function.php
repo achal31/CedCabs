@@ -72,7 +72,15 @@ class DB_con
                             }  
                         }
                     }
-                    echo "<script>window.location.href='index.php'</script>";
+                    
+                    if(isset($_SESSION['userdata']))
+                    {
+                        header("Location:confirmBooking.php");
+                    }
+                    else{
+                        echo "<script>window.location.href='index.php'</script>";
+                    }
+                    
                 } else {
                     echo "<script>alert('Please Wait For Admin To Provide Access');</script>";
                 }

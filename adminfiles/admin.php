@@ -196,8 +196,8 @@ class admin
     {
         
         $fetchUser = mysqli_query($this->dbh, "SELECT * FROM tbl_location WHERE `id`= $locationid");
-  
-            while ($ridedata = mysqli_fetch_array($fetchUser)) {
+       
+            while ($ridedata = @mysqli_fetch_array($fetchUser)) {
                 if ($ridedata['is_available'] == '0') {
                     $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `is_available`='1' WHERE `id`='$locationid'");
                 } else {

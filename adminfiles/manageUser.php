@@ -324,7 +324,7 @@ if (isset($_GET['request'])) {
                 $html .= "<td>Unblock</td>";
             }
             
-            $html .= "<td><a href='manageUser.php?userid=$result[user_id]&status=1&request=2'>Block/UnBlock</a></td>";
+            $html .= "<td><a href='manageUser.php?userid=$result[user_id]&status=1&request=2'  class='link'>Block/UnBlock</a></td>";
             $html .= "</tr>";
             $i++;
         }

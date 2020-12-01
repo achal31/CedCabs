@@ -75,3 +75,15 @@ th {
     background-color: #4a6fdc;
     color: white!important;
 }
+
+.link {
+    text-decoration: none !important;
+    color: #4a6fdc !important;
+    padding: 5px 15px 5px 15px !important;
+    border-radius: 10px !important;
+}
+
+.link:hover {
+    color: white !important;
+    background-color: #4a6fdc !important;
+}

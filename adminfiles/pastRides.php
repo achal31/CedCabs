@@ -298,7 +298,7 @@ if ($sql == '0') {
         $html .= "<td>$result[total_distance]</td>";
         $html .= "<td>$result[luggage]</td>";
         $html .= "<td>$result[total_fare]</td>";
-        $html .= "<td><a href='pastRides.php?id=$result[ride_id]&delete=1'>Delete</a></td>";
+        $html .= "<td><a href='pastRides.php?id=$result[ride_id]&delete=1' class='link'>Delete</a></td>";
         $html .= "</tr><tbody>";
         $i++;
     }

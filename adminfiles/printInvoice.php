@@ -252,7 +252,7 @@ if ($sql == '0') {
         $html .= "<td>$result[total_distance]</td>";
         $html .= "<td>$result[luggage]</td>";
         $html .= "<td>$result[total_fare]</td>";
-        $html .= "<td><a href=showInvoice.php?date=$result[ride_date]&pickup=$result[tripstart]&drop=$result[tripend]&cabtype=$result[cab_type]&distance=$result[total_distance]&weight=$result[luggage]&fare=$result[total_fare]&customer=$result[customer_user_id]>Print Invoice</a></td>";
+        $html .= "<td><a  class='link' href=showInvoice.php?date=$result[ride_date]&pickup=$result[tripstart]&drop=$result[tripend]&cabtype=$result[cab_type]&distance=$result[total_distance]&weight=$result[luggage]&fare=$result[total_fare]&customer=$result[customer_user_id]>Print Invoice</a></td>";
         $html .= "</tr><tbody>";
         $i++;
     }

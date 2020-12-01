@@ -33,6 +33,7 @@ if (!isset($_SESSION['username'])) {
 </head>
 
 <body id="page-top">
+<a href="adminpanel.php" class="link">Back To DashBoard</a>
 <?php
 $pickup      = $_GET['pickup'];
 $drop        = $_GET['drop'];

@@ -228,9 +228,9 @@ if (isset($_POST['submit'])) {
 
                         <form method="post" action="changepass.php">
                             <input type="text" placeholder="Enter the password" name="current">
-                            <input type="text" placeholder="Enter the password" name="new">
-                            <input type="text" placeholder="Enter the password" name="confirm">
-                            <input type="submit" value="updatepass" name="submit">
+                            <input type="text" placeholder="Enter the New Password" name="new">
+                            <input type="text" placeholder="Enter the Password Again" name="confirm">
+                            <input type="submit" value="Update" name="submit" class="triggerbtn ">
                         </form>
 
                 </div>
