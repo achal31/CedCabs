@@ -239,7 +239,7 @@ if (!isset($_SESSION['username'])) {
                                                 Earnings (Total)</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php
 
-
+/*-------------------------Showing Total Earning To The User----------------------*/
 include_once('admin.php');
 $arraydate=[];
 $arrayorder=[];

@@ -36,6 +36,9 @@ if (!isset($_SESSION)) {
 if (isset($_SESSION['username'])) {
     if ($_SESSION['usertype'] == '1') {
 ?>    
+<li class="nav-item">
+<a class="nav-link">Hello,<?php echo $_SESSION['userid'] ?></a>
+                </li>
             <li class="nav-item">
                     <a class="nav-link" href="index.php">Book New Ride</a>
                 </li>

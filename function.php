@@ -43,6 +43,7 @@ class dbfunction
         $userdata = mysqli_fetch_assoc($signindetail);
         $result   = $signindetail->num_rows;
         if ($result == 1) {
+            $userid=$userdata['name'];
             $username   = $userdata['user_id'];
             $userstatus = $userdata['isblock'];
             $checkadmin = $userdata['is_admin'];
@@ -56,6 +57,7 @@ class dbfunction
 
                 /*--------------Condition to Check whether it is user--------------*/
                 if ($userstatus == 1) {
+                    $_SESSION['userid']=$userid;
                     $_SESSION['usertype'] = '1';
                     $_SESSION['username'] = $username;
 

@@ -20,7 +20,7 @@ else if ($_SESSION['usertype'] == '0')
 <div id="panel">
     <a href="#"><div id="userspending" class="usertile">
     <div class="content">
-        <h2>Your Spending</h2><h2>$<?php
+        <h2>Your Spending</h2><h2>₹<?php
 $total = 0;
 $previousrides = new user();
 $sql = $previousrides->userdashboard($_SESSION['username'], 1);

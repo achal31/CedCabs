@@ -245,6 +245,8 @@ else if ($_SESSION['usertype'] == '1')
                         </div>
         
         <?php
+
+ /*------------------Condition Used To Available/Unavailable/Delete Location-----------------*/       
 include_once ('admin.php');
 if (isset($_GET['id']))
 {

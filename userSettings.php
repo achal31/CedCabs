@@ -73,7 +73,7 @@ if (isset($_POST['Save']))
 
     <div id="changename">
     <form action="userSettings.php" method="POST">
-        <input  placeholder="Enter Current Full Name" name="current"  class="detail" required>
+        <input  placeholder="Enter Current Full Name" name="current"  class="detail" value="<?php if(isset($_SESSION['userid'])){ echo $_SESSION['userid'];} ?>"   required>
         <p></p>
         <input  placeholder="Enter New Full Name" name="new" class="detail" required>
         <p></p>
