@@ -283,6 +283,17 @@ class admin
         echo "<script>window.location.href='manageLocation.php'</script>";
     }
 
+    public function totalearning()
+    {
+        $total = 0;
+        $fetchUser = mysqli_query($this->dbh, "SELECT * FROM tbl_ride WHERE `status`='2'");
+        while ($ridedata = mysqli_fetch_array($fetchUser))
+        {
+            $total = $total + (int)$ridedata['total_fare'];
+        }
+        echo $total;
+    }
+
     public function changepass($username, $current1, $new1, $confirm)
     {
 

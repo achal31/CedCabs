@@ -408,3 +408,9 @@ div.hide>li>a {
 #invo {
     color: #4CAF50;
 }
+
+#getfaredetail {
+    display: none;
+    color: black !important;
+    margin-top: -34px;
+}

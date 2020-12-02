@@ -98,9 +98,12 @@ foreach ($sql as $locationdata)
                             </div>
                             <div class="row">
                             <div class="col-sm-6 col-md-12 col-lg-4 my-4">
+                               
+                                <lable id="getfaredetail"><h4>Total Calculated Fare:</h4></lable>
                               <input type="text" class="form-control" id="getfare">
                               <input type="hidden" class="form-control" id="getfar" name="getfa">
                             </div>
+
 
                             <div class="col-sm-6 col-md-12 col-lg-4 my-4">
                               <button type="button" class="btn btn-info form-control" id="submit">Calculate Fare</button>

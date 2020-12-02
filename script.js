@@ -142,6 +142,7 @@ $(document).ready(function() {
                 cache: false,
                 success: function(result) {
 
+                    $("#getfaredetail").css({ "display": "block" });
                     $("#getfare").css({ "display": "block" });
                     $("#getfare").val(result);
                     $("#getfar").val(result);
