@@ -2,7 +2,7 @@
 <?php
 include ('header.php');
 include_once ('function.php');
-$userdata = new DB_con();
+$userdata = new dbfunction();
 if (isset($_POST['register']))
 {
     $name = $_POST['user_name'];

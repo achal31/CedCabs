@@ -3,7 +3,7 @@
 include('header.php');
 include_once('function.php');
 // Object creation
-$userdata = new DB_con();
+$userdata = new dbfunction();
 if (isset($_POST['login'])) {
     // Posted Values
     $name    = $_POST['name'];

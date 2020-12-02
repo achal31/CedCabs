@@ -38,7 +38,7 @@ include ('header.php');
                                     <option value="" disabled selected>Select The Pick Up Location</option>
                                     <?php
 include_once ('function.php');
-$location = new DB_con();
+$location = new dbfunction();
 $sql = $location->location();
 foreach ($sql as $locationdata)
 {
@@ -61,7 +61,7 @@ foreach ($sql as $locationdata)
 `                                   <option value="" disabled selected>Select The Drop Location</option>
                                 <?php
 include_once ('function.php');
-$location = new DB_con();
+$location = new dbfunction();
 $sql = $location->location();
 foreach ($sql as $locationdata)
 {
