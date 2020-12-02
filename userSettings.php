@@ -1,31 +1,40 @@
 <?php
-include('header.php');
-if (!isset($_SESSION)) {
+include ('header.php');
+if (!isset($_SESSION))
+{
     session_start();
-    
+
 }
 
-
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username']))
+{
     header('location:unauthorisedUser.php');
-} else if ($_SESSION['usertype'] == '0') {
+}
+else if ($_SESSION['usertype'] == '0')
+{
     header("adminfiles/adminpanel.php");
 }
-include_once('user.php');
-if (isset($_POST['Save'])) {
+include_once ('user.php');
+if (isset($_POST['Save']))
+{
     $value = "";
-    if ($_POST['Save'] == 'UpdatePassword') {
+    if ($_POST['Save'] == 'UpdatePassword')
+    {
         $value = 'password';
-    } else if ($_POST['Save'] == 'UpdateNumber') {
+    }
+    else if ($_POST['Save'] == 'UpdateNumber')
+    {
         $value = 'mobile';
-        
-    } else if ($_POST['Save'] == 'Updatename') {
+
+    }
+    else if ($_POST['Save'] == 'Updatename')
+    {
         $value = 'name';
     }
     $current = $_POST['current'];
-    $new     = $_POST['new'];
+    $new = $_POST['new'];
     $confirm = $_POST['conf'];
-    
+
     $savedata = new user();
     $savedata->usersettings($_SESSION['username'], $value, $current, $new, $confirm);
 }
@@ -75,4 +84,4 @@ if (isset($_POST['Save'])) {
     </div>
 </div>
 <div id=pad></div>
-<?php include('footer.php'); ?>
+<?php include ('footer.php'); ?>

@@ -1,12 +1,16 @@
 <?php
-if (!isset($_SESSION)) {
+if (!isset($_SESSION))
+{
     session_start();
-    
+
 }
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username']))
+{
     header('location:../unauthorisedUser.php');
-} else if ($_SESSION['usertype'] == '1') {
+}
+else if ($_SESSION['usertype'] == '1')
+{
     header("../userpanel.php");
 }
 ?>
@@ -214,8 +218,9 @@ if (!isset($_SESSION['username'])) {
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                    <?php
-if (isset($_POST['submit'])) {
-    include_once('admin.php');
+if (isset($_POST['submit']))
+{
+    include_once ('admin.php');
     $userdata = new admin();
     $userdata->changepass($_SESSION['username'], $_POST['current'], $_POST['new'], $_POST['confirm']);
 }

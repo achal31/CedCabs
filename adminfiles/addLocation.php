@@ -1,12 +1,16 @@
 <?php
-if (!isset($_SESSION)) {
+if (!isset($_SESSION))
+{
     session_start();
-    
+
 }
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username']))
+{
     header('location:../unauthorisedUser.php');
-} else if ($_SESSION['usertype'] == '1') {
+}
+else if ($_SESSION['usertype'] == '1')
+{
     header("../userpanel.php");
 }
 ?>
@@ -221,32 +225,38 @@ if (!isset($_SESSION['username'])) {
                         </div>
 
                     <?php
-
-include_once('admin.php');
+include_once ('admin.php');
 $distance = '';
-if (isset($_GET['edit'])) {
+if (isset($_GET['edit']))
+{
     $name = $_GET['name'];
     $distance .= $_GET['distance'];
     $id = $_GET['id'];
 }
-if (isset($_POST['Save'])) {
-    if ($_POST['Save'] == 'Add Location') {
-        
-        if (isset($_POST['location'])) {
+if (isset($_POST['Save']))
+{
+    if ($_POST['Save'] == 'Add Location')
+    {
+
+        if (isset($_POST['location']))
+        {
             $locationname = $_POST['location'];
-            $distance     = $_POST['distance'];
-            $userdata     = new admin();
+            $distance = $_POST['distance'];
+            $userdata = new admin();
             $userdata->newlocation($locationname, $distance);
-        } else {
+        }
+        else
+        {
             echo "<script>alert('Please Fill The Value'):</script>";
         }
     }
-    
-    else if ($_POST['Save'] == 'Update Location') {
+
+    else if ($_POST['Save'] == 'Update Location')
+    {
         $locationname = $_POST['location'];
-        $distance     = $_POST['distance'];
-        $id           = $_POST['id'];
-        $userdata     = new admin();
+        $distance = $_POST['distance'];
+        $id = $_POST['id'];
+        $userdata = new admin();
         $userdata->Updatelocation($id, $locationname, $distance);
     }
 }
@@ -257,29 +267,35 @@ if (isset($_POST['Save'])) {
 <form action="addLocation.php" method="POST">
   
 <input type="text" name="location" class="addlocation" value="<?php
-if (isset($_GET['edit'])) {
+if (isset($_GET['edit']))
+{
     echo $name;
 }
 ?>" placeholder="Enter The Location" pattern="^[a-zA-Z]+$" required>
 
     <p></p>
     <input type="text" name="distance" pattern="[0-9]+$" placeholder="Enter The distance" class="addlocation" id="dynamic" value="<?php
-if (isset($_GET['edit'])) {
+if (isset($_GET['edit']))
+{
     echo $distance;
 }
 ?>" required>
 
     <p></p>
     <input type="hidden" name="id"  class="triggerbtn" value="<?php
-if (isset($_GET['edit'])) {
+if (isset($_GET['edit']))
+{
     echo $id;
 }
 ?>">
 
     <input type="submit" name="Save" class="triggerbtn"  value="<?php
-if (isset($_GET['edit'])) {
+if (isset($_GET['edit']))
+{
     echo "Update Location";
-} else {
+}
+else
+{
     echo "Add Location";
 }
 ?>" id="save">

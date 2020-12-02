@@ -1,18 +1,20 @@
 <!-----------------------PAGE USED TO REGISTER THE USER TO THE DATABASE--------------->
 <?php
-include('header.php');
-include_once('function.php');
+include ('header.php');
+include_once ('function.php');
 $userdata = new DB_con();
-if (isset($_POST['register'])) {
-    $name       = $_POST['user_name'];
-    $fullname   = $_POST['fullname'];
-    $number     = $_POST['number'];
-    $password   = $_POST['password'];
+if (isset($_POST['register']))
+{
+    $name = $_POST['user_name'];
+    $fullname = $_POST['fullname'];
+    $number = $_POST['number'];
+    $password = $_POST['password'];
     $repassword = $_POST['repassword'];
-    $date       = date("Y/m/d");
+    $date = date("Y/m/d");
 
     /*---------------PASSING THE REGISTERED VALUES TO THE FUNCTION ----------------*/
-    if ($password == $repassword) {
+    if ($password == $repassword)
+    {
         $sql = $userdata->registration($name, $fullname, $date, $number, $password);
     }
 }

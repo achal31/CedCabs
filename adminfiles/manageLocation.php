@@ -1,12 +1,16 @@
 <?php
-if (!isset($_SESSION)) {
+if (!isset($_SESSION))
+{
     session_start();
-    
+
 }
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username']))
+{
     header('location:../unauthorisedUser.php');
-} else if ($_SESSION['usertype'] == '1') {
+}
+else if ($_SESSION['usertype'] == '1')
+{
     header("../userpanel.php");
 }
 ?>
@@ -241,12 +245,16 @@ if (!isset($_SESSION['username'])) {
                         </div>
         
         <?php
-include_once('admin.php');
-if (isset($_GET['id'])) {
-    if (isset($_GET['availability']) == 1) {
+include_once ('admin.php');
+if (isset($_GET['id']))
+{
+    if (isset($_GET['availability']) == 1)
+    {
         $userdata = new admin();
         $userdata->locationavailability($_GET['id']);
-    } else if (isset($_GET['delete']) == 1) {
+    }
+    else if (isset($_GET['delete']) == 1)
+    {
         $userdata = new admin();
         $userdata->locationdelete($_GET['id']);
     }
@@ -255,19 +263,25 @@ if (isset($_GET['id'])) {
  <div class="card-body">
 <div class="table-responsive">
     <?php
-include_once('admin.php');
+include_once ('admin.php');
 
-if (isset($_GET['filter'])) {
+if (isset($_GET['filter']))
+{
     $userdata = new admin();
-    $sql      = $userdata->managelocation($_GET['filter'], $_GET['order']);
-} else {
-    $userdata = new admin();
-    $sql      = $userdata->managelocation("", "");
+    $sql = $userdata->managelocation($_GET['filter'], $_GET['order']);
 }
-if ($sql == '0') {
+else
+{
+    $userdata = new admin();
+    $sql = $userdata->managelocation("", "");
+}
+if ($sql == '0')
+{
     echo "<h2>NO DATA AVAILABLE</h2>";
-} else {
-    $i    = 1;
+}
+else
+{
+    $i = 1;
     $html = "";
     $html .= "<table class='table table-bordered' width='100%'' cellspacing='0'><thead>";
     $html .= "<tr>";
@@ -279,14 +293,18 @@ if ($sql == '0') {
     $html .= "<th>Delete</th>";
     $html .= "<th>Edit</th>";
     $html .= "</tr></thead><tbody>";
-    foreach ($sql as $result) {
+    foreach ($sql as $result)
+    {
         $html .= "<tr>";
         $html .= "<td>$i</td>";
         $html .= "<td>$result[name]</td>";
         $html .= "<td>$result[distance]</td>";
-        if ($result['is_available'] == 0) {
+        if ($result['is_available'] == 0)
+        {
             $html .= "<td>Available</td>";
-        } else {
+        }
+        else
+        {
             $html .= "<td>Unavailable</td>";
         }
         $html .= "<td><a href='manageLocation.php?id=$result[id]&availability=1' class='link'>Available/Unavailable</a></td>";

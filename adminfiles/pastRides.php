@@ -1,12 +1,16 @@
 <?php
-if (!isset($_SESSION)) {
+if (!isset($_SESSION))
+{
     session_start();
-    
+
 }
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username']))
+{
     header('location:../unauthorisedUser.php');
-} else if ($_SESSION['usertype'] == '1') {
+}
+else if ($_SESSION['usertype'] == '1')
+{
     header("../userpanel.php");
 }
 ?>
@@ -238,7 +242,10 @@ if (!isset($_SESSION['username'])) {
 <input type="date" name="date1" id="dateone" required >
 <input type="date" name="date2" id="datetwo" required >
 <input type="submit" name="filterdate" value="Filter" class="triggerbtn">
-<input value="<?php if (isset($_GET['status'])){ echo $_GET['status'];}?>" name="status" type="hidden">
+<input value="<?php if (isset($_GET['status']))
+{
+    echo $_GET['status'];
+} ?>" name="status" type="hidden">
 </form>
 </div>
 
@@ -246,7 +253,10 @@ if (!isset($_SESSION['username'])) {
 <form method="GET" action="pastRides.php">
 <input type="week" name="week" id="weekend" required>
 <input type="submit" name="filterweek" value="Filter" class="triggerbtn">
-<input value="<?php if (isset($_GET['status'])){ echo $_GET['status'];}?>" name="status" type="hidden">
+<input value="<?php if (isset($_GET['status']))
+{
+    echo $_GET['status'];
+} ?>" name="status" type="hidden">
 </form>
 </div>
 
@@ -270,10 +280,10 @@ if (!isset($_SESSION['username'])) {
                             <h6 class="m-0 font-weight-bold text-primary">ALL RIDES</h6>
                         </div>
                     <?php
-
-include_once('admin.php');
-if (isset($_GET['delete'])) {
-    $id       = $_GET['id'];
+include_once ('admin.php');
+if (isset($_GET['delete']))
+{
+    $id = $_GET['id'];
     $userdata = new admin();
     $userdata->deleterideDetail($id);
 }
@@ -281,10 +291,9 @@ if (isset($_GET['delete'])) {
 
   
     <?php
-
 $userdata = new admin();
-$i        = 1;
-$html     = "";
+$i = 1;
+$html = "";
 $html .= "<table class='table table-bordered' width='100%'' cellspacing='0'><thead>";
 $html .= "<tr>";
 $html .= "<th>S.No</th>";
@@ -298,23 +307,31 @@ $html .= "<th>Total Fare</th>";
 $html .= "<th>Delete</th>";
 $html .= "</tr></thead>";
 
-if (isset($_GET['filter'])) {
-    $sql = $userdata->filter($_GET['filter'], $_GET['order'],1);
-} 
-else if(isset($_GET['date1'])){
-    $sql = $userdata->filteration(2,$_GET['date1'], $_GET['date2'],3);
+if (isset($_GET['filter']))
+{
+    $sql = $userdata->filter($_GET['filter'], $_GET['order'], 1);
 }
-else if(isset($_GET['week'])){
-    $sql = $userdata->filteration(1,$_GET['week'],"",3);
+else if (isset($_GET['date1']))
+{
+    $sql = $userdata->filteration(2, $_GET['date1'], $_GET['date2'], 3);
 }
-else {
-    $sql = $userdata->filter("", "","");
+else if (isset($_GET['week']))
+{
+    $sql = $userdata->filteration(1, $_GET['week'], "", 3);
+}
+else
+{
+    $sql = $userdata->filter("", "", "");
 }
 echo "<div class='row'>";
-if ($sql == '0') {
+if ($sql == '0')
+{
     echo "<h2>No Data Available</h2>";
-} else {
-    foreach ($sql as $result) {
+}
+else
+{
+    foreach ($sql as $result)
+    {
         $html .= "<tbody><tr>";
         $html .= "<td>$i</td>";
         $html .= "<td>$result[ride_date]</td>";
@@ -407,19 +424,28 @@ if ($sql == '0') {
 <script>
 
     $(document).ready(function(){
-        <?php if(isset($_GET['id']))
-        {?>
-        $("#<?php echo $_GET['id']?>").show();
-        $("#<?php echo $_GET['inner']?>").css("cssText", "color: red !important;",);
+        <?php if (isset($_GET['id']))
+{ ?>
+        $("#<?php echo $_GET['id'] ?>").show();
+        $("#<?php echo $_GET['inner'] ?>").css("cssText", "color: red !important;",);
        
-        <?php } else {
-            if(isset($_GET['date1'])) {?>
+        <?php
+}
+else
+{
+    if (isset($_GET['date1']))
+    { ?>
               $("#date").show();
             $("#dateone").val("<?php echo $_GET['date1']; ?>");
             $("#datetwo").val("<?php echo $_GET['date2']; ?>");
-            <?php } else if(isset($_GET['week'])){?>
+            <?php
+    }
+    else if (isset($_GET['week']))
+    { ?>
                 $("#week").show();
                 $("#weekend").val("<?php echo $_GET['week']; ?>");
-            <?php } } ?>
+            <?php
+    }
+} ?>
     })
 </script>

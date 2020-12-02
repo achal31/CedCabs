@@ -349,7 +349,7 @@ if (isset($_GET['status'])) {
     $html .= "<th>Luguage</th>";
     $html .= "<th>Total Fare</th>";
     $html .= "<th colspan='2' >Status</th>";
-    $html .= "</tr></thead>";
+    $html .= "</tr></thead><tbody>";
     if (isset($_GET['week'])) {
         $previousrides = new admin();
         $sql           = $previousrides->filteration(1,$_GET['week'],"",$_GET['status']);
@@ -362,7 +362,7 @@ if (isset($_GET['status'])) {
         $sql      = $userdata->ridefilter($_GET['status'], $_GET['filter'], $_GET['order']);
     } else {
         $userdata = new admin();
-        $sql      = $userdata->riderequest($_GET['status']);
+        $sql      = $userdata->filteration(3,"","",$_GET['status']);
     }
     
     if ($sql == '0') {
@@ -372,7 +372,7 @@ if (isset($_GET['status'])) {
         
         foreach ($sql as $result) {
             
-            $html .= "<tbody><tr>";
+            $html .= "<tr>";
             $html .= "<td>$i</td>";
             $html .= "<td>$result[ride_date]</td>";
             $html .= "<td>$result[tripstart]</td>";

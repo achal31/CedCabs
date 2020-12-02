@@ -1,5 +1,7 @@
 <?php
-include('header.php');
+include ('header.php');
+
+
 ?>
 <!------------------------Form Container--------------------------->
 <div class="background-overlay">
@@ -35,10 +37,11 @@ include('header.php');
                                 <select class="form-control" id="pickup" name="pickup" required>
                                     <option value="" disabled selected>Select The Pick Up Location</option>
                                     <?php
-include_once('function.php');
+include_once ('function.php');
 $location = new DB_con();
-$sql      = $location->location();
-foreach ($sql as $locationdata) {
+$sql = $location->location();
+foreach ($sql as $locationdata)
+{
 ?>
                                        <option value="<?php
     echo $locationdata['name'];
@@ -57,10 +60,11 @@ foreach ($sql as $locationdata) {
                                 <select class="form-control" id="drop" name="drop" required>
 `                                   <option value="" disabled selected>Select The Drop Location</option>
                                 <?php
-include_once('function.php');
+include_once ('function.php');
 $location = new DB_con();
-$sql      = $location->location();
-foreach ($sql as $locationdata) {
+$sql = $location->location();
+foreach ($sql as $locationdata)
+{
 ?>
                                        <option value="<?php
     echo $locationdata['name'];
@@ -161,4 +165,4 @@ foreach ($sql as $locationdata) {
     </div>
 
     <div id=pad></div>
-   <?php include('footer.php'); ?>
+   <?php include ('footer.php'); ?>
