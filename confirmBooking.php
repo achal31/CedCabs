@@ -39,7 +39,8 @@ if (isset($_POST['book']))
             'fare' => $fare,
             'date' => $date,
             'cabtype' => $cabtype,
-            'distance' => $totaldistance
+            'distance' => $totaldistance,
+            'time' => time()
         );
         header("location:login.php");
     }
@@ -56,7 +57,8 @@ if (isset($_POST['book']))
             'fare' => $fare,
             'date' => $date,
             'cabtype' => $cabtype,
-            'distance' => $totaldistance
+            'distance' => $totaldistance,
+            'time' => time()
         );
         header("location:login.php");
     }

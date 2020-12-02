@@ -75,7 +75,13 @@ class dbfunction
                     
                     if(isset($_SESSION['userdata']))
                     {
-                        header("Location:confirmBooking.php");
+                        if((time()-$_SESSION['userdata']['time'])>180){
+                            unset($_SESSION['userdata']);
+                            header("Location:index.php");
+                        } else {
+                            header("Location:confirmBooking.php");
+                        }
+                        
                     }
                     else{
                         echo "<script>window.location.href='userDashboard.php'</script>";
