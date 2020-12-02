@@ -19,7 +19,7 @@ if (isset($_POST['Save'])) {
     } else if ($_POST['Save'] == 'UpdateNumber') {
         $value = 'mobile';
         
-    } else if ($_POST['Save'] == 'UpdateUsername') {
+    } else if ($_POST['Save'] == 'Updatename') {
         $value = 'name';
     }
     $current = $_POST['current'];
@@ -32,7 +32,7 @@ if (isset($_POST['Save'])) {
 ?>
 <div id="usersettings"> 
     <ul id="setting">
-    <span>SELECT AN OPTION</span>
+    <span id="info">UPDATE INFORMATION</span>
         <li class="changes"><button id="btnpass" class="option">Change Password</button></li>
         <li class="changes"><button id="btnnum" class="option">Mobile Number</button></li>
         <li class="changes"><button id="btnname" class="option">Name</button></li>
@@ -70,7 +70,9 @@ if (isset($_POST['Save'])) {
         <p></p>
         <input  placeholder="Please Confirm Full Name" name="conf" class="detail" required>
         <p></p>
-        <input type="submit" value="UpdateUsername" name="Save" class="detailbutton">
+        <input type="submit" value="Updatename" name="Save" class="detailbutton">
         </form>
     </div>
 </div>
+<div id=pad></div>
+<?php include('footer.php'); ?>

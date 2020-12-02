@@ -59,6 +59,7 @@ if (isset($_POST['login'])) {
         
 </form>
 </div>
+
 <script>
     function myFunction(id) {
   var x = document.getElementById("password");

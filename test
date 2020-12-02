@@ -22,13 +22,9 @@ class user
     {
         
         
-        if($type=='3')
-        {
-            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `customer_user_id`='$username'");
-        }
-   else {
-       $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `customer_user_id`='$username' AND `status`='$type'");
-   }       
+        
+   $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `customer_user_id`='$username' AND `status`='$type'");
+              
         
         
         if (mysqli_num_rows($fetchRides) > 0) {
@@ -117,50 +113,20 @@ class user
         switch($type)
         {
         case '1':
-            if($list=='3')
-            {
-                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `customer_user_id`='$userid' ORDER BY cast(`$filter` as unsigned) $order ");
-            }
-            else {
-                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `customer_user_id`='$userid' AND `status`='$list' ORDER BY cast(`$filter` as unsigned) $order ");
-            }
+            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `customer_user_id`='$userid' AND `status`='$list' ORDER BY `$filter` $order ");
             break;
             case '2':
-                if($list=='3')
-            {
-                $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE `customer_user_id` ='$userid' AND  DATE(`ride_date`) BETWEEN '$filter' AND '$order'");
-            }
-            else {
                 $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE `customer_user_id` ='$userid' AND `status`='$list' AND  DATE(`ride_date`) BETWEEN '$filter' AND '$order'");
-            }
-            break;
+                break;
             case '3':
-                if($list=='3')
-            {
-                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `customer_user_id`='$userid' AND `cab_type`='$order'");
-            }
-            else {
                 $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `customer_user_id`='$userid' AND `cab_type`='$order' AND `status`='$list'");
-                
-            }break;
+                break;
             case '4':
                 $week       = (substr($filter, -2) - 1);
-                if($list=='3')
-                {
-                    $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE `customer_user_id` = '$userid' AND WEEK(`ride_date`)='$week'");
-                }
-                else {
-               
                 $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE `customer_user_id` = '$userid' AND WEEK(`ride_date`)='$week' AND `status`='$list'");
-                }break;
+                break;
         }
-        if (mysqli_num_rows($fetchRides) > 0) {
-            return $fetchRides;
-        }
-        else {
-            return 0;
-        }
-        
+        echo "SELECT * FROM `tbl_ride` WHERE `customer_user_id` ='$userid' AND `status`='$list' AND  DATE(`ride_date`) BETWEEN '$filter' AND '$order'";
   
     }
     public function userdashboard($userid,$type)
@@ -184,10 +150,31 @@ class user
     }
     else {
         return 0;
+
+
+
+
+
+
     }
     }
+
+
+
+
 
 
 }
 
 ?>
+
+
+
+
+
+     case '2':
+                $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE `customer_user_id` ='$userid' AND `status`='$list' AND  DATE(`ride_date`) BETWEEN '$filter' AND '$order'");
+                break;
+            case '3':
+                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `customer_user_id`='$userid' AND `cab_type`='$order' AND `status`='$list'");
+                break;

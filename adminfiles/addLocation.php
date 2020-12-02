@@ -260,10 +260,10 @@ if (isset($_POST['Save'])) {
 if (isset($_GET['edit'])) {
     echo $name;
 }
-?>" placeholder="Enter The Location" required>
+?>" placeholder="Enter The Location" pattern="^[a-zA-Z]+$" required>
 
     <p></p>
-    <input type="text" name="distance" placeholder="Enter The distance" class="addlocation" id="dynamic" value="<?php
+    <input type="text" name="distance" pattern="[0-9]+$" placeholder="Enter The distance" class="addlocation" id="dynamic" value="<?php
 if (isset($_GET['edit'])) {
     echo $distance;
 }

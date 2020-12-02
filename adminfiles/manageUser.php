@@ -29,6 +29,8 @@ if (!isset($_SESSION['username'])) {
     <link rel="stylesheet" href="style.css">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="file.js"></script>
 
 </head>
 
@@ -218,9 +220,9 @@ if (!isset($_SESSION['username'])) {
                 <div class="container-fluid">
         <div id="filtermenu">
     <ul id="filter">
-    <button data-toggle="collapse" data-target="#username" class="triggerbtn">FILTER BY USERNAME</button>
-    <button data-toggle="collapse" data-target="#date" class="triggerbtn">FILTER BY DATE</button>
-    <div id="username" class="collapse">
+    <button id="name1" class="triggerbtn">SORT BY USERNAME</button>
+    <button id="date1" class="triggerbtn">SORT BY DATE</button>
+    <div id="name" class="hide">
     <li><a href="manageUser.php?filter=user_name&order=ASC&request=<?php
 if (isset($_GET['request'])) {
     echo $_GET['request'];
@@ -236,7 +238,7 @@ if (isset($_GET['request'])) {
 }
 ?>">Descending Order</a></li>
     </div>
-    <div id="date" class="collapse">
+    <div id="date" class="hide">
     <li><a href="manageUser.php?filter=dateofsignup&order=ASC&request=<?php
 if (isset($_GET['request'])) {
     echo $_GET['request'];

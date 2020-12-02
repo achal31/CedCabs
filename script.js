@@ -141,10 +141,12 @@ $(document).ready(function() {
                 data: dataString,
                 cache: false,
                 success: function(result) {
+
                     $("#getfare").css({ "display": "block" });
                     $("#getfare").val(result);
                     $("#getfar").val(result);
                     $('#book').css({ "display": "block" });
+
                 }
             });
         }

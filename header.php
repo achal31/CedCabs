@@ -37,20 +37,29 @@ if (isset($_SESSION['username'])) {
     if ($_SESSION['usertype'] == '1') {
 ?>    
             <li class="nav-item">
-                    <a class="nav-link" href="index.php">HOME</a>
-                </li>
-            <li class="nav-item">
-                    <a class="nav-link" href="previousRides.php">PREVIOUS RIDES</a>
+                    <a class="nav-link" href="index.php">Book New Ride</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="checkStatus.php">CHECK STATUS</a>
+                    <a class="nav-link" href="userDashboard.php">DashBoard</a>
+    </li>
+                <div>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+ Rides
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="checkStatus.php?status=1">Pending Rides</a>
+    <a class="dropdown-item" href="checkStatus.php?status=2">Completed Rides</a>
+    <a class="dropdown-item" href="checkStatus.php?status=0">Cancelled Rides</a>
+    <a class="dropdown-item" href="checkStatus.php?status=3">All Rides</a>
+  </div>
+    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="userSettings.php">Account</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="userSettings.php">SETTINGS</a>
+                    <a class="nav-link" href="logout.php">Logout</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="logout.php">LOGOUT</a>
-                </li>
+               
                 
             <?php
         ;
@@ -71,12 +80,13 @@ else {
                             <a class="nav-link" href="register.php">REGISTER</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">ABOUTUS</a>
+                            <a class="nav-link">CONTACT US</a>
                         </li>
             <?php
     ;
 }
 ?>
+
            </ul>
         </div>
     </nav>

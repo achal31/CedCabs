@@ -236,7 +236,7 @@ $html .= "<th>Total Fare</th>";
 $html .= "<th>Print Invoice</th>";
 $html .= "</tr></thead>";
 
-$sql = $userdata->filter(1, 1);
+$sql = $userdata->filter(1, 1,"");
 if ($sql == '0') {
     echo "<h2>No Data Available<h2>";
 } else {

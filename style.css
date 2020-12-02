@@ -51,8 +51,18 @@ select {
 }
 
 #contactus {
-    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .2));
+    background-color: #e7b94f;
     color: white;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    background-color: black;
 }
 
 @media only screen and (max-width: 780px) and (min-width: 260px) {
@@ -186,26 +196,31 @@ a {
     background-color: #111111;
 }
 
-#setting>span {
-    padding-left: 50px;
-    margin-top: 50px;
-    color: #4CAF50;
+#info {
+    padding: 8px 15px 8px 15px;
+    color: #e7b94f
+}
+
+#setting {
+    background-color: black;
+    padding: 10px;
 }
 
 .option {
-    background-color: white;
+    background-color: black;
+    border-radius: 10px;
     border: 0px;
-    color: #4CAF50;
+    padding: 8px 15px 8px 15px;
+    color: #e7b94f
 }
 
 button.option:hover {
-    background-color: #4CAF50;
+    background-color: #e7b94f;
     color: white;
 }
 
 button.option:focus {
-    background-color: red;
-    color: white;
+    border: 0px;
     outline: 0px;
 }
 
@@ -224,7 +239,6 @@ table {
 
 td,
 th {
-    border: 1px solid #ddd;
     padding: 4px 30px 4px 30px;
 }
 
@@ -280,19 +294,24 @@ button.triggerbtn:hover {
     color: white;
 }
 
-div.hide>li>a:hover,
-button.triggerbtn:focus {
-    background-color: red;
-    color: white !important;
+div.hide>li>a:hover {
+    color: red !important;
     text-decoration: none;
+}
+
+button.triggerbtn:focus {
+    background-color: red !important;
+    color: white !important;
 }
 
 #previousridewrapper {
     margin-left: 7%;
 }
 
-#tbl {
+#table {
+    text-align: left;
     margin-left: 6%;
+    padding-bottom: 50px;
 }
 
 #heading {
@@ -312,4 +331,80 @@ div.hide>li>a {
     padding: 3px 12px 3px 12px;
     color: #4CAF50 !important;
     text-decoration: none;
+}
+
+#pad {
+    padding-bottom: 100px;
+}
+
+.usertile {
+    width: 400px;
+    padding-bottom: 50px;
+    float: left;
+    text-align: center;
+    margin-left: 40px;
+    background-color: black;
+}
+
+#panel {
+    margin-top: 50px;
+}
+
+.content {
+    margin-top: 40px;
+}
+
+.dropdown-item {
+    color: black !important;
+}
+
+.dropdown-menu {
+    margin-left: 1040px !important;
+}
+
+.btn-secondary {
+    background-color: black !important;
+    border: 0px !important;
+}
+
+#pendingrides {
+    color: yellow;
+}
+
+#completedrides {
+    color: green;
+}
+
+#cancelledrides {
+    margin-top: 50px;
+    color: red;
+}
+
+#totalrides {
+    margin-top: 50px;
+    color: chartreuse;
+}
+
+#dropdownMenuButton {
+    margin-top: 3px !important;
+}
+
+#confirm {
+    text-align: center;
+    margin-left: 100px;
+    margin-top: 50px;
+}
+
+#rideinvoice {
+    margin-left: 480px;
+}
+
+.active {
+    background-color: red;
+    color: white;
+}
+
+#headingconfirm,
+#invo {
+    color: #4CAF50;
 }

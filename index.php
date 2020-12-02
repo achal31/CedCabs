@@ -30,7 +30,7 @@ include('header.php');
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-6 col-md-6 col-lg-6 my-2">
-
+                                <form>
                                 <!----------PickUp Location------------->
                                 <select class="form-control" id="pickup" name="pickup" required>
                                     <option value="" disabled selected>Select The Pick Up Location</option>
@@ -77,7 +77,7 @@ foreach ($sql as $locationdata) {
                             <div class="col-sm-6 col-md-6 col-lg-6 my-2">
                                 <!--------------Cab Type----------------->
                                 <select class="form-control" id="cabtype" name="cabtype" required>
-        <option value=""disabled selected>Select A Cab</option>
+        <option value="" disabled selected>Select A Cab</option>
         <option value="CedMicro">CedMicro</option>
         <option value="CedMini">CedMini</option>
         <option value="CedRoyal">CedRoyal</option>
@@ -104,7 +104,7 @@ foreach ($sql as $locationdata) {
                             <div class="col-sm-6 col-md-12 col-lg-4 my-4">
                               <button type="submit" class="btn btn-info form-control" name="book" id="book">Book Cab</button>
                             </div>
-                            
+                            </form>
 
                             </div>
                     </div>
@@ -112,6 +112,8 @@ foreach ($sql as $locationdata) {
                 
 
             </div>
+
+            
         </div>
     </div>
 
@@ -145,8 +147,8 @@ foreach ($sql as $locationdata) {
 
     <!---------Contact Us Container------->
     <div id="contactus">
-        <div class="container">
-            <div class="row py-5">
+        <div class="container py-3">
+            <div class="row">
                 <div class="col-sm-6 col-md-6 col-lg-6 text-center">
                     <h2>CALL US 24/7</h2>
                 </div>
@@ -158,20 +160,5 @@ foreach ($sql as $locationdata) {
         </div>
     </div>
 
-    <!----------Footer Container---------->
-    <div class="container">
-        <div class="row py-5">
-            <div class="col-sm-12 col-md-6 col-lg-6  text-center">
-                <i class="fab fa-facebook"></i>
-                <i class='fab fa-instagram'></i>
-                <i class="fab fa-twitter"></i>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-6 text-center">
-                <div>Designed by Achal</div>
-            </div>
-
-
-        </div>
-</body>
-
-</html>
+    <div id=pad></div>
+   <?php include('footer.php'); ?>

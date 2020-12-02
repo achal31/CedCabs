@@ -64,10 +64,8 @@ class admin
         $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`=$status AND `$filter`='$order'");
       }
       else {
-
-        if($filter == "total_distance") {
             $filter = "cast(`$filter` AS unsigned)";
-        }
+        
         $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`=$status ORDER BY $filter $order");
       }
                     
@@ -79,6 +77,36 @@ class admin
         
     }
     
+    public function filteration($type,$list,$order,$status)
+    {
+        switch($type)
+        {
+            case 1:
+                $week       = (substr($list, -2) - 1);
+                if($status==3)
+                {
+                    $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE WEEK(`ride_date`)='$week'");break;   
+                }
+                else{
+                    $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE WEEK(`ride_date`)='$week' AND `status`='$status'");break;
+                }
+                
+            case 2; 
+            if($status==3)
+            {
+                $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE  DATE(`ride_date`) BETWEEN '$list' AND '$order'");break;
+            }
+            else {
+                $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE `status`='$status' AND  DATE(`ride_date`) BETWEEN '$list' AND '$order'");break;
+            }
+            }
+        if (mysqli_num_rows($fetchRides) > 0) {
+            return $fetchRides;
+        } else {
+            return 0;
+        }
+        
+    }
     
     public function acceptRide($userid)
     {
@@ -137,19 +165,24 @@ class admin
         }
     }
     
-    public function filter($filter, $order)
+    public function filter($filter, $order,$type)
     {
        
-        if ($filter == "" && $order == "") {
+        if ($type=="") {
             $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`='2' OR `status`='0'");
-        } else if ($filter == 1 && $order == 1) {
-            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`='2'");
-        } else if ($filter == 'cab_type') {
-            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `$filter`='$order'");
-        } else {
-            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`='2' OR `status`='0' ORDER BY `$filter` $order");
-            
-        }
+        } 
+         else if($filter=='cab_type')
+            {
+          $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `$filter`='$order' AND `status`='2' OR`status`='0'");
+             } else if ($filter == 1 && $order == 1) {
+                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`='2'");
+            }
+             else if($type=='1'){
+                $filter = "cast(`$filter` AS unsigned)";
+            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `status`='2' OR `status`='0' ORDER BY $filter $order");
+
+                        }
+        
         if (mysqli_num_rows($fetchRides) > 0) {
             return $fetchRides;
         } else {

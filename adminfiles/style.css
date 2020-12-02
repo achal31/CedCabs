@@ -87,3 +87,18 @@ th {
     color: white !important;
     background-color: #4a6fdc !important;
 }
+
+.hide {
+    display: none;
+}
+
+div.hide {
+    margin-top: 2%;
+}
+
+div.hide>li>a {
+    border-radius: 10px;
+    padding: 3px 12px 3px 12px;
+    color: #4a6fdc !important;
+    text-decoration: none;
+}

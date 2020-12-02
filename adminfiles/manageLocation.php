@@ -220,8 +220,8 @@ if (!isset($_SESSION['username'])) {
     <div class="container-fluid">
     <div id="filtermenu">
 <ul id="filter">
-<button data-toggle="collapse" data-target="#name" class="triggerbtn">FILTER BY NAME</button>
-<button data-toggle="collapse" data-target="#distance" class="triggerbtn">FILTER BY DISTANCE</button>
+<button data-toggle="collapse" data-target="#name" class="triggerbtn">SORT BY NAME</button>
+<button data-toggle="collapse" data-target="#distance" class="triggerbtn">SORT BY DISTANCE</button>
 
 
 <div id="name" class="collapse">

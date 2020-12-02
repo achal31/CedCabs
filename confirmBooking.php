@@ -11,7 +11,7 @@ if (isset($_POST['book'])) {
     
    
     $html = "";
-    $html .= "<table>";
+    $html .= "<table id='rideinvoice'>";
     include_once('user.php');
     $userdata = new user();
     $pickup   = $_POST['pickup'];
@@ -31,8 +31,8 @@ if (isset($_POST['book'])) {
     } else if ($_SESSION['usertype'] == '0') {
         header("adminfiles/adminpanel.php");
     }
-    echo "<h3>ThankYou For Booking,Your Request Has Been Send</h3>
-    <h4>Booking Invoice</h4>";
+    echo "<div id='confirm'><h3 id='headingconfirm'>ThankYou For Booking,Your Request Has Been Send</h3>
+    <h4 id='invo'>Booking Invoice</h4>";
     $totaldistance = $userdata->calculateFare($_SESSION['username'], $pickup, $drop, $weight, $fare, $cabtype);
     $html .= "<tr><th>PickUp Location</th><td>$pickup</td></tr>";
     $html .= "<tr><th>Drop Location</th><td>$drop</td></tr>";
@@ -43,7 +43,7 @@ if (isset($_POST['book'])) {
     $html .= "<tr><th>Total Fare</th> <td>$fare</td></tr>";
     $html .= "</table>";
     echo $html;
-    
+    echo "</div>";
     
 }
 else if(isset($_SESSION['userdata']))
@@ -52,10 +52,10 @@ else if(isset($_SESSION['userdata']))
     include_once('user.php');
     $userdata = new user();
     $totaldistance = $userdata->calculateFare($_SESSION['username'], $_SESSION['userdata']['pickup'],$_SESSION['userdata']['drop'],$_SESSION['userdata']['weight'],$_SESSION['userdata']['fare'],$_SESSION['userdata']['cabtype']);
-    echo "<h3>ThankYou For Booking,Your Request Has Been Send</h3>
-    <h4>Booking Invoice</h4>";
+    echo "<div id='confirm'><h3 id='headingconfirm'>ThankYou For Booking,Your Request Has Been Send</h3>
+    <h4 id='invo'>Booking Invoice</h4>";
     $html="";
-    $html .= "<table>";
+    $html .= "<table id='rideinvoice'>";
     $html .= "<tr><th>PickUp Location</th><td>".$_SESSION['userdata']['pickup']."</td></tr>";
     $html .= "<tr><th>Drop Location</th><td>".$_SESSION['userdata']['drop']."</td></tr>";
     $html .= "<tr><th>Cab Type</th><td>".$_SESSION['userdata']['cabtype']."</td></tr>";
@@ -65,10 +65,10 @@ else if(isset($_SESSION['userdata']))
     $html .= "<tr><th>Total Fare</th><td>".$_SESSION['userdata']['fare']."</td></tr>";
     $html .= "</table>";
     echo $html;
-   
+   echo "</div>";
    unset($_SESSION['userdata']);
 }
 }
-
-
+echo"<div id=pad></div>";
+include('footer.php');
 ?>
