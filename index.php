@@ -57,7 +57,7 @@ foreach ($sql as $locationdata)
 
                             <div class="col-sm-6 col-md-6 col-lg-6 my-2">
                                 <!----------Drop Location------------->
-                                <select class="form-control" id="drop" name="drop" required>
+                                <select class="form-control" id="drop" name="drop"  required>
 `                                   <option value="" disabled selected>Select The Drop Location</option>
                                 <?php
 include_once ('function.php');
@@ -80,7 +80,7 @@ foreach ($sql as $locationdata)
 
                             <div class="col-sm-6 col-md-6 col-lg-6 my-2">
                                 <!--------------Cab Type----------------->
-                                <select class="form-control" id="cabtype" name="cabtype" required>
+                                <select class="form-control" id="cabtype" name="cabtype"  required>
         <option value="" disabled selected>Select A Cab</option>
         <option value="CedMicro">CedMicro</option>
         <option value="CedMini">CedMini</option>
@@ -91,7 +91,7 @@ foreach ($sql as $locationdata)
 
                             <div class="col-sm-6 col-md-6 col-lg-6 my-2">
                                 <!-----------Field For Getting the Weight------->
-                                <input type="text" class="form-control" placeholder="Enter the weight in kg" id="weight" name="weight" required>
+                                <input type="text" class="form-control" placeholder="Enter the weight in kg" id="weight" name="weight">
                             </div>
 
                             <div class="col-lg-4"></div>

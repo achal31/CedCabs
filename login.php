@@ -23,17 +23,10 @@ if (isset($_POST['login'])) {
     
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Login</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://www.w3schools.com/js/myScript1.js"></script>
-</head>
-<body id="loginpage">
+
+<div id="loginpage">
 <div id="wrapper">
-<img src="Screenshot.png" height="70">
-    <h2 id="registerheading">User Login</h2>
+    <h2 id="registerheading">USER LOGIN</h2>
     <form id="register" method="post" action="login.php">
         
         <p>
@@ -59,7 +52,8 @@ if (isset($_POST['login'])) {
         
 </form>
 </div>
-
+</div>
+<?php include('footer.php'); ?>
 <script>
     function myFunction(id) {
   var x = document.getElementById("password");
@@ -72,5 +66,3 @@ if (isset($_POST['login'])) {
 }
 
 </script>
-</body>
-</html>

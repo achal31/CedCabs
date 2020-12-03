@@ -1,3 +1,4 @@
+<!----------------PAGE IS USED TO ALLOW USER TO ADD NEW LOCATION TO THE DATABASE------------------>
 <?php
 if (!isset($_SESSION))
 {
@@ -7,11 +8,11 @@ if (!isset($_SESSION))
 
 if (!isset($_SESSION['username']))
 {
-    header('location:../unauthorisedUser.php');
+    header('location:../index.php');
 }
 else if ($_SESSION['usertype'] == '1')
 {
-    header("../userpanel.php");
+    header("location:../userDashboard.php");
 }
 ?>
 <!DOCTYPE html>
@@ -227,12 +228,16 @@ else if ($_SESSION['usertype'] == '1')
                     <?php
 include_once ('admin.php');
 $distance = '';
+
+/*-------------TO EDIT THE LOCATION NAME---------------------*/
 if (isset($_GET['edit']))
 {
     $name = $_GET['name'];
     $distance .= $_GET['distance'];
     $id = $_GET['id'];
 }
+
+/*--------------TO ADD AND UPDATE THE ELOCATION-----------------*/
 if (isset($_POST['Save']))
 {
     if ($_POST['Save'] == 'Add Location')
@@ -261,6 +266,8 @@ if (isset($_POST['Save']))
     }
 }
 ?>
+
+
 <div id="wrappers">
 
 <!--------------ADD LOCATION FORM----------------->

@@ -5,9 +5,9 @@ if (!isset($_SESSION)) {
 }
 
 if (!isset($_SESSION['username'])) {
-    header('location:../unauthorisedUser.php');
+    header('location:../index.php');
 } else if ($_SESSION['usertype'] == '1') {
-    header("../userpanel.php");
+    header("location:../userDashboard.php");
 }
 ?>
 <!DOCTYPE html>
@@ -266,53 +266,38 @@ if (isset($_GET['status'])) {
 </div>
 
 <div id="fare" class="hide">
-<li><a id="faredsc" href="rideRequest.php?id=fare&inner=faredsc&filter=total_fare&order=ASC&status=<?php
-if (isset($_GET['status'])) {
-    echo $_GET['status'];
-} else {
-    echo "0";
-}
-?>">Ascending Order</a></li>
-<li><a id="fareasc" href="rideRequest.php?id=fare&inner=fareasc&filter=total_fare&order=DESC&status=<?php
-if (isset($_GET['status'])) {
-    echo $_GET['status'];
-} else {
-    echo "0";
-}
-?>">Descending Order</a></li>
+
+<li>
+    <a id="faredsc" href="rideRequest.php?id=fare&inner=faredsc&filter=total_fare&order=ASC&status=<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>">Ascending Order</a>
+</li>
+
+<li>
+    <a id="fareasc" href="rideRequest.php?id=fare&inner=fareasc&filter=total_fare&order=DESC&status=<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>">Descending Order</a>
+</li>
+
 </div>
 
 
 <div id="cab" class="hide">
-<li><a id="mini" href="rideRequest.php?id=cab&inner=mini&filter=cab_type&order=CedMini&status=<?php
-if (isset($_GET['status'])) {
-    echo $_GET['status'];
-} else {
-    echo "0";
-}
-?>">CabMini</a></li>
-<li><a id="micro" href="rideRequest.php?id=cab&inner=micro&filter=cab_type&order=CedMicro&status=<?php
-if (isset($_GET['status'])) {
-    echo $_GET['status'];
-} else {
-    echo "0";
-}
-?>">CabMicro</a></li>
-<li><a id="royal" href="rideRequest.php?id=cab&inner=royal&filter=cab_type&order=CedRoyal&status=<?php
-if (isset($_GET['status'])) {
-    echo $_GET['status'];
-} else {
-    echo "0";
-}
-?>">CabRoyal</a></li>
-<li><a id="suv" href="rideRequest.php?id=cab&inner=suv&filter=cab_type&order=CedSUV&status=<?php
-if (isset($_GET['status'])) {
-    echo $_GET['status'];
-} else {
-    echo "0";
-}
-?>">CabSUV</a></li>
+
+<li>
+    <a id="mini" href="rideRequest.php?id=cab&inner=mini&filter=cab_type&order=CedMini&status=<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>">CabMini</a>
+</li>
+
+<li>
+    <a id="micro" href="rideRequest.php?id=cab&inner=micro&filter=cab_type&order=CedMicro&status=<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>">CabMicro</a>
+</li>
+
+<li>
+    <a id="royal" href="rideRequest.php?id=cab&inner=royal&filter=cab_type&order=CedRoyal&status=<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>">CabRoyal</a>
+</li>
+
+<li>
+    <a id="suv" href="rideRequest.php?id=cab&inner=suv&filter=cab_type&order=CedSUV&status=<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>">CabSUV</a>
+</li>
+
 </div>
+
 </ul> 
     </div>
                         <div class="card-header py-3">

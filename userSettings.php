@@ -8,7 +8,7 @@ if (!isset($_SESSION))
 
 if (!isset($_SESSION['username']))
 {
-    header('location:unauthorisedUser.php');
+    header('location:index.php');
 }
 else if ($_SESSION['usertype'] == '0')
 {
@@ -39,6 +39,8 @@ if (isset($_POST['Save']))
     $savedata->usersettings($_SESSION['username'], $value, $current, $new, $confirm);
 }
 ?>
+
+<div id="userpanelsetting">
 <div id="usersettings"> 
     <ul id="setting">
     <span id="info">UPDATE INFORMATION</span>
@@ -49,11 +51,11 @@ if (isset($_POST['Save']))
 
     <div id="changepassword">
         <form action="userSettings.php" method="POST"> 
-        <input type="password" placeholder="Enter Current Passsword" name="current" class="detail" required>
+        <input type="password" placeholder="Enter Current Passsword" name="current" class="detail" pattern=".{8,}" required>
         <p></p>
-        <input type="password" placeholder="Enter New Passsword" name="new" class="detail" required>
+        <input type="password" placeholder="Enter New Passsword" name="new" class="detail" pattern=".{8,}" required>
         <p></p>
-        <input type="password" placeholder="Please Confirm Passsword" name="conf" class="detail" required>
+        <input type="password" placeholder="Please Confirm Passsword" name="conf" class="detail" pattern=".{8,}" required>
         <p></p>
         <input type="submit" value="UpdatePassword" name="Save" class="detailbutton">
         </form>
@@ -61,11 +63,11 @@ if (isset($_POST['Save']))
 
     <div id="changenumber">
         <form action="userSettings.php" method="POST">
-        <input placeholder="Enter Current Number" name="current" class="detail"  required>
+        <input placeholder="Enter Current Number" name="current" class="detail"  pattern="[1-9]{1}[0-9]{9}" required>
         <p></p>
-        <input placeholder="Enter New Number" name="new" class="detail" required>
+        <input placeholder="Enter New Number" name="new" class="detail"  pattern="[1-9]{1}[0-9]{9}" required>
         <p></p>
-        <input placeholder="Please Confirm Number" name="conf" class="detail" required>
+        <input placeholder="Please Confirm Number" name="conf" class="detail"  pattern="[1-9]{1}[0-9]{9}" required>
         <p></p>
         <input type="submit" value="UpdateNumber" name="Save" class="detailbutton">
         </form>
@@ -84,4 +86,5 @@ if (isset($_POST['Save']))
     </div>
 </div>
 <div id=pad></div>
+</div>
 <?php include ('footer.php'); ?>

@@ -1,13 +1,18 @@
 <?php
-if (!isset($_SESSION)) {
+/*------If User Session is Not Created header will take the user out--------------*/
+if (!isset($_SESSION))
+{
     session_start();
-    
+
 }
 
-if (!isset($_SESSION['username'])) {
-    header('location:../index.php');
-} else if ($_SESSION['usertype'] == '1') {
-    header("location:../userDashboard.php");
+if (!isset($_SESSION['username']))
+{
+    header('location:index.php');
+}
+else if ($_SESSION['usertype'] == '0')
+{
+    header("adminfiles/adminpanel.php");
 }
 ?>
 <!DOCTYPE html>
@@ -33,9 +38,9 @@ if (!isset($_SESSION['username'])) {
 </head>
 
 <body id="page-top">
-<a href="adminpanel.php" class="link">Back To DashBoard</a>
+<a href="userDashboard.php" class="userinvo">BACK TO DASHBOARD</a>
 <p>
-<a onclick="window.print();" class="link">PRINT</a>
+<a onclick="window.print();" class="userinvo">PRINT</a>
 </p>
 <?php
 $pickup      = $_GET['pickup'];
@@ -44,20 +49,15 @@ $date        = $_GET['date'];
 $cabtype     = $_GET['cabtype'];
 $distance    = $_GET['distance'];
 $fare        = $_GET['fare'];
-$customereid = $_GET['customer'];
+$customereid = $_GET['name'];
 $weight      = $_GET['weight'];
 ?>
 
-
-<div class="row">
-<div class="col-md-2 col-lg-2"></div>
-<div class="col-md-8 col-lg-8">
-<div class="row panel panel-default">
-<div class="text-center panel-heading"><h1>Invoice</h1></div>
-<div class="panel-body ">
-<table>
+<div id="usertable">
+    <h1>RIDE INVOICE</h1>
+<table >
         <tr><td><h3>Date:</h3></td><td><h3><?php echo $date; ?></h3></td></tr>
-        <tr><td><h3>From:</h3></td><td><h3><?php echo $customereid; ?></h3></td></tr>
+        <tr><td><h3>Name:</h3></td><td><h3><?php echo $customereid; ?></h3></td></tr>
         <tr><td><h3>From:</h3></td><td><h3><?php echo $pickup; ?></h3></td></tr>
         <tr><td><h3>To:</h3></td><td><h3><?php echo $drop; ?></h3></td></tr>
         <tr><td><h3>Total Distance:</h3></td><td><h3><?php echo $distance; ?></h3></td></tr>
@@ -65,15 +65,8 @@ $weight      = $_GET['weight'];
         <tr><td><h3>Luggage:</h3></td><td><h3><?php echo $weight; ?></h3></td></tr>
 </table>
 
-</div>
-<div class="panel-footer text-center">
+
 <h2>Total Fare: <?php echo $fare; ?></h2>
-</div>
-</div>
-</div>
-<div class="col-md-2 col-lg-2"></div>
-</div>
-</div>
 </div>
 
 

@@ -38,7 +38,7 @@ class dbfunction
     public function signin($name, $pasword,$remember)
     {
         $password     = md5($pasword);
-        $signindetail = mysqli_query($this->dbh, "SELECT * FROM tbl_user where user_name='$name' and Password='$password'");
+        $signindetail = mysqli_query($this->dbh, "SELECT * FROM tbl_user where BINARY user_name='$name' and Password='$password'");
         
         $userdata = mysqli_fetch_assoc($signindetail);
         $result   = $signindetail->num_rows;

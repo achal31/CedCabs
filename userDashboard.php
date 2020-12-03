@@ -18,6 +18,7 @@ else if ($_SESSION['usertype'] == '0')
 }
 ?>
 <div id="panel">
+    
     <a href="#"><div id="userspending" class="usertile">
     <div class="content">
         <h2>Your Spending</h2><h2>₹<?php
@@ -42,7 +43,9 @@ echo $total;
         <?php
 $previousrides = new user();
 $sql = $previousrides->userdashboard($_SESSION['username'], 2);
-echo mysqli_num_rows($sql); ?>
+$count=mysqli_num_rows($sql); 
+echo $count;
+echo "<input type='text' value='$count' id='pending' hidden>";?>
     </h2>
     </div> 
 </div></a>
@@ -52,7 +55,10 @@ echo mysqli_num_rows($sql); ?>
     <h2>
         <?php $previousrides = new user();
 $sql = $previousrides->userdashboard($_SESSION['username'], 3);
-echo mysqli_num_rows($sql); ?>
+$count=mysqli_num_rows($sql); 
+echo $count;
+
+echo "<input type='text' value='$count' id='completed' hidden>";?>
     </h2>
     </div>
 </div></a>
@@ -63,7 +69,9 @@ echo mysqli_num_rows($sql); ?>
         <?php
 $previousrides = new user();
 $sql = $previousrides->userdashboard($_SESSION['username'], 4);
-echo mysqli_num_rows($sql); ?>
+$count= mysqli_num_rows($sql); 
+echo $count;
+echo "<input type='text' value='$count' id='cancelled' hidden>";?>
         </h2>
     </div>
     </div></a>
@@ -78,7 +86,9 @@ echo mysqli_num_rows($sql); ?>
         </h2>
     </div>
     </div></a>
-</div>
 <div id=pad></div>
+
+</div>
+
      <?php include ('footer.php');
 ?>

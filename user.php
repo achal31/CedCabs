@@ -85,19 +85,26 @@ class user
         if ($result == 1)
         {
             if ($new1 == $confirm1)
-            {
+            {   
+                
                 if ($change == 'password')
                 {
                     $new = md5($new1);
                 }
+                
                 else
                 {
                     $new = $new1;
                 }
-                echo $new;
+               if($current1!=$new1)
+               {
                 $update = mysqli_query($this->dbh, "UPDATE tbl_user SET `$change`='$new' WHERE `user_id`='$username'");
                 echo "<script>alert('Updated Successfully');</script>";
                 echo "<script>window.location.href='logout.php'</script>";
+               }
+               else {
+                echo "<script>alert('Updating Same information is Not allowed');</script>";
+               }
             }
             else
             {

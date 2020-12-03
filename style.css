@@ -1,13 +1,20 @@
-.background-overlay {
+/********************ALL PAGES BACKGROUND*********************************/
+
+.background-overlay,
+#registerpage,
+#loginpage {
     width: 100%;
     background: url("6.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: cover;
-    color: #fff;
+    color: black;
     height: 800px;
     padding-bottom: 100px;
 }
+
+
+/*****************************NAV BAR******************************/
 
 .navbar-toggler {
     color: white !important;
@@ -19,15 +26,24 @@
     color: white;
 }
 
-.nav-link,
-a {
+.nav-link {
     color: white !important;
 }
+
+.nav-link:hover {
+    color: #a0967e;
+}
+
+
+/************************HIDE ARROW OF OPTION******************************/
 
 select {
     -webkit-appearance: none;
     appearance: none;
 }
+
+
+/*************************LANDING PAGE CSS******************************/
 
 .form-inline {
     margin-top: 12%;
@@ -71,10 +87,6 @@ footer {
     }
 }
 
-.modal {
-    margin-top: 16% !important;
-}
-
 #detailform {
     margin-top: 10% !important;
 }
@@ -83,22 +95,6 @@ i {
     font-size: 30px;
     color: #e7b94f;
     padding: 0px 5px 0px 5px;
-}
-
-#loginpage,
-#adminpage,
-#registerpage {
-    /* The image used */
-    background-image: url("6.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-color: #464646;
-}
-
-#adminquestion {
-    margin: 0px;
 }
 
 #wrapper {
@@ -111,9 +107,8 @@ i {
     border-radius: 18px;
 }
 
-#registerheading {
-    color: #e7b94f;
-}
+
+/***************login and register page********************/
 
 .linkbutton {
     text-decoration: none;
@@ -142,34 +137,13 @@ i {
     outline: none;
 }
 
-#headerlist {
-    list-style-type: none;
-    color: white;
-    text-align: left;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: teal;
-    width: 100%;
-    margin: 0px;
-    padding: 10px;
-    cursor: pointer;
-}
-
 a {
     text-decoration: none;
     color: white;
 }
 
-.listoption {
-    background-color: teal;
-    width: 40%;
-    display: inline;
-    margin-left: 100px;
-}
 
-.listoption>a:hover {
-    color: tomato;
-}
+/**********************USER SETTING PANEL***********************/
 
 #setting {
     list-style-type: none;
@@ -232,9 +206,20 @@ button.option:focus {
     margin-top: 3%;
 }
 
+
+/**********************CSS FOR TABLE ON THE USER PANEL****************************/
+
 table {
+    border-collapse: collapse;
     margin-top: 2%;
     text-align: center;
+    color: black;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
 }
 
 td,
@@ -242,12 +227,9 @@ th {
     padding: 4px 30px 4px 30px;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
 tr:hover {
-    background-color: #ddd;
+    background-color: red;
+    color: white;
 }
 
 th {
@@ -256,6 +238,37 @@ th {
     text-align: left;
     background-color: #4CAF50;
     color: white;
+}
+
+
+/**********************USER DASHBOARD******************************/
+
+#headingconfirm {
+    margin-left: 26%;
+    color: black !important;
+}
+
+#invo {
+    margin-left: 40%;
+    color: black !important;
+}
+
+#pendingrides {
+    color: yellow;
+}
+
+#completedrides {
+    color: green;
+}
+
+#cancelledrides {
+    margin-top: 50px;
+    color: red;
+}
+
+#totalrides {
+    margin-top: 50px;
+    color: chartreuse;
 }
 
 .filter {
@@ -281,7 +294,7 @@ ul#filter li {
     padding: 5px 15px 5px 15px;
     background-color: transparent;
     border: 0px;
-    color: #4CAF50;
+    color: black;
 }
 
 button.triggerbtn:focus {
@@ -292,11 +305,6 @@ button.triggerbtn:focus {
 button.triggerbtn:hover {
     background-color: #4CAF50;
     color: white;
-}
-
-div.hide>li>a:hover {
-    color: red !important;
-    text-decoration: none;
 }
 
 button.triggerbtn:focus {
@@ -315,7 +323,9 @@ button.triggerbtn:focus {
 }
 
 #heading {
+    color: black;
     margin-left: 40%;
+    text-decoration: underline;
 }
 
 .hide {
@@ -329,7 +339,12 @@ div.hide {
 div.hide>li>a {
     border-radius: 10px;
     padding: 3px 12px 3px 12px;
-    color: #4CAF50 !important;
+    color: black !important;
+    text-decoration: none;
+}
+
+div.hide>li>a:hover {
+    color: red !important;
     text-decoration: none;
 }
 
@@ -344,10 +359,7 @@ div.hide>li>a {
     text-align: center;
     margin-left: 40px;
     background-color: black;
-}
-
-#panel {
-    margin-top: 50px;
+    border-radius: 100px;
 }
 
 .content {
@@ -367,36 +379,12 @@ div.hide>li>a {
     border: 0px !important;
 }
 
-#pendingrides {
-    color: yellow;
-}
-
-#completedrides {
-    color: green;
-}
-
-#cancelledrides {
-    margin-top: 50px;
-    color: red;
-}
-
-#totalrides {
-    margin-top: 50px;
-    color: chartreuse;
-}
-
 #dropdownMenuButton {
     margin-top: 3px !important;
 }
 
-#confirm {
-    text-align: center;
-    margin-left: 100px;
-    margin-top: 50px;
-}
-
 #rideinvoice {
-    margin-left: 480px;
+    margin-left: 454px;
 }
 
 .active {
@@ -413,4 +401,50 @@ div.hide>li>a {
     display: none;
     color: black !important;
     margin-top: -34px;
+}
+
+#panel {
+    padding-top: 100px;
+    width: 100%;
+    background: url("3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: cover;
+    color: #fff;
+    height: 800px;
+    padding-bottom: 100px;
+}
+
+#checkstatuspanel,
+#confirmbookingpanel,
+#page-top {
+    padding-top: 20px;
+    width: 100%;
+    background: url("3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: cover;
+    color: #fff;
+    padding-bottom: 200px;
+}
+
+a.userinvo {
+    color: black;
+    text-decoration: none;
+    padding: 5px 15px 5px 15px;
+    border-radius: 10px;
+}
+
+.userinvo:hover {
+    color: white;
+    background-color: #e7b94f;
+}
+
+#usertable {
+    margin-left: 450px;
+}
+
+#usertable>h1,
+#usertable>h2 {
+    margin-left: 80px;
 }

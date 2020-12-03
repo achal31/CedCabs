@@ -6,7 +6,7 @@ if (!isset($_SESSION))
 
 }
 ?>
-
+<div id="confirmbookingpanel">
 <?php
 if (isset($_POST['book']))
 {
@@ -114,3 +114,4 @@ else if (isset($_SESSION['userdata']))
 echo "<div id=pad></div>";
 include ('footer.php');
 ?>
+</div>

@@ -3,6 +3,10 @@ $(document).ready(function() {
 
     /*----------Function To Disable The Similar Drop Location--------------*/
     $("#pickup").change(function() {
+        $("#getfaredetail").css({ "display": "none" });
+        $("#getfare").css({ "display": "none" });
+        $('#book').css({ "display": "none" });
+
         if (this.val != "") {
 
             var drop = $(this).val();
@@ -13,6 +17,9 @@ $(document).ready(function() {
 
     /*----------Function To Disable The Similar Pickup Location--------------*/
     $("#drop").change(function() {
+        $("#getfaredetail").css({ "display": "none" });
+        $("#getfare").css({ "display": "none" });
+        $('#book').css({ "display": "none" });
         if (this.val != "") {
             var pick = $(this).val();
 
@@ -22,6 +29,9 @@ $(document).ready(function() {
 
     /*-----------Function To Validate The Input In The Weigth Field------------*/
     $("#weight").keyup(function() {
+        $("#getfaredetail").css({ "display": "none" });
+        $("#getfare").css({ "display": "none" });
+        $('#book').css({ "display": "none" });
         var w = $("#weight").val();
         if (isNaN(w) == true) {
             $("#demo").html("Please Make Sure To Enter An Integer Value");
@@ -34,6 +44,9 @@ $(document).ready(function() {
 
     /*----------Function To Set Lugage To Zero When CedMicro Is Selected---------*/
     $('#cabtype').change(function() {
+        $("#getfaredetail").css({ "display": "none" });
+        $("#getfare").css({ "display": "none" });
+        $('#book').css({ "display": "none" });
         if ($(this).val() == 'CedMicro') {
             $('#weight').prop("disabled", true);
             $('#weight').val("0");
@@ -125,14 +138,19 @@ $(document).ready(function() {
         $("#cab").css({ "display": "none" });
 
     })
+
+
     $("#submit").click(function() {
         var pickup = $("#pickup").val();
         var drop = $("#drop").val();
         var cabtype = $("#cabtype").val();
         var weight = $("#weight").val();
+        if (weight == null) {
+            weight = 0;
+        }
         var dataString = 'pickup1=' + pickup + '&drop1=' + drop + '&cabtype1=' + cabtype + '&weight1=' + weight;
-        if (pickup == '' || drop == '' || cabtype == '' || weight == '') {
-            alert("Please fill all values")
+        if (pickup == null || drop == null || cabtype == null) {
+            alert("Please fill all values");
 
         } else {
             $.ajax({

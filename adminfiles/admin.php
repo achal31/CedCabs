@@ -94,9 +94,84 @@ class admin
     }
 /*********************************USER PART END************************************* */
 
+/**********************************LOCATION PART BEGINS****************************** */
+
+/*-------------Function is used to Display location to the user------------*/
+public function managelocation($filter, $order)
+{
+
+   /*----------To Show Default List of Location-----------------*/
+   if ($filter == "")
+   {
+       $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_location");
+   }
+   /*-------------To Show the Filter Location List----------------*/
+   else
+   {
+       /*--------------------Converting The varchar to unsigned to sort data-------------*/
+       if ($filter != "name")
+       {
+           $filter = "cast(`$filter` AS unsigned)";
+       }
+       $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_location ORDER BY $filter $order");
+   }
+
+   if (mysqli_num_rows($fetchRides) > 0)
+   {
+       return $fetchRides;
+   }
+   else
+   {
+       return 0;
+   }
+
+}
+/*------------------Function used to available and unavailable the location-------------------*/
+public function locationavailability($locationid)
+{
+
+    $fetchUser = mysqli_query($this->dbh, "SELECT * FROM tbl_location WHERE `id`= $locationid");
+
+    while ($ridedata = @mysqli_fetch_array($fetchUser))
+    {
+        /*----------------------To change Location to Not Available---------------------*/
+        if ($ridedata['is_available'] == '0')
+        {
+            $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `is_available`='1' WHERE `id`='$locationid'");
+        }
+         /*----------------------To change Location to Available---------------------*/
+        else
+        {
+            $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `is_available`='0' WHERE `id`='$locationid'");
+        }
+    }
+
+}
+/*---------------------Function To Delete the Location------------------------------*/
+public function locationdelete($id)
+{
+    $fetchUser = mysqli_query($this->dbh, "DELETE FROM tbl_location  WHERE `id`='$id'");
+}
+
+/*---------------------Function To Add New Location----------------------------------*/
+public function newlocation($name, $distance)
+{
+    $fetchUser = mysqli_query($this->dbh, "INSERT INTO tbl_location (`name`,`distance`,`is_available`) VALUES('$name','$distance','0')");
+    echo "<script>window.location.href='manageLocation.php'</script>";
+}
+
+ /*---------------------Function To Update Location----------------------------------*/
+public function Updatelocation($id, $locationname, $distance)
+{
+    $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `name`='$locationname' ,`distance`='$distance' WHERE `id`='$id'");
+    echo "<script>window.location.href='manageLocation.php'</script>";
+}
+/***********************************LOCATION PART END******************************** */
 
 
-    /*--------------Function To Filter the data by Ride Type and do sorting-----------*/
+/************************************ALL RIDES PART START***************************** */
+
+/*--------------Function To Filter the data by Ride Type and do sorting-----------*/
     public function ridefilter($status, $filter, $order)
     {
         /*--------------Filter The List On the Bases of Cab Type-------------------*/
@@ -122,7 +197,7 @@ class admin
         }
 
     }
-
+/*-------------------------------FILTER CAB ON BASES OF WEEKS AND DAYS---------------------------- */
     public function filteration($type, $list, $order, $status)
     {
         switch ($type)
@@ -164,7 +239,7 @@ class admin
         }
 
     }
-
+/*--------------------------TO ACCEPT AND DECLINE THE RIDE REQUEST--------------------------------------*/
     public function acceptRide($userid)
     {
         $fetchRides = mysqli_query($this->dbh, "UPDATE tbl_ride SET `status`='2' WHERE ride_id='$userid'");
@@ -175,7 +250,7 @@ class admin
     }
 
 
-
+/*-----------------------------SORT THE LIST--------------------------------------------------------------*/
     public function filter($filter, $order, $type)
     {
 
@@ -214,75 +289,8 @@ class admin
         $fetchUser = mysqli_query($this->dbh, "DELETE FROM tbl_ride  WHERE `ride_id`='$id'");
     }
 
-    /*-------------Function is used to Display location to the user------------*/
-    public function managelocation($filter, $order)
-    {
-        /*----------To Show Default List of Location-----------------*/
-        if ($filter == "")
-        {
-            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_location");
-        }
-        /*-------------To Show the Filter Location List----------------*/
-        else
-        {
-            /*--------------------Converting The varchar to unsigned to sort data-------------*/
-            if ($filter != "name")
-            {
-                $filter = "cast(`$filter` AS unsigned)";
-            }
-            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_location ORDER BY $filter $order");
-        }
+ /********************************ALL RIDES PART END ****************************************/   
 
-        if (mysqli_num_rows($fetchRides) > 0)
-        {
-            return $fetchRides;
-        }
-        else
-        {
-            return 0;
-        }
-
-    }
-/*------------------Function used to available and unavailable the location-------------------*/
-    public function locationavailability($locationid)
-    {
-
-        $fetchUser = mysqli_query($this->dbh, "SELECT * FROM tbl_location WHERE `id`= $locationid");
-
-        while ($ridedata = @mysqli_fetch_array($fetchUser))
-        {
-            /*----------------------To change Location to Not Available---------------------*/
-            if ($ridedata['is_available'] == '0')
-            {
-                $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `is_available`='1' WHERE `id`='$locationid'");
-            }
-             /*----------------------To change Location to Available---------------------*/
-            else
-            {
-                $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `is_available`='0' WHERE `id`='$locationid'");
-            }
-        }
-
-    }
-    /*---------------------Function To Delete the Location------------------------------*/
-    public function locationdelete($id)
-    {
-        $fetchUser = mysqli_query($this->dbh, "DELETE FROM tbl_location  WHERE `id`='$id'");
-    }
-
-    /*---------------------Function To Add New Location----------------------------------*/
-    public function newlocation($name, $distance)
-    {
-        $fetchUser = mysqli_query($this->dbh, "INSERT INTO tbl_location (`name`,`distance`,`is_available`) VALUES('$name','$distance','0')");
-        echo "<script>window.location.href='manageLocation.php'</script>";
-    }
-
-     /*---------------------Function To Update Location----------------------------------*/
-    public function Updatelocation($id, $locationname, $distance)
-    {
-        $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `name`='$locationname' ,`distance`='$distance' WHERE `id`='$id'");
-        echo "<script>window.location.href='manageLocation.php'</script>";
-    }
 
     /*----------------------Function used to show the Total Earning ----------------*/
     public function totalearning()
@@ -306,17 +314,23 @@ class admin
         $check = mysqli_fetch_assoc($userdetail);
         $result = $userdetail->num_rows;
         if ($result == 1)
-        {
+        { if($current1 != $new1)
+            {
             if ($new1 == $confirm)
             {
                 $new = md5($new1);
                 $update = mysqli_query($this->dbh, "UPDATE tbl_user SET `password`='$new' WHERE `user_id`='$username'");
                 echo "<script>alert('Updated Successfully');</script>";
+                echo "<script>window.location.href='../logout.php'</script>";
             }
             else
             {
                 echo "<script>alert('Wrong Detail Entered Please Check And Try Again');</script>";
             }
+        }
+        else {
+            echo "<script>alert('Updated Already Used Password Is Not Allowed');</script>";
+        }
         }
         else
         {
@@ -324,6 +338,19 @@ class admin
         }
     }
 
-}
 
+/***************************************END OF THE ADMIN CLASS********************************** */
+public function fetchRidedates()
+{
+    $fetchUser = mysqli_query($this->dbh,"SELECT sum(total_fare) AS total, ride_date, count(ride_date) FROM `tbl_ride` WHERE `status` = 2 GROUP BY DATE(`ride_date`)");
+
+
+if(mysqli_num_rows($fetchUser)>0){
+return $fetchUser;
+}
+else {
+    echo 0;
+}
+}
+}
 ?>

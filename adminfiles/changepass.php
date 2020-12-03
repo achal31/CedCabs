@@ -7,11 +7,11 @@ if (!isset($_SESSION))
 
 if (!isset($_SESSION['username']))
 {
-    header('location:../unauthorisedUser.php');
+    header('location:../index.php');
 }
 else if ($_SESSION['usertype'] == '1')
 {
-    header("../userpanel.php");
+    header("location:../userDashboard.php");
 }
 ?>
 <!DOCTYPE html>
@@ -230,11 +230,11 @@ if (isset($_POST['submit']))
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Add New Location</h6>
                         </div>
-
+<!-------------------------------CHANGE PASSWORD FORM------------------------------------------>
                         <form method="post" action="changepass.php">
-                            <input type="text" placeholder="Enter the password" name="current">
-                            <input type="text" placeholder="Enter the New Password" name="new">
-                            <input type="text" placeholder="Enter the Password Again" name="confirm">
+                            <input type="password" placeholder="Enter the password" name="current">
+                            <input type="password" placeholder="Enter the New Password" name="new">
+                            <input type="password" placeholder="Enter the Password Again" name="confirm">
                             <input type="submit" value="Update" name="submit" class="triggerbtn ">
                         </form>
 

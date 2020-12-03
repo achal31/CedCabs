@@ -20,16 +20,9 @@ if (isset($_POST['register']))
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>Register</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body id="registerpage">
+<div id="registerpage">
 <div id="wrapper">
-<img src="Screenshot.png" height="70">
-    <h2 id="registerheading">New User</h2>
+    <h2 id="registerheading">NEW USER</h2>
     <form id="register" method="post" action="register.php">
             <select class="detail" name="title" required >
             <option value="" disabled selected>Title</option>
@@ -62,6 +55,9 @@ if (isset($_POST['register']))
           
 </form>
 </div>
+</div>
+<?php include('footer.php'); ?>
+
 <script>
   function InvalidMsg(textbox) { 
     if(textbox.id=='phone')
@@ -96,5 +92,3 @@ var y = document.getElementById("repassword");
 }
 
 </script>
-</body>
-</html>

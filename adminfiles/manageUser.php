@@ -5,9 +5,9 @@ if (!isset($_SESSION)) {
 }
 
 if (!isset($_SESSION['username'])) {
-    header('location:../unauthorisedUser.php');
+    header('location:../index.php');
 } else if ($_SESSION['usertype'] == '1') {
-    header("../userpanel.php");
+    header("location:../userDashboard.php");
 }
 ?>
 <!DOCTYPE html>
@@ -223,44 +223,32 @@ if (!isset($_SESSION['username'])) {
     <button id="name1" class="triggerbtn">SORT BY USERNAME</button>
     <button id="date1" class="triggerbtn">SORT BY DATE</button>
     <div id="name" class="hide">
-    <li><a href="manageUser.php?filter=user_name&order=ASC&request=<?php
-if (isset($_GET['request'])) {
-    echo $_GET['request'];
-} else {
-    echo "0";
-}
-?>">Ascending Order</a></li>
-    <li><a href="manageUser.php?filter=user_name&order=DESC&request=<?php
-if (isset($_GET['request'])) {
-    echo $_GET['request'];
-} else {
-    echo "0";
-}
-?>">Descending Order</a></li>
+    <li>
+        <a href="manageUser.php?filter=user_name&order=ASC&request=<?php if (isset($_GET['request'])) { echo $_GET['request']; } ?>">Ascending Order</a>
+    </li>
+    
+    <li>
+        <a href="manageUser.php?filter=user_name&order=DESC&request=<?php if (isset($_GET['request'])) { echo $_GET['request']; } ?>">Descending Order</a>
+    </li>
+
     </div>
     <div id="date" class="hide">
-    <li><a href="manageUser.php?filter=dateofsignup&order=ASC&request=<?php
-if (isset($_GET['request'])) {
-    echo $_GET['request'];
-} else {
-    echo "0";
-}
-?>">Ascending Order</a></li>
-    <li><a href="manageUser.php?filter=dateofsignup&order=DESC&request=<?php
-if (isset($_GET['request'])) {
-    echo $_GET['request'];
-} else {
-    echo "0";
-}
-?>">Descending Order</a></li>
+    
+    <li>
+        <a href="manageUser.php?filter=dateofsignup&order=ASC&request=<?php if (isset($_GET['request'])) { echo $_GET['request']; } ?>">Ascending Order</a>
+    </li>
+    
+    <li>
+        <a href="manageUser.php?filter=dateofsignup&order=DESC&request=<?php if (isset($_GET['request'])) { echo $_GET['request']; } ?>">Descending Order</a>
+    </li>
     </div>
 <!-- Page Heading -->
                     
                     <?php
 include_once('admin.php');
+
 if (isset($_GET['userid'])) {
     if (isset($_GET['status']) == 1) {
-        
         $userdata = new admin();
         $userdata->userStatus($_GET['userid']);
     }
@@ -336,18 +324,8 @@ if (isset($_GET['request'])) {
         echo "</div>";
     }
 }
-
-
-
-
-
-
 ?>
 </div>
-
-
-
-
                 </div>
                 <!-- /.container-fluid -->
 

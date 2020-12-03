@@ -5,9 +5,9 @@ if (!isset($_SESSION)) {
 }
 
 if (!isset($_SESSION['username'])) {
-    header('location:../unauthorisedUser.php');
+    header('location:../index.php');
 } else if ($_SESSION['usertype'] == '1') {
-    header("../userpanel.php");
+    header("location:../userDashboard.php");
 }
 ?>
 <!DOCTYPE html>

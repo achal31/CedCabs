@@ -7,11 +7,11 @@ if (!isset($_SESSION))
 
 if (!isset($_SESSION['username']))
 {
-    header('location:../unauthorisedUser.php');
+    header('location:../index.php');
 }
 else if ($_SESSION['usertype'] == '1')
 {
-    header("../userpanel.php");
+    header("location:../userDashboard.php");
 }
 ?>
 <!DOCTYPE html>
@@ -234,18 +234,22 @@ else if ($_SESSION['usertype'] == '1')
 
 
 <div id="distance" class="hide">
-<li><a id="distanceasc" href="pastRides.php?id=distance&inner=distanceasc&filter=total_distance&order=ASC">Ascending Order</a></li>
-<li><a id="distancedsc" href="pastRides.php?id=distance&inner=distancedsc&filter=total_distance&order=DESC">Descending Order</a></li>
+
+<li>
+    <a id="distanceasc" href="pastRides.php?id=distance&inner=distanceasc&filter=total_distance&order=ASC">Ascending Order</a>
+</li>
+
+<li>
+    <a id="distancedsc" href="pastRides.php?id=distance&inner=distancedsc&filter=total_distance&order=DESC">Descending Order</a>
+</li>
+
 </div>
 <div id="date" class="hide">
 <form method="GET" action="pastRides.php">
 <input type="date" name="date1" id="dateone" required >
 <input type="date" name="date2" id="datetwo" required >
 <input type="submit" name="filterdate" value="Filter" class="triggerbtn">
-<input value="<?php if (isset($_GET['status']))
-{
-    echo $_GET['status'];
-} ?>" name="status" type="hidden">
+<input value="<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>" name="status" type="hidden">
 </form>
 </div>
 
@@ -253,16 +257,19 @@ else if ($_SESSION['usertype'] == '1')
 <form method="GET" action="pastRides.php">
 <input type="week" name="week" id="weekend" required>
 <input type="submit" name="filterweek" value="Filter" class="triggerbtn">
-<input value="<?php if (isset($_GET['status']))
-{
-    echo $_GET['status'];
-} ?>" name="status" type="hidden">
+<input value="<?php if (isset($_GET['status'])){echo $_GET['status']; } ?>" name="status" type="hidden">
 </form>
 </div>
 
 <div id="fare" class="hide">
-<li><a id="faredsc" href="pastRides.php?id=fare&inner=faredsc&filter=total_fare&order=ASC">Ascending Order</a></li>
-<li><a id="fareasc" href="pastRides.php?id=fare&inner=fareasc&filter=total_fare&order=DESC">Descending Order</a></li>
+
+<li>
+    <a id="faredsc" href="pastRides.php?id=fare&inner=faredsc&filter=total_fare&order=ASC">Ascending Order</a>
+</li>
+<li>
+    <a id="fareasc" href="pastRides.php?id=fare&inner=fareasc&filter=total_fare&order=DESC">Descending Order</a>
+</li>
+
 </div>
 
 
