@@ -26,6 +26,7 @@ if (isset($_POST['login'])) {
 
 <div id="loginpage">
 <div id="wrapper">
+<img src="Screenshot.png" height="60">
     <h2 id="registerheading">USER LOGIN</h2>
     <form id="register" method="post" action="login.php">
         

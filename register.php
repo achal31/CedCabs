@@ -25,6 +25,7 @@ if (isset($_POST['register']))
 
 <div id="registerpage">
 <div id="wrapper">
+<img src="Screenshot.png" height="60">
     <h2 id="registerheading">NEW USER</h2>
     <form id="register" method="post" action="register.php">
             <select class="detail" name="title" required >
@@ -95,3 +96,25 @@ var y = document.getElementById("repassword");
 }
 
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
