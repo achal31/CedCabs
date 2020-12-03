@@ -29,6 +29,8 @@ if (!isset($_SESSION['username'])) {
     <link rel="stylesheet" href="style.css">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="file.js"></script>
 
 </head>
 
@@ -124,7 +126,7 @@ if (!isset($_SESSION['username'])) {
    Invoice
 </div>
 <li class="nav-item">
-    <a class="nav-link" href="printInvoice.php">
+    <a class="nav-link" href="printInvoice.php?status=2">
         <i class="fas fa-fw fa-table"></i>
         <span>Print Invoice</span></a>
 </li>
@@ -217,10 +219,87 @@ if (!isset($_SESSION['username'])) {
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
         <h2>INVOICE SHEET</h2>
+        <div id="filtermenu">
+<ul id="filter">
+<button class="triggerbtn" id="distance1">SORT BY DISTANCE</button>
+<button class="triggerbtn" id="fare1">SORT BY FARE</button>
+<button class="triggerbtn" id="cab1">FILTER BY RIDE</button>
+<button class="triggerbtn" id="date1">FILTER BY DATES</button>
+<button class="triggerbtn" id="week1">FILTER BY WEEK</button>
+
+<div id="distance" class="hide">
+<li><a id="distanceasc" href="printInvoice.php?id=distance&inner=distanceasc&filter=total_distance&order=ASC&status=<?php
+if (isset($_GET['status'])) {
+    echo $_GET['status'];
+} else {
+    echo "0";
+}
+?>">Ascending Order</a></li>
+<li><a id="distancedsc" href="printInvoice.php?id=distance&inner=distancedsc&filter=total_distance&order=DESC&status=<?php
+if (isset($_GET['status'])) {
+    echo $_GET['status'];
+} else {
+    echo "0";
+}
+?>">Descending Order</a></li>
+</div>
+
+<div id="date" class="hide">
+<form method="GET" action="printInvoice.php">
+<input type="date" name="date1" id="dateone" required >
+<input type="date" name="date2" id="datetwo" required >
+<input type="submit" name="filterdate" value="Filter" class="triggerbtn">
+<input value="<?php if (isset($_GET['status'])){ echo $_GET['status'];}?>" name="status" type="hidden">
+</form>
+</div>
+
+<div id="week" class="hide">
+<form method="GET" action="printInvoice.php">
+<input type="week" name="week" id="weekend" required>
+<input type="submit" name="filterweek" value="Filter" class="triggerbtn">
+<input value="<?php if (isset($_GET['status'])){ echo $_GET['status'];}?>" name="status" type="hidden">
+</form>
+</div>
+
+<div id="fare" class="hide">
+
+<li>
+    <a id="faredsc" href="printInvoice.php?id=fare&inner=faredsc&filter=total_fare&order=ASC&status=<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>">Ascending Order</a>
+</li>
+
+<li>
+    <a id="fareasc" href="printInvoice.php?id=fare&inner=fareasc&filter=total_fare&order=DESC&status=<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>">Descending Order</a>
+</li>
+
+</div>
+
+
+<div id="cab" class="hide">
+
+<li>
+    <a id="mini" href="printInvoice.php?id=cab&inner=mini&filter=cab_type&order=CedMini&status=<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>">CabMini</a>
+</li>
+
+<li>
+    <a id="micro" href="printInvoice.php?id=cab&inner=micro&filter=cab_type&order=CedMicro&status=<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>">CabMicro</a>
+</li>
+
+<li>
+    <a id="royal" href="printInvoice.php?id=cab&inner=royal&filter=cab_type&order=CedRoyal&status=<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>">CabRoyal</a>
+</li>
+
+<li>
+    <a id="suv" href="printInvoice.php?id=cab&inner=suv&filter=cab_type&order=CedSUV&status=<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>">CabSUV</a>
+</li>
+
+</div>
+
+</ul> 
+    </div>
+
 
     <?php
 include_once('admin.php');
-$userdata = new admin();
 $i        = 1;
 $html     = "";
 $html .= "<table class='table table-bordered' width='100%'' cellspacing='0'><thead>";
@@ -235,8 +314,20 @@ $html .= "<th>Luguage</th>";
 $html .= "<th>Total Fare</th>";
 $html .= "<th>Print Invoice</th>";
 $html .= "</tr></thead>";
-
-$sql = $userdata->filter(1, 1,"");
+if (isset($_GET['week'])) {
+    $previousrides = new admin();
+    $sql           = $previousrides->filteration(1,$_GET['week'],"",$_GET['status']);
+ }
+ else if (isset($_GET['date1'])) {
+    $previousrides = new admin();
+    $sql           = $previousrides->filteration(2,$_GET['date1'], $_GET['date2'],$_GET['status']);
+}else if (isset($_GET['filter'])) {
+    $userdata = new admin();
+    $sql      = $userdata->ridefilter($_GET['status'], $_GET['filter'], $_GET['order']);
+} else {
+$userdata = new admin();
+$sql      = $userdata->filteration(3,"","",2);
+}
 if ($sql == '0') {
     echo "<h2>No Data Available<h2>";
 } else {
@@ -326,3 +417,22 @@ if ($sql == '0') {
 </body>
 
 </html>
+<script>
+
+    $(document).ready(function(){
+        <?php if(isset($_GET['id']))
+        {?>
+        $("#<?php echo $_GET['id']?>").show();
+        $("#<?php echo $_GET['inner']?>").css("cssText", "color: red !important;",);
+       
+        <?php } else {
+            if(isset($_GET['date1'])) {?>
+              $("#date").show();
+            $("#dateone").val("<?php echo $_GET['date1']; ?>");
+            $("#datetwo").val("<?php echo $_GET['date2']; ?>");
+            <?php } else if(isset($_GET['week'])){?>
+                $("#week").show();
+                $("#weekend").val("<?php echo $_GET['week']; ?>");
+            <?php } } ?>
+    })
+</script>

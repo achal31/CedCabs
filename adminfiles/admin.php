@@ -35,6 +35,22 @@ class admin
         return mysqli_num_rows($fetchRides);
 
     }
+
+        /*----------------------Function used to show the Total Earning ----------------*/
+        public function totalearning()
+        {
+            $total = 0;
+            $fetchUser = mysqli_query($this->dbh, "SELECT * FROM tbl_ride WHERE `status`='2'");
+            if (mysqli_num_rows($fetchUser) > 0)
+            {
+                return $fetchUser;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        
  /***********************************DASHBOARD  ENDS****************************** */   
 
 
@@ -150,14 +166,23 @@ public function locationavailability($locationid)
 /*---------------------Function To Delete the Location------------------------------*/
 public function locationdelete($id)
 {
+    
     $fetchUser = mysqli_query($this->dbh, "DELETE FROM tbl_location  WHERE `id`='$id'");
 }
 
 /*---------------------Function To Add New Location----------------------------------*/
 public function newlocation($name, $distance)
-{
+{  $name=trim($name); 
+    
+    $checkusername = mysqli_query($this->dbh, "SELECT * FROM tbl_location WHERE `name`='$name'");
+    $result        = $checkusername->num_rows;
+    if ($result == 0) {
+
     $fetchUser = mysqli_query($this->dbh, "INSERT INTO tbl_location (`name`,`distance`,`is_available`) VALUES('$name','$distance','0')");
     echo "<script>window.location.href='manageLocation.php'</script>";
+    } else {
+        echo "<script>alert('Location Name Already Exist');</script>"; 
+    }
 }
 
  /*---------------------Function To Update Location----------------------------------*/
@@ -291,18 +316,6 @@ public function Updatelocation($id, $locationname, $distance)
 
  /********************************ALL RIDES PART END ****************************************/   
 
-
-    /*----------------------Function used to show the Total Earning ----------------*/
-    public function totalearning()
-    {
-        $total = 0;
-        $fetchUser = mysqli_query($this->dbh, "SELECT * FROM tbl_ride WHERE `status`='2'");
-        while ($ridedata = mysqli_fetch_array($fetchUser))
-        {
-            $total = $total + (int)$ridedata['total_fare'];
-        }
-        echo $total;
-    }
 
     /*-------------------------Function Used to update user information----------------*/
     public function changepass($username, $current1, $new1, $confirm)

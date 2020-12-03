@@ -44,9 +44,9 @@ if (isset($_POST['Save']))
 <div id="usersettings"> 
     <ul id="setting">
     <span id="info">UPDATE INFORMATION</span>
-        <li class="changes"><button id="btnpass" class="option">Change Password</button></li>
-        <li class="changes"><button id="btnnum" class="option">Mobile Number</button></li>
-        <li class="changes"><button id="btnname" class="option">Name</button></li>
+        <li class="changes"><button id="btnpass" pattern="^[a-zA-Z ]*$" class="option">Change Password</button></li>
+        <li class="changes"><button id="btnnum" pattern="^[a-zA-Z ]*$"  class="option">Mobile Number</button></li>
+        <li class="changes"><button id="btnname" pattern="^[a-zA-Z ]*$" class="option">Name</button></li>
     </ul>
 
     <div id="changepassword">

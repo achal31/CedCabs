@@ -126,7 +126,7 @@ if (!isset($_SESSION['username'])) {
                Invoice
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="printInvoice.php">
+                <a class="nav-link" href="printInvoice.php?status=2">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Print Invoice</span></a>
             </li>
@@ -240,12 +240,20 @@ if (!isset($_SESSION['username'])) {
 
 /*-------------------------Showing Total Earning To The User----------------------*/
 include_once('admin.php');
-$arraydate=[];
-$arrayorder=[];
-$arrayearning=[];
+$total=0;
 $userdata = new admin();
-$userdata->totalearning();
-
+$sql=$userdata->totalearning();
+if($sql=='0')
+{
+    echo "No Data Available";
+}
+else {
+foreach($sql as $result)
+{
+$total=$total+(int)$result['total_fare'];
+}
+echo $total;
+}
 
 
 
@@ -509,9 +517,9 @@ var chart = new Chart(ctx, {
     data: {
         labels: ride_dates ,
         datasets: [{
-            label: 'Earning Graph',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            label: 'Total Earning with Respect to Date',
+            backgroundColor: 'rgb(56, 95, 207, 0.6)',
+            borderColor: 'rgb(255, 255, 255)',
             data: ride_earning
         }]
     },

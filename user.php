@@ -227,6 +227,11 @@ class user
         }
     }
 
+    public function ridedelete($id)
+    {
+        $fetchRides = mysqli_query($this->dbh, "DELETE From tbl_ride WHERE `ride_id`=$id");
+
+}
 }
 
 ?>

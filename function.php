@@ -16,13 +16,15 @@ class dbfunction
     }
     
     /*--------------------Function Used to Register user to the database--------------------------*/
-    public function registration($name, $fullname, $date, $number, $pass)
-    {
+    public function 
+    registration($name, $fullname, $date, $number, $pass)
+    {   $name=trim($name);
+        $fullname=trim($fullname);
         $checkusername = mysqli_query($this->dbh, "SELECT * FROM tbl_user WHERE `user_name`='$name'");
         $result        = $checkusername->num_rows;
         if ($result == 0) {
             $password     = md5($pass);
-            $insertdetail = mysqli_query($this->dbh, "insert into tbl_user(`user_name`, `name`, `dateofsignup`, `mobile`, `isblock`, `password`, `is_admin`) values('$name','$fullname','$date','$number','0','$password','1')");
+            $insertdetail = mysqli_query($this->dbh, "INSERT into tbl_user (`user_name`, `name`, `dateofsignup`, `mobile`, `isblock`, `password`, `is_admin`) values('$name','$fullname','$date','$number','0','$password','1')");
             if ($insertdetail) {
                 echo "<script>alert('Registration successfull.');</script>";
                 echo "<script>window.location.href='login.php'</script>";

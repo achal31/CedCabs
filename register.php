@@ -17,6 +17,9 @@ if (isset($_POST['register']))
     {
         $sql = $userdata->registration($name, $fullname, $date, $number, $password);
     }
+    else {
+      echo "<script>alert('Please check the password should match.');</script>";
+    }
 }
 ?>
 
@@ -31,10 +34,10 @@ if (isset($_POST['register']))
             </select>
         
             <p></p>
-            <input type="text" name="user_name" placeholder="Enter a username" class="detail"  required> 
+            <input type="text" name="user_name" placeholder="Enter a username" class="detail" pattern="[a-zA-Z][a-zA-Z0-9-_\.]{1,20}" required> 
         
             <p></p>
-            <input type="text" name="fullname" placeholder="Enter your full name" class="detail" id="fullname" required>
+            <input type="text" name="fullname" placeholder="Enter your full name" class="detail" pattern="^[a-zA-Z ]*$" id="fullname" required>
         
             <p></p>
             <input type="text" name="number" placeholder="Enter 10 Digit Phone Number" class="detail" id="phone" oninvalid="InvalidMsg(this);" 

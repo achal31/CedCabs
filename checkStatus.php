@@ -1,6 +1,7 @@
 <?php
 /*------If User Session is Not Created header will take the user out--------------*/
 include ("header.php");
+include_once ('user.php');
 if (!isset($_SESSION))
 {
     session_start();
@@ -14,6 +15,15 @@ if (!isset($_SESSION['username']))
 else if ($_SESSION['usertype'] == '0')
 {
     header("adminfiles/adminpanel.php");
+}
+
+
+if(isset($_GET['delete']))
+{
+
+    $previousrides = new user();
+    $sql = $previousrides->ridedelete($_GET['id']);
+
 }
 ?>
 <div id="checkstatuspanel">
@@ -115,7 +125,7 @@ else if ($_SESSION['usertype'] == '0')
     
 <!----------------------------Calling Function For each Filter------------------------------->
 <?php
-include_once ('user.php');
+
 if (isset($_GET['status']) || isset($_POST['status']))
 {
     if (isset($_GET['week']))
@@ -160,6 +170,10 @@ $html .= "<th>Total Distance</th>";
 $html .= "<th>Luguage</th>";
 $html .= "<th>Total Fare</th>";
 $html .= "<th>Status</th>";
+if($_GET['status']=='1')
+{
+    $html .= "<th>Cancel Ride</th>"; 
+}
 if($_GET['status']=='2')
 {
     $html .= "<th>Print Invoice</th>"; 
@@ -191,6 +205,10 @@ else
         else if ($result['status'] == 1)
         {
             $html .= "<td>Pending</td>";
+            if($_GET['status']=='1')
+            {
+            $html.="<td><a href='checkStatus.php?id=$result[ride_id]&delete=1&status=1'>Cancel</a></td>";
+            }
         }
         else if ($result['status'] == 2)
         {

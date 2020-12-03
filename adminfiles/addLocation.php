@@ -129,7 +129,7 @@ else if ($_SESSION['usertype'] == '1')
    Invoice
 </div>
 <li class="nav-item">
-    <a class="nav-link" href="printInvoice.php">
+    <a class="nav-link" href="printInvoice.php?status=2">
         <i class="fas fa-fw fa-table"></i>
         <span>Print Invoice</span></a>
 </li>
@@ -273,7 +273,7 @@ if (isset($_POST['Save']))
 <!--------------ADD LOCATION FORM----------------->
 <form action="addLocation.php" method="POST">
   
-<input type="text" name="location" class="addlocation" value="<?php
+<input type="text" name="location" class="addlocation"  pattern="[a-zA-Z]+[a-zA-Z0-9\s]" value="<?php
 if (isset($_GET['edit']))
 {
     echo $name;
