@@ -253,6 +253,15 @@ if (isset($_GET['userid'])) {
     if (isset($_GET['status']) == 1) {
         $userdata = new admin();
         $userdata->userStatus($_GET['userid']);
+        if($_GET['block']=='0')
+        {
+            echo"<script>alert('The User has been Unblocked');</script>";
+        }
+        else {
+
+            echo"<script>alert('The User has been Blocked');</script>";
+        }
+        echo "<script>window.location.href='manageUser.php?request=1'</script>";
     }
 }
 ?>
@@ -317,7 +326,7 @@ if (isset($_GET['request'])) {
             }
             if($_GET['request']!=2)
             {
-            $html .= "<td><a onClick=\"javascript: return confirm('Please confirm your Action');\" href='manageUser.php?userid=$result[user_id]&status=1&request=2'  class='link'>Block/UnBlock</a></td>";
+            $html .= "<td><a onClick=\"javascript: return confirm('Please confirm your Action');\" href='manageUser.php?userid=$result[user_id]&status=1&request=2&block=$result[isblock]'  class='link'>Block/UnBlock</a></td>";
             }
             $html .= "</tr>";
             $i++;

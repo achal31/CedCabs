@@ -51,17 +51,20 @@ if (isset($_POST['register']))
             </select>
         
             <p></p>
-            <input type="text" name="user_name" placeholder="Enter a username" class="detail" pattern="[a-zA-Z][a-zA-Z0-9-_\.]{1,20}" required> 
+            <input type="text" name="user_name" placeholder="Enter a username" class="detail" pattern="[a-zA-Z][a-zA-Z0-9-_\.]{1,20}" oninvalid="InvalidMsg(this);" 
+            oninput="InvalidMsg(this);" required> 
         
             <p></p>
-            <input type="text" name="fullname" placeholder="Enter your full name" class="detail" pattern="^[a-zA-Z ]*$" id="fullname" required>
+            <input type="text" name="fullname" placeholder="Enter your full name" class="detail" pattern="^[a-zA-Z ]*$" id="fullname" oninvalid="InvalidMsg(this);"
+            oninput="InvalidMsg(this);" required>
         
             <p></p>
             <input type="text" name="number" placeholder="Enter 10 Digit Phone Number" class="detail" id="phone" oninvalid="InvalidMsg(this);" 
                    oninput="InvalidMsg(this);" pattern="[1-9]{1}[0-9]{9}" required >
             
             <p></p>
-            <input type="password" name="password" placeholder="Password" class="detail" id="password" pattern=".{8,}" required>
+            <input type="password" name="password" placeholder="Password" class="detail" id="password" pattern=".{8,}" oninvalid="InvalidMsg(this);" 
+            oninput="InvalidMsg(this);" required>
             
             <p></p>
             <input type="password" name="repassword" placeholder="Confirm Password" class="detail" id="repassword" required>
@@ -87,7 +90,30 @@ if (isset($_POST['register']))
             ('Entering an Phone Number is necessary!'); 
   } else if (textbox.validity.patternMismatch) { 
       textbox.setCustomValidity 
-            ('Please enter an Phone Number address which is valid!'); 
+            ('Please enter an 10 digit Phone Number which is valid!'); 
+  } else { 
+      textbox.setCustomValidity(''); 
+  } 
+}
+else if(textbox.id=='password'||textbox.id=='repassword')
+{
+  if (textbox.value === '') { 
+      textbox.setCustomValidity 
+            ('Entering a Password is necessary!'); 
+  } else if (textbox.validity.patternMismatch) { 
+      textbox.setCustomValidity 
+            ('Please Enter 8 digit Password which is valid!'); 
+  } else { 
+      textbox.setCustomValidity(''); 
+  } 
+}else if(textbox.id=='fullname')
+{
+  if (textbox.value === '') { 
+      textbox.setCustomValidity 
+            ('Entering a Full Name is necessary!'); 
+  } else if (textbox.validity.patternMismatch) { 
+      textbox.setCustomValidity 
+            ('Full Name Should Start from Alphabet and Shouldnt contain any numbers!'); 
   } else { 
       textbox.setCustomValidity(''); 
   } 

@@ -77,9 +77,9 @@ if (isset($_POST['book']))
             $html .= "<tr><th class='confirmbooking'>Drop Location</th><td class='confirmbooking'>$drop</td></tr>";
             $html .= "<tr><th class='confirmbooking'>Cab Type</th><td class='confirmbooking'>$cabtype</td></tr>";
             $html .= "<tr><th class='confirmbooking'>Ride Date</th><td class='confirmbooking'>$date</td></tr>";
-            $html .= "<tr><th class='confirmbooking'>Total Distance</th><td class='confirmbooking'>$totaldistance</td></tr>";
-            $html .= "<tr><th class='confirmbooking'>Luggage</th><td class='confirmbooking'>$weight</td></tr>";
-            $html .= "<tr><th class='confirmbooking'>Total Fare</th> <td class='confirmbooking'>$fare</td></tr>";
+            $html .= "<tr><th class='confirmbooking'>Total Distance</th><td class='confirmbooking'>$totaldistance KM</td></tr>";
+            $html .= "<tr><th class='confirmbooking'>Luggage</th><td class='confirmbooking'>$weight KG</td></tr>";
+            $html .= "<tr><th class='confirmbooking'>Total Fare</th> <td class='confirmbooking'>₹$fare</td></tr>";
             $html .= "</table>";
             echo $html;
             echo "</div>";
@@ -106,9 +106,9 @@ else if (isset($_SESSION['userdata']))
         $html .= "<tr><th class='confirmbooking'>Drop Location</th><td class='confirmbooking'>" . $_SESSION['userdata']['drop'] . "</td></tr>";
         $html .= "<tr><th class='confirmbooking'>Cab Type</th><td class='confirmbooking'>" . $_SESSION['userdata']['cabtype'] . "</td></tr>";
         $html .= "<tr><th class='confirmbooking'>Ride Date</th><td class='confirmbooking'>" . $_SESSION['userdata']['date'] . "</td></tr>";
-        $html .= "<tr><th class='confirmbooking'>Total Distance</th><td class='confirmbooking'>$totaldistance</td></tr>";
-        $html .= "<tr><th class='confirmbooking'>Luggage</th><td class='confirmbooking'>" . $_SESSION['userdata']['weight'] . "</td></tr>";
-        $html .= "<tr><th class='confirmbooking'>Total Fare</th><td class='confirmbooking'>" . $_SESSION['userdata']['fare'] . "</td></tr>";
+        $html .= "<tr><th class='confirmbooking'>Total Distance</th><td class='confirmbooking'>$totaldistance KM</td></tr>";
+        $html .= "<tr><th class='confirmbooking'>Luggage</th><td class='confirmbooking'>" . $_SESSION['userdata']['weight'] . "KG</td></tr>";
+        $html .= "<tr><th class='confirmbooking'>Total Fare</th><td class='confirmbooking'>₹" . $_SESSION['userdata']['fare'] . "</td></tr>";
         $html .= "</table>";
         echo $html;
         echo "</div>";

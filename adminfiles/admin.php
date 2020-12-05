@@ -27,9 +27,9 @@ class admin
         {
             case 1:$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE  `status`='1'");break;
             case 2:$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE  `status`='2'");break;
-            case 3:$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE `isblock`='1'");break;
+            case 3:$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE `isblock`='1' and `is_admin`='1'");break;
             case 4:$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE  `status`='0'");break;
-            case 5:$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE  `isblock`='0'");break;
+            case 5:$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE  `isblock`='0' and `is_admin`='1'");break;
             case 6:$fetchRides = mysqli_query($this->dbh, "SELECT * FROM tbl_location WHERE `is_available`='0'");break;
         }
         return mysqli_num_rows($fetchRides);
@@ -100,12 +100,12 @@ class admin
             if ($ridedata['isblock'] == '0')
             {
                 $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_user SET `isblock`='1' WHERE `user_id`='$userid'");
-                echo "<script>window.location.href='manageUser.php?request=0'</script>";
+             
             }
             else
             {
                 $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_user SET `isblock`='0' WHERE `user_id`='$userid'");
-                echo "<script>window.location.href='manageUser.php?request=1'</script>";
+                
             }
 
         }

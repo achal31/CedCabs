@@ -257,6 +257,7 @@ if (isset($_GET['delete']) == 1)
     {
         $userdata = new admin();
         $userdata->locationdelete($_GET['id']);
+        echo "<script>alert('Location Has Been Deleted');</script>";
     }
 
 ?>

@@ -22,6 +22,7 @@ if (isset($_GET['delete']))
 
     $previousrides = new user();
     $sql = $previousrides->ridedelete($_GET['id']);
+    echo "<script>alert('Your Ride Has Been Cancelled');</script>";
 
 }
 ?>

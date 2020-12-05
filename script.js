@@ -51,7 +51,8 @@ $(document).ready(function() {
         $('#book').css({ "display": "none" });
         if ($(this).val() == 'CedMicro') {
             $('#weight').prop("disabled", true);
-            $('#weight').val("0");
+            $('#weight').val("");
+            $('#weight').attr("placeholder", "No Luggage Space For CedMicro");
         } else {
             $('#weight').prop("disabled", false);
             $('#weight').val("");
@@ -164,7 +165,7 @@ $(document).ready(function() {
 
                     $("#getfaredetail").css({ "display": "block" });
                     $("#getfare").css({ "display": "block" });
-                    $("#getfare").val(result);
+                    $("#getfare").val("₹" + result);
                     $("#getfar").val(result);
                     $('#book').css({ "display": "block" });
 

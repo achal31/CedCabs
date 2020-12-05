@@ -276,7 +276,6 @@ echo $total;
                                             
                                             <?php
 /*-----------------------TO SHOW THE COUNT OF THE UNBLOCK USER-----------------------------*/
-$userdata = new admin();
 $sql      = $userdata->dashboard('3');
 echo $sql;
 echo "<input type='text' value='$sql' id='unblockuser' hidden>";
@@ -303,7 +302,6 @@ echo "<input type='text' value='$sql' id='unblockuser' hidden>";
                                                 <div class="col-auto">
                                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" ><?php
 /*-----------------------TO SHOW THE COUNT OF THE BLOCK USER-----------------------------*/
-$userdata = new admin();
 $sql      = $userdata->dashboard('5');
 echo $sql;
 echo "<input type='text' value='$sql' id='blockuser' hidden>";
@@ -333,7 +331,6 @@ echo "<input type='text' value='$sql' id='blockuser' hidden>";
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php
 
 /*-----------------------TO SHOW THE COUNT OF THE CANCELLED RIDES-----------------------------*/
-$userdata = new admin();
 $sql      = $userdata->dashboard('4');
 echo $sql;
 echo "<input type='text' value='$sql' id='cancelled' hidden>";
@@ -359,7 +356,6 @@ echo "<input type='text' value='$sql' id='cancelled' hidden>";
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php
 
 /*-----------------------TO SHOW THE COUNT OF THE COMPLETED RIDES-----------------------------*/
-$userdata = new admin();
 $sql      = $userdata->dashboard('2');
 echo $sql;
 echo "<input type='text' value='$sql' id='completed' hidden>";
@@ -388,7 +384,6 @@ echo "<input type='text' value='$sql' id='completed' hidden>";
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php
 
 /*-----------------------TO SHOW THE COUNT OF THE PENDING RIDES-----------------------------*/
-$userdata = new admin();
 $sql      = $userdata->dashboard('1');
 echo $sql;
 echo "<input type='text' value='$sql' id='pending' hidden>";
@@ -413,7 +408,6 @@ echo "<input type='text' value='$sql' id='pending' hidden>";
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php
 
 /*-----------------------TO SHOW THE COUNT OF THE TOTAL SERVICE LOCATION-----------------------------*/
-$userdata = new admin();
 $sql      = $userdata->dashboard('6');
 echo $sql;
 
@@ -427,7 +421,6 @@ echo $sql;
                             </div>
                         </div>
 <?php 
-$userdata = new admin();
 $sql      = $userdata->fetchRidedates('6');
 $rideDate = [];
 $totalEarning = [];
