@@ -35,7 +35,7 @@ else if ($_SESSION['usertype'] == '1')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <script src="script.js"></script>
+    <script src="file.js"></script>
 
 </head>
 
@@ -47,18 +47,18 @@ else if ($_SESSION['usertype'] == '1')
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminpanel.php">
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Admin</div>
+    <div class="sidebar-brand-text mx-3">CEDCAB</div>
 </a>
 
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
 <!-- Nav Item - Dashboard -->
-<li class="nav-item active">
+<li class="nav-item">
     <a class="nav-link" href="adminpanel.php">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
@@ -75,7 +75,8 @@ else if ($_SESSION['usertype'] == '1')
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
+        <i class="fa fa-taxi"
+></i>
         <span>Manager Rides</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -92,7 +93,8 @@ else if ($_SESSION['usertype'] == '1')
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-wrench"></i>
+        <i class="fa fa-bell"
+></i>
         <span>Manager Requests</span>
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -114,9 +116,10 @@ else if ($_SESSION['usertype'] == '1')
 </div>
 
 <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+<li class="nav-item active">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-        <i class="fas fa-fw fa-folder"></i>
+        <i class="fa fa-map-marker"
+></i>
         <span>Manage Location</span>
     </a>
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -132,7 +135,8 @@ else if ($_SESSION['usertype'] == '1')
 </div>
 <li class="nav-item">
     <a class="nav-link" href="printInvoice.php?status=2">
-        <i class="fas fa-fw fa-table"></i>
+        <i class="fa fa-print"
+></i>
         <span>Print Invoice</span></a>
 </li>
 
@@ -143,14 +147,16 @@ else if ($_SESSION['usertype'] == '1')
 <!-- Nav Item - Charts -->
 <li class="nav-item">
     <a class="nav-link" href="changepass.php">
-        <i class="fas fa-fw fa-chart-area"></i>
+        <i class="fa fa-cogs"
+></i>
         <span>Change Password</span></a>
 </li>
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">
 <a class="nav-link" href="../logout.php">
-        <i class="fas fa-fw fa-table"></i>
+        <i class="fa fa-times"
+></i>
         <span>Log out</span></a>
 </li>
 
@@ -181,14 +187,7 @@ else if ($_SESSION['usertype'] == '1')
 
         <!-- Topbar Search -->
         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" disabled>
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-        <i class="fas fa-search fa-sm"></i>
-    </button>
-                </div>
-            </div>
+        <h3 class="m-0 font-weight-bold text-primary">WELCOME,ADMIN</h3>
         </form>
 
         <!-- Topbar Navbar -->
@@ -222,45 +221,44 @@ else if ($_SESSION['usertype'] == '1')
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
+    <div class="card shadow mb-4">
     <div id="filtermenu">
 <ul id="filter">
-<button data-toggle="collapse" data-target="#name" class="triggerbtn">SORT BY NAME</button>
-<button data-toggle="collapse" data-target="#distance" class="triggerbtn">SORT BY DISTANCE</button>
+<button id="name1" class="triggerbtn">SORT BY NAME</button>
+<button id="distance1" class="triggerbtn">SORT BY DISTANCE</button>
+<button id="available1" class="triggerbtn">FILTER BY AVAILABILITY</button>
+<button class="triggerbtn"><a href="manageLocation.php">CLEAN FILTER</a></button>
 
-
-<div id="name" class="collapse">
-<li><a href="manageLocation.php?filter=name&order=ASC">Ascending Order</a></li>
-<li><a href="manageLocation.php?filter=name&order=DESC">Descending Order</a></li>
+<div id="available" class="hide">
+<li><a id="avasc" href="manageLocation.php?id=available&inner=avasc&filter=is_available&order=0">Available</a></li>
+<li><a id="undsc" href="manageLocation.php?id=available&inner=undsc&filter=is_available&order=1">Unavailable</a></li>
 </div>
-<div id="distance" class="collapse">
-<li><a href="manageLocation.php?filter=distance&order=ASC">Ascending Order</a></li>
-<li><a href="manageLocation.php?filter=distance&order=DESC">Descending Order</a></li>
+<div id="name" class="hide">
+<li><a id="nameasc" href="manageLocation.php?id=name&inner=nameasc&filter=name&order=ASC">Ascending Order</a></li>
+<li><a id="namedsc" href="manageLocation.php?id=name&inner=namedsc&filter=name&order=DESC">Descending Order</a></li>
+</div>
+<div id="distance" class="hide">
+<li><a id="disasc" href="manageLocation.php?id=distance&inner=disasc&filter=distance&order=ASC">Ascending Order</a></li>
+<li><a id="disdsc" href="manageLocation.php?id=distance&inner=disdsc&filter=distance&order=DESC">Descending Order</a></li>
 </div>
 </ul> 
     </div>
         <!-- Page Heading -->
-        <div class="card shadow mb-4">
+
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Location List</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">LOCATION LIST</h6>
                         </div>
         
         <?php
 
  /*------------------Condition Used To Available/Unavailable/Delete Location-----------------*/       
 include_once ('admin.php');
-if (isset($_GET['id']))
-{
-    if (isset($_GET['availability']) == 1)
-    {
-        $userdata = new admin();
-        $userdata->locationavailability($_GET['id']);
-    }
-    else if (isset($_GET['delete']) == 1)
+if (isset($_GET['delete']) == 1)
     {
         $userdata = new admin();
         $userdata->locationdelete($_GET['id']);
     }
-}
+
 ?>
  <div class="card-body">
 <div class="table-responsive">
@@ -268,9 +266,17 @@ if (isset($_GET['id']))
     <?php
 
 if (isset($_GET['filter']))
-{
-    $userdata = new admin();
-    $sql = $userdata->managelocation($_GET['filter'], $_GET['order']);
+{ 
+    if($_GET['filter']=='is_available')
+    {
+        $userdata = new admin();
+        $sql = $userdata->availablelocation($_GET['filter'], $_GET['order']);
+    }
+    else {
+        $userdata = new admin();
+        $sql = $userdata->managelocation($_GET['filter'], $_GET['order']);
+    }
+    
 }
 else
 {
@@ -285,13 +291,12 @@ else
 {
     $i = 1;
     $html = "";
-    $html .= "<table class='table table-bordered' width='100%'' cellspacing='0'><thead>";
+    $html .= "<table class='table table-bordered' width='50%' cellspacing='0'><thead>";
     $html .= "<tr>";
     $html .= "<th>S.No</th>";
     $html .= "<th>Location</th>";
     $html .= "<th>Distance</th>";
     $html .= "<th>Status</th>";
-    $html .= "<th>Available/Unavailable</th>";
     $html .= "<th>Delete</th>";
     $html .= "<th>Edit</th>";
     $html .= "</tr></thead><tbody>";
@@ -300,7 +305,7 @@ else
         $html .= "<tr>";
         $html .= "<td>$i</td>";
         $html .= "<td>$result[name]</td>";
-        $html .= "<td>$result[distance]</td>";
+        $html .= "<td>$result[distance] KM</td>";
         if ($result['is_available'] == 0)
         {
             $html .= "<td>Available</td>";
@@ -309,9 +314,8 @@ else
         {
             $html .= "<td>Unavailable</td>";
         }
-        $html .= "<td><a href='manageLocation.php?id=$result[id]&availability=1' class='link'>Available/Unavailable</a></td>";
-        $html .= "<td><a href='manageLocation.php?id=$result[id]&delete=1' class='link'>Delete</a></td>";
-        $html .= "<td><a href='addLocation.php?id=$result[id]&edit=1&name=$result[name]&distance=$result[distance]' class='link'>Edit</a></td>";
+        $html .= "<td><a onClick=\"javascript: return confirm('Please confirm if you want to delete');\" href='manageLocation.php?id=$result[id]&delete=1' class='link'>Delete</a></td>";
+        $html .= "<td><a href='addLocation.php?id=$result[id]&edit=1&name=$result[name]&distance=$result[distance]&availability=$result[is_available]' class='link'>Edit</a></td>";
         $html .= "</tr>";
         $i++;
     }
@@ -338,7 +342,8 @@ else
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                       <span>Copyright &copy; Designed By Achal</span>
+
                     </div>
                 </div>
             </footer>
@@ -394,3 +399,17 @@ else
 </body>
 
 </html>
+<script>
+
+    $(document).ready(function(){
+        <?php if (isset($_GET['id']))
+{ ?>
+        $("#<?php echo $_GET['id'] ?>").show();
+        $("#<?php echo $_GET['inner'] ?>").css("cssText", "color: red !important;",);
+       
+        <?php
+}
+?>
+    
+    })
+</script>

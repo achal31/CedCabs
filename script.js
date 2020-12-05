@@ -26,21 +26,23 @@ $(document).ready(function() {
             $("#pickup option[value='" + pick + "']").attr("disabled", "disabled").siblings().removeAttr("disabled");
         }
     });
-
     /*-----------Function To Validate The Input In The Weigth Field------------*/
-    $("#weight").keyup(function() {
+    $('#weight').keyup(function() {
         $("#getfaredetail").css({ "display": "none" });
         $("#getfare").css({ "display": "none" });
         $('#book').css({ "display": "none" });
-        var w = $("#weight").val();
-        if (isNaN(w) == true) {
-            $("#demo").html("Please Make Sure To Enter An Integer Value");
-            $('#myModal').modal('show');
-            $("#submit").attr('disabled', 'disabled');
+        this.value = this.value.replace(/[^0-9\.]/g, '');
+    });
+
+    var original = '';
+    $('#weight').on('input', function() {
+        if ($(this).val().replace(/[^.]/g, "").length > 1) {
+            $(this).val(original);
         } else {
-            $("#submit").removeAttr("disabled");
+            original = $(this).val();
         }
     });
+
 
     /*----------Function To Set Lugage To Zero When CedMicro Is Selected---------*/
     $('#cabtype').change(function() {

@@ -1,5 +1,6 @@
 <?php
 /*------If User Session is Not Created header will take the user out--------------*/
+
 if (!isset($_SESSION))
 {
     session_start();
@@ -14,34 +15,10 @@ else if ($_SESSION['usertype'] == '0')
 {
     header("adminfiles/adminpanel.php");
 }
+include('header.php');
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Dashboard</title>
-
-    <!-- Custom fonts for this template-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <!-- Custom styles for this template-->
-
-</head>
-
-<body id="page-top">
-<a href="userDashboard.php" class="userinvo">BACK TO DASHBOARD</a>
-<p>
-<a onclick="window.print();" class="userinvo">PRINT</a>
-</p>
+<div id="page-top">
 <?php
 $pickup      = $_GET['pickup'];
 $drop        = $_GET['drop'];
@@ -52,23 +29,26 @@ $fare        = $_GET['fare'];
 $customereid = $_GET['name'];
 $weight      = $_GET['weight'];
 ?>
-
+<p>
+<a onclick="window.print();" class="userinvo">PRINT</a>
+</p>
 <div id="usertable">
     <h1>RIDE INVOICE</h1>
-<table >
-        <tr><td><h3>Date:</h3></td><td><h3><?php echo $date; ?></h3></td></tr>
-        <tr><td><h3>Name:</h3></td><td><h3><?php echo $customereid; ?></h3></td></tr>
-        <tr><td><h3>From:</h3></td><td><h3><?php echo $pickup; ?></h3></td></tr>
-        <tr><td><h3>To:</h3></td><td><h3><?php echo $drop; ?></h3></td></tr>
-        <tr><td><h3>Total Distance:</h3></td><td><h3><?php echo $distance; ?></h3></td></tr>
-        <tr><td><h3>Cab Type:</h3></td><td><h3><?php echo $cabtype; ?></h3></td></tr>
-        <tr><td><h3>Luggage:</h3></td><td><h3><?php echo $weight; ?></h3></td></tr>
+<table id="userinvoicetable">
+        <tr><td class="invotable"><h4>DATE OF RIDE</h4></td><td class="invotable"><h4><?php echo $date; ?></h4></td></tr>
+        <tr><td class="invotable"><h4>NAME</h4></td><td class="invotable"><h4><?php echo $customereid; ?></h4></td></tr>
+        <tr><td class="invotable"><h4>PICKUP POINT</h4></td><td class="invotable"><h4><?php echo $pickup; ?></h4></td></tr>
+        <tr><td class="invotable"><h4>DROP POINT</h4></td><td class="invotable"><h4><?php echo $drop; ?></h4></td></tr>
+        <tr><td class="invotable"><h4>TOTAL DISTANCE</h4></td><td class="invotable"><h4><?php echo $distance; ?> KM</h4></td></tr>
+        <tr><td class="invotable"><h4>CAB TYPE</h4></td><td class="invotable"><h4><?php echo $cabtype; ?></h4></td></tr>
+        <tr><td class="invotable"><h4>LUGGAGE WEIGHT</h4></td><td class="invotable"><h4><?php echo $weight; ?> KG</h4></td></tr>
+        <tr><td class="invotable"colspan="2"><h2>TOTAL FARE: ₹<?php  echo $fare; ?></h2></td></tr>
 </table>
 
 
-<h2>Total Fare: <?php echo $fare; ?></h2>
 </div>
 
-
-</body>
-</html>
+</div>
+<?php 
+include('footer.php');
+?>

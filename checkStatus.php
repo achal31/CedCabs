@@ -17,8 +17,7 @@ else if ($_SESSION['usertype'] == '0')
     header("adminfiles/adminpanel.php");
 }
 
-
-if(isset($_GET['delete']))
+if (isset($_GET['delete']))
 {
 
     $previousrides = new user();
@@ -39,7 +38,10 @@ if(isset($_GET['delete']))
 <button class="triggerbtn" id="date1">FILTER BY DATES</button>
 <button class="triggerbtn" id="week1">FILTER BY WEEK</button>
 <button class="triggerbtn" id="cab1">FILTER BY CABS</button>
-
+<button class="triggerbtn"><a href='checkStatus.php?status=<?php if (isset($_GET['status']))
+{
+    echo $_GET['status'];
+} ?>'>CLEAN FILTER</a></button>
 
 <!----------------DROP DOWN TO SHOW FILTER OPTION ---------------------->
 <div id="distance" class="hide">
@@ -79,11 +81,17 @@ if(isset($_GET['delete']))
 <div id="weight" class="hide">
 
 <li>
-    <a id="weightasc" href="checkStatus.php?id=weight&inner=weightasc&filter=luggage&order=ASC&status=<?php if (isset($_GET['status'])){ echo $_GET['status'];} ?>" class="filtera">Ascending Order</a>
+    <a id="weightasc" href="checkStatus.php?id=weight&inner=weightasc&filter=luggage&order=ASC&status=<?php if (isset($_GET['status']))
+{
+    echo $_GET['status'];
+} ?>" class="filtera">Ascending Order</a>
 </li>
 
 <li>
-    <a id="weightdsc" href="checkStatus.php?id=weight&inner=weightdsc&filter=luggage&order=DESC&status=<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>" class="filtera">Descending Order</a>
+    <a id="weightdsc" href="checkStatus.php?id=weight&inner=weightdsc&filter=luggage&order=DESC&status=<?php if (isset($_GET['status']))
+{
+    echo $_GET['status'];
+} ?>" class="filtera">Descending Order</a>
 </li>
 
 </div>
@@ -91,29 +99,47 @@ if(isset($_GET['delete']))
 <div id="fare" class="hide">
 
 <li>
-    <a id="fareasc" href="checkStatus.php?id=fare&inner=fareasc&filter=total_fare&order=ASC&status=<?php if (isset($_GET['status'])) { echo $_GET['status'];} ?>" class="filtera">Ascending Order</a>
+    <a id="fareasc" href="checkStatus.php?id=fare&inner=fareasc&filter=total_fare&order=ASC&status=<?php if (isset($_GET['status']))
+{
+    echo $_GET['status'];
+} ?>" class="filtera">Ascending Order</a>
 </li>
 
 <li>
-    <a id="faredsc" href="checkStatus.php?id=fare&inner=faredsc&filter=total_fare&order=DESC&status=<?php if (isset($_GET['status'])) { echo $_GET['status'];} ?>" class="filtera">Descending Order</a></li>
+    <a id="faredsc" href="checkStatus.php?id=fare&inner=faredsc&filter=total_fare&order=DESC&status=<?php if (isset($_GET['status']))
+{
+    echo $_GET['status'];
+} ?>" class="filtera">Descending Order</a></li>
 </div>
 
 <div id="cab" class="hide">
 
 <li>
-    <a id="mini"  href="checkStatus.php?id=cab&inner=mini&cab=cab_type&order=CedMini&status=<?php if (isset($_GET['status'])) { echo $_GET['status'];} ?>" class="filtera">CedMini</a>
+    <a id="mini"  href="checkStatus.php?id=cab&inner=mini&cab=cab_type&order=CedMini&status=<?php if (isset($_GET['status']))
+{
+    echo $_GET['status'];
+} ?>" class="filtera">CedMini</a>
 </li>
 
 <li>
-    <a id="micro" href="checkStatus.php?id=cab&inner=micro&cab=cab_type&order=CedMicro&status=<?php if (isset($_GET['status'])){ echo $_GET['status'];} ?>" class="filtera">CedMicro</a>
+    <a id="micro" href="checkStatus.php?id=cab&inner=micro&cab=cab_type&order=CedMicro&status=<?php if (isset($_GET['status']))
+{
+    echo $_GET['status'];
+} ?>" class="filtera">CedMicro</a>
 </li>
 
 <li>
-    <a id="royal" href="checkStatus.php?id=cab&inner=royal&cab=cab_type&order=CedRoyal&status=<?php if (isset($_GET['status'])) { echo $_GET['status'];} ?>" class="filtera">CedRoyal</a>
+    <a id="royal" href="checkStatus.php?id=cab&inner=royal&cab=cab_type&order=CedRoyal&status=<?php if (isset($_GET['status']))
+{
+    echo $_GET['status'];
+} ?>" class="filtera">CedRoyal</a>
 </li>
 
 <li>
-    <a id="suv" href="checkStatus.php?id=cab&inner=suv&cab=cab_type&order=CedSUV&status=<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>" class="filtera">CedSUV</a>
+    <a id="suv" href="checkStatus.php?id=cab&inner=suv&cab=cab_type&order=CedSUV&status=<?php if (isset($_GET['status']))
+{
+    echo $_GET['status'];
+} ?>" class="filtera">CedSUV</a>
 </li>
 
 </div>
@@ -125,7 +151,6 @@ if(isset($_GET['delete']))
     
 <!----------------------------Calling Function For each Filter------------------------------->
 <?php
-
 if (isset($_GET['status']) || isset($_POST['status']))
 {
     if (isset($_GET['week']))
@@ -161,22 +186,22 @@ $i = 1;
 $html = "";
 $html .= "<table>";
 $html .= "<tr>";
-$html .= "<th>S.No</th>";
-$html .= "<th>Ride Date</th>";
-$html .= "<th>Pick Up</th>";
-$html .= "<th>Drop</th>";
-$html .= "<th>Cab Type</th>";
-$html .= "<th>Total Distance</th>";
-$html .= "<th>Luguage</th>";
-$html .= "<th>Total Fare</th>";
-$html .= "<th>Status</th>";
-if($_GET['status']=='1')
+$html .= "<th class='checkstatus'>S.No</th>";
+$html .= "<th class='checkstatus'>Ride Date</th>";
+$html .= "<th class='checkstatus'>Pick Up</th>";
+$html .= "<th class='checkstatus'>Drop</th>";
+$html .= "<th class='checkstatus'>Cab Type</th>";
+$html .= "<th class='checkstatus'>Total Distance</th>";
+$html .= "<th class='checkstatus'>Luguage</th>";
+$html .= "<th class='checkstatus'>Total Fare</th>";
+$html .= "<th class='checkstatus'>Status</th>";
+if ($_GET['status'] == '1')
 {
-    $html .= "<th>Cancel Ride</th>"; 
+    $html .= "<th class='checkstatus'>Cancel Ride</th>";
 }
-if($_GET['status']=='2')
+if ($_GET['status'] == '2')
 {
-    $html .= "<th>Print Invoice</th>"; 
+    $html .= "<th class='checkstatus'>Print Invoice</th>";
 }
 $html .= "</tr>";
 
@@ -190,36 +215,35 @@ else
     foreach ($sql as $result)
     {
         $html .= "<tr>";
-        $html .= "<td>$i</td>";
-        $html .= "<td>$result[ride_date]</td>";
-        $html .= "<td>$result[tripstart]</td>";
-        $html .= "<td>$result[tripend]</td>";
-        $html .= "<td>$result[cab_type]</td>";
-        $html .= "<td>$result[total_distance]</td>";
-        $html .= "<td>$result[luggage]</td>";
-        $html .= "<td>$result[total_fare]</td>";
+        $html .= "<td class='checkstatus'>$i</td>";
+        $html .= "<td class='checkstatus'>$result[ride_date]</td>";
+        $html .= "<td class='checkstatus'>$result[tripstart]</td>";
+        $html .= "<td class='checkstatus'>$result[tripend]</td>";
+        $html .= "<td class='checkstatus'>$result[cab_type]</td>";
+        $html .= "<td class='checkstatus'>$result[total_distance] KM</td>";
+        $html .= "<td class='checkstatus'>$result[luggage] KG</td>";
+        $html .= "<td class='checkstatus'>₹$result[total_fare]</td>";
         if ($result['status'] == 0)
         {
-            $html .= "<td>Cancelled</td>";
+            $html .= "<td class='checkstatus'>Cancelled</td>";
         }
         else if ($result['status'] == 1)
         {
-            $html .= "<td>Pending</td>";
-            if($_GET['status']=='1')
+            $html .= "<td class='checkstatus'>Pending</td>";
+            if ($_GET['status'] == '1')
             {
-            $html.="<td><a href='checkStatus.php?id=$result[ride_id]&delete=1&status=1'>Cancel</a></td>";
+                $html .= "<td class='checkstatus'><a onClick=\"javascript: return confirm('Please confirm if you want to cancel the ride request');\" href='checkStatus.php?id=$result[ride_id]&delete=1&status=1'>Cancel</a></td>";
             }
         }
         else if ($result['status'] == 2)
         {
-            $html .= "<td>Completed</td>";
-            
+            $html .= "<td class='checkstatus'>Completed</td>";
+
         }
-        if($_GET['status']==2)
+        if ($_GET['status'] == 2)
         {
-            $html .= "<td><a href='showinvoice.php?name=$_SESSION[userid]&date=$result[ride_date]&pickup=$result[tripstart]&drop=$result[tripend]&cabtype=$result[cab_type]&distance=$result[total_distance]&weight=$result[luggage]&fare=$result[total_fare]'>Print</a></td>"; 
+            $html .= "<td class='checkstatus'><a href='showinvoice.php?name=$_SESSION[userid]&date=$result[ride_date]&pickup=$result[tripstart]&drop=$result[tripend]&cabtype=$result[cab_type]&distance=$result[total_distance]&weight=$result[luggage]&fare=$result[total_fare]'>View Invoice</a></td>";
         }
-        
 
         $html .= "</tr>";
         $i++;

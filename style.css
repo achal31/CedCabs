@@ -133,6 +133,16 @@ i {
     padding: 5px 10px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 .detailbutton,
  :focus {
     outline: none;
@@ -140,7 +150,7 @@ i {
 
 a {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 
@@ -199,12 +209,23 @@ button.option:focus {
     outline: 0px;
 }
 
-#changepassword,
 #changenumber,
 #changename {
     display: none;
     margin-left: 5%;
     margin-top: 3%;
+}
+
+#userpanelsetting {
+    margin-left: 5%;
+    margin-top: 3%;
+}
+
+.btn,
+.btn-secondary,
+.dropdown-toggle:focus {
+    border: 0px !important;
+    outline: 0px !important;
 }
 
 
@@ -223,9 +244,12 @@ td {
     border: 1px solid black;
 }
 
-td,
-th {
-    padding: 4px 30px 4px 30px;
+.confirmbooking {
+    padding: 10px 30px 10px 30px;
+}
+
+.checkstatus {
+    padding: 4px 20px 4px 20px;
 }
 
 tr:hover {
@@ -318,8 +342,8 @@ button.triggerbtn:focus {
 }
 
 #table {
-    text-align: left;
-    margin-left: 6%;
+    text-align: center;
+    margin-left: 8%;
     padding-bottom: 50px;
 }
 
@@ -380,7 +404,13 @@ div.hide>li>a:hover {
     border: 0px !important;
 }
 
-#dropdownMenuButton {
+.btn-secondary:focus {
+    border: 0px !important;
+    outline: 0px !important;
+}
+
+#dropdownMenuButton,
+#dropdownButton {
     margin-top: 3px !important;
 }
 
@@ -428,23 +458,37 @@ div.hide>li>a:hover {
     padding-bottom: 200px;
 }
 
-a.userinvo {
-    color: black;
+.userinvo {
+    color: black !important;
     text-decoration: none;
+    font-size: larger;
     padding: 5px 15px 5px 15px;
     border-radius: 10px;
+    float: right;
+    background-color: #e7b94f;
+}
+
+#userinvoicetable {
+    margin-left: 2% !important;
+}
+
+.invotable {
+    padding: 5px 30px 5px 30px;
 }
 
 .userinvo:hover {
     color: white;
-    background-color: #e7b94f;
+    background-color: red;
 }
 
 #usertable {
-    margin-left: 450px;
+    margin-left: 400px;
 }
 
-#usertable>h1,
+#usertable>h1 {
+    margin-left: 100px;
+}
+
 #usertable>h2 {
-    margin-left: 80px;
+    margin-left: 130px;
 }

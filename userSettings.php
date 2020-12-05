@@ -17,12 +17,7 @@ else if ($_SESSION['usertype'] == '0')
 include_once ('user.php');
 if (isset($_POST['Save']))
 {
-    $value = "";
-    if ($_POST['Save'] == 'UpdatePassword')
-    {
-        $value = 'password';
-    }
-    else if ($_POST['Save'] == 'UpdateNumber')
+if ($_POST['Save'] == 'UpdateNumber')
     {
         $value = 'mobile';
 
@@ -40,26 +35,12 @@ if (isset($_POST['Save']))
 }
 ?>
 
-<div id="userpanelsetting">
 <div id="usersettings"> 
     <ul id="setting">
     <span id="info">UPDATE INFORMATION</span>
-        <li class="changes"><button id="btnpass" pattern="^[a-zA-Z ]*$" class="option">Change Password</button></li>
         <li class="changes"><button id="btnnum" pattern="^[a-zA-Z ]*$"  class="option">Mobile Number</button></li>
         <li class="changes"><button id="btnname" pattern="^[a-zA-Z ]*$" class="option">Name</button></li>
     </ul>
-
-    <div id="changepassword">
-        <form action="userSettings.php" method="POST"> 
-        <input type="password" placeholder="Enter Current Passsword" name="current" class="detail" pattern=".{8,}" required>
-        <p></p>
-        <input type="password" placeholder="Enter New Passsword" name="new" class="detail" pattern=".{8,}" required>
-        <p></p>
-        <input type="password" placeholder="Please Confirm Passsword" name="conf" class="detail" pattern=".{8,}" required>
-        <p></p>
-        <input type="submit" value="UpdatePassword" name="Save" class="detailbutton">
-        </form>
-    </div>
 
     <div id="changenumber">
         <form action="userSettings.php" method="POST">
@@ -84,7 +65,7 @@ if (isset($_POST['Save']))
         <input type="submit" value="Updatename" name="Save" class="detailbutton">
         </form>
     </div>
-</div>
+
 <div id=pad></div>
 </div>
 <?php include ('footer.php'); ?>

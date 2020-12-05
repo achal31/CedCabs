@@ -52,14 +52,14 @@ else if ($_SESSION['usertype'] == '1')
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Admin</div>
+    <div class="sidebar-brand-text mx-3">CEDCAB</div>
 </a>
 
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
 <!-- Nav Item - Dashboard -->
-<li class="nav-item active">
+<li class="nav-item ">
     <a class="nav-link" href="adminpanel.php">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
@@ -74,9 +74,10 @@ else if ($_SESSION['usertype'] == '1')
 </div>
 
 <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+<li class="nav-item active">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
+        <i class="fa fa-taxi"
+></i>
         <span>Manager Rides</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -93,7 +94,8 @@ else if ($_SESSION['usertype'] == '1')
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-wrench"></i>
+        <i class="fa fa-bell"
+></i>
         <span>Manager Requests</span>
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -117,7 +119,8 @@ else if ($_SESSION['usertype'] == '1')
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-        <i class="fas fa-fw fa-folder"></i>
+        <i class="fa fa-map-marker"
+></i>
         <span>Manage Location</span>
     </a>
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -133,7 +136,8 @@ else if ($_SESSION['usertype'] == '1')
 </div>
 <li class="nav-item">
     <a class="nav-link" href="printInvoice.php?status=2">
-        <i class="fas fa-fw fa-table"></i>
+        <i class="fa fa-print"
+></i>
         <span>Print Invoice</span></a>
 </li>
 
@@ -144,14 +148,16 @@ else if ($_SESSION['usertype'] == '1')
 <!-- Nav Item - Charts -->
 <li class="nav-item">
     <a class="nav-link" href="changepass.php">
-        <i class="fas fa-fw fa-chart-area"></i>
+        <i class="fa fa-cogs"
+></i>
         <span>Change Password</span></a>
 </li>
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">
 <a class="nav-link" href="../logout.php">
-        <i class="fas fa-fw fa-table"></i>
+        <i class="fa fa-times"
+></i>
         <span>Log out</span></a>
 </li>
 
@@ -183,14 +189,7 @@ else if ($_SESSION['usertype'] == '1')
 
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" disabled>
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-                            </div>
-                        </div>
+                    <h3 class="m-0 font-weight-bold text-primary">WELCOME,ADMIN</h3>
                     </form>
 
                     <!-- Topbar Navbar -->
@@ -228,10 +227,10 @@ else if ($_SESSION['usertype'] == '1')
 <ul id="filter">
 <button class="triggerbtn" id="distance1">SORT BY DISTANCE</button>
 <button class="triggerbtn" id="fare1">SORT BY FARE</button>
-<button class="triggerbtn" id="cab1">FILTER BY RIDE</button>
+<button class="triggerbtn" id="cab1">FILTER BY CAB</button>
 <button class="triggerbtn" id="date1">FILTER BY DATES</button>
 <button class="triggerbtn" id="week1">FILTER BY WEEK</button>
-
+<button class="triggerbtn"><a href="pastRides.php">CLEAN FILTER</a></button>
 
 <div id="distance" class="hide">
 
@@ -249,7 +248,7 @@ else if ($_SESSION['usertype'] == '1')
 <input type="date" name="date1" id="dateone" required >
 <input type="date" name="date2" id="datetwo" required >
 <input type="submit" name="filterdate" value="Filter" class="triggerbtn">
-<input value="<?php if (isset($_GET['status'])) { echo $_GET['status']; } ?>" name="status" type="hidden">
+<input type="hidden" value="3" name="status">
 </form>
 </div>
 
@@ -257,7 +256,7 @@ else if ($_SESSION['usertype'] == '1')
 <form method="GET" action="pastRides.php">
 <input type="week" name="week" id="weekend" required>
 <input type="submit" name="filterweek" value="Filter" class="triggerbtn">
-<input value="<?php if (isset($_GET['status'])){echo $_GET['status']; } ?>" name="status" type="hidden">
+<input value="3" name="status" type="hidden">
 </form>
 </div>
 
@@ -345,10 +344,10 @@ else
         $html .= "<td>$result[tripstart]</td>";
         $html .= "<td>$result[tripend]</td>";
         $html .= "<td>$result[cab_type]</td>";
-        $html .= "<td>$result[total_distance]</td>";
-        $html .= "<td>$result[luggage]</td>";
-        $html .= "<td>$result[total_fare]</td>";
-        $html .= "<td><a href='pastRides.php?id=$result[ride_id]&delete=1' class='link'>Delete</a></td>";
+        $html .= "<td>$result[total_distance] KM</td>";
+        $html .= "<td>$result[luggage] KG</td>";
+        $html .= "<td>₹$result[total_fare]</td>";
+        $html .= "<td><a onClick=\"javascript: return confirm('Please confirm deletion');\" href='pastRides.php?id=$result[ride_id]&delete=1' class='link'>Delete</a></td>";
         $html .= "</tr><tbody>";
         $i++;
     }
@@ -371,7 +370,8 @@ else
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                       <span>Copyright &copy; Designed By Achal</span>
+
                     </div>
                 </div>
             </footer>

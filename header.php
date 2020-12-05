@@ -47,8 +47,7 @@ if (isset($_SESSION['username'])) {
     </li>
                 <div>
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
- Rides
-  </button>
+                Rides</button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" href="checkStatus.php?status=1">Pending Rides</a>
     <a class="dropdown-item" href="checkStatus.php?status=2">Completed Rides</a>
@@ -56,9 +55,16 @@ if (isset($_SESSION['username'])) {
     <a class="dropdown-item" href="checkStatus.php?status=3">All Rides</a>
   </div>
     </div>
-                <li class="nav-item">
-                    <a class="nav-link" href="userSettings.php">Account</a>
-                </li>
+
+        <div>
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Account Setting
+  </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownButton">
+    <a class="dropdown-item" href="userSettings.php">Update Information</a>
+    <a class="dropdown-item" href="changepassword.php">Change Password</a>
+     </div>
+    </div>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.php">Logout</a>
                 </li>

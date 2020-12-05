@@ -42,18 +42,18 @@ if (!isset($_SESSION['username'])) {
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminpanel.php">
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Admin</div>
+    <div class="sidebar-brand-text mx-3">CEDCAB</div>
 </a>
 
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
 <!-- Nav Item - Dashboard -->
-<li class="nav-item active">
+<li class="nav-item ">
     <a class="nav-link" href="adminpanel.php">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
@@ -70,7 +70,8 @@ if (!isset($_SESSION['username'])) {
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
+        <i class="fa fa-taxi"
+></i>
         <span>Manager Rides</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -87,7 +88,8 @@ if (!isset($_SESSION['username'])) {
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-wrench"></i>
+        <i class="fa fa-bell"
+></i>
         <span>Manager Requests</span>
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -111,7 +113,8 @@ if (!isset($_SESSION['username'])) {
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-        <i class="fas fa-fw fa-folder"></i>
+        <i class="fa fa-map-marker"
+></i>
         <span>Manage Location</span>
     </a>
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -125,9 +128,10 @@ if (!isset($_SESSION['username'])) {
 <div class="sidebar-heading">
    Invoice
 </div>
-<li class="nav-item">
+<li class="nav-item active">
     <a class="nav-link" href="printInvoice.php?status=2">
-        <i class="fas fa-fw fa-table"></i>
+        <i class="fa fa-print"
+></i>
         <span>Print Invoice</span></a>
 </li>
 
@@ -138,14 +142,16 @@ if (!isset($_SESSION['username'])) {
 <!-- Nav Item - Charts -->
 <li class="nav-item">
     <a class="nav-link" href="changepass.php">
-        <i class="fas fa-fw fa-chart-area"></i>
+        <i class="fa fa-cogs"
+></i>
         <span>Change Password</span></a>
 </li>
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">
 <a class="nav-link" href="../logout.php">
-        <i class="fas fa-fw fa-table"></i>
+        <i class="fa fa-times"
+></i>
         <span>Log out</span></a>
 </li>
 
@@ -177,14 +183,7 @@ if (!isset($_SESSION['username'])) {
 
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" disabled>
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-                            </div>
-                        </div>
+                    <h3 class="m-0 font-weight-bold text-primary">WELCOME,ADMIN</h3>
                     </form>
 
                     <!-- Topbar Navbar -->
@@ -218,7 +217,10 @@ if (!isset($_SESSION['username'])) {
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-        <h2>INVOICE SHEET</h2>
+                <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">INVOICE SHEET</h6>
+                        </div>
         <div id="filtermenu">
 <ul id="filter">
 <button class="triggerbtn" id="distance1">SORT BY DISTANCE</button>
@@ -226,6 +228,7 @@ if (!isset($_SESSION['username'])) {
 <button class="triggerbtn" id="cab1">FILTER BY RIDE</button>
 <button class="triggerbtn" id="date1">FILTER BY DATES</button>
 <button class="triggerbtn" id="week1">FILTER BY WEEK</button>
+<button class="triggerbtn"><a href="printInvoice.php?status=2">CLEAN FILTER</a></button>
 
 <div id="distance" class="hide">
 <li><a id="distanceasc" href="printInvoice.php?id=distance&inner=distanceasc&filter=total_distance&order=ASC&status=<?php
@@ -340,10 +343,10 @@ if ($sql == '0') {
         $html .= "<td>$result[tripstart]</td>";
         $html .= "<td>$result[tripend]</td>";
         $html .= "<td>$result[cab_type]</td>";
-        $html .= "<td>$result[total_distance]</td>";
-        $html .= "<td>$result[luggage]</td>";
-        $html .= "<td>$result[total_fare]</td>";
-        $html .= "<td><a  class='link' href=showInvoice.php?date=$result[ride_date]&pickup=$result[tripstart]&drop=$result[tripend]&cabtype=$result[cab_type]&distance=$result[total_distance]&weight=$result[luggage]&fare=$result[total_fare]&customer=$result[customer_user_id]>Print Invoice</a></td>";
+        $html .= "<td>$result[total_distance] KM</td>";
+        $html .= "<td>$result[luggage] KG</td>";
+        $html .= "<td>₹$result[total_fare]</td>";
+        $html .= "<td><a onClick=\"javascript: return confirm('Please confirm your want to print the invoice');\" class='link' href=showInvoice.php?date=$result[ride_date]&pickup=$result[tripstart]&drop=$result[tripend]&cabtype=$result[cab_type]&distance=$result[total_distance]&weight=$result[luggage]&fare=$result[total_fare]&customer=$result[customer_user_id]>View Invoice</a></td>";
         $html .= "</tr><tbody>";
         $i++;
     }
@@ -354,7 +357,8 @@ if ($sql == '0') {
 ?>
        </div>
 </div>
-
+            </div>
+        </div>
 
 
 
@@ -368,7 +372,8 @@ if ($sql == '0') {
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                       <span>Copyright &copy; Designed By Achal</span>
+
                     </div>
                 </div>
             </footer>

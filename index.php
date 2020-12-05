@@ -9,15 +9,15 @@ include ('header.php');
 
             <!------------------Headings------------------------------->
             <div class="col-sm-2 col-md-2 col-lg-2"></div>
-            <div class="col-sm-8 col-md-8 col-lg-8 text-center text-white py-5">
+            <div class="col-sm-8 col-md-8 col-lg-8 text-center text-white py-5 landhead" >
                 <h1>Book a City Taxi to your Destination in your Town
                 </h1>
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2"></div>
 
             <div class="col-sm-3 col-md-3 col-lg-3"></div>
-            <div class="col-sm-6 col-md-6 col-lg-6 text-center text-white ">
-                <h4>Choose from a range of categories and prices</h4>
+            <div class="col-sm-6 col-md-6 col-lg-6 text-center text-white landhead">
+                <h3>Choose from a range of categories and prices</h3>
             </div>
             <div class="col-sm-3 col-md-3 col-lg-3"></div>
 
@@ -91,7 +91,7 @@ foreach ($sql as $locationdata)
 
                             <div class="col-sm-6 col-md-6 col-lg-6 my-2">
                                 <!-----------Field For Getting the Weight------->
-                                <input type="text" class="form-control" placeholder="Enter the weight in kg" id="weight" name="weight">
+                                <input type="number" class="form-control" placeholder="Enter the weight in kg" maxlength="4" id="weight" name="weight">
                             </div>
 
                             <div class="col-lg-4"></div>
@@ -100,7 +100,7 @@ foreach ($sql as $locationdata)
                             <div class="col-sm-6 col-md-12 col-lg-4 my-4">
                                
                                 <lable id="getfaredetail"><h4>Total Calculated Fare:</h4></lable>
-                              <input type="text" class="form-control" id="getfare">
+                              <input type="text" class="form-control" id="getfare" disabled>
                               <input type="hidden" class="form-control" id="getfar" name="getfa">
                             </div>
 

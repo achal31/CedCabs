@@ -18,7 +18,7 @@ else if ($_SESSION['usertype'] == '0')
 }
 ?>
 <div id="panel">
-    <a href="#"><div id="userspending" class="usertile">
+    <div id="userspending" class="usertile">
     <div class="content">
         <h2>Your Spendings</h2><h2>₹<?php
 $total = 0;
@@ -34,7 +34,7 @@ foreach ($sql as $result)
 }
 echo $total;
 ?></h2>
-</div></div></a>
+</div></div>
     <a href="checkStatus.php?status=1"><div id="pendingrides" class="usertile">
     <div class="content">
     <h2>Pending Rides</h2>
@@ -42,7 +42,12 @@ echo $total;
         <?php
 $previousrides = new user();
 $sql = $previousrides->userdashboard($_SESSION['username'], 2);
-echo mysqli_num_rows($sql); ?>
+if ($sql == '0')
+{
+    echo "<h2>No Data Avialable</h2>";
+}else {
+echo mysqli_num_rows($sql); 
+}?>
     </h2>
     </div> 
 </div></a>
@@ -52,7 +57,14 @@ echo mysqli_num_rows($sql); ?>
     <h2>
         <?php $previousrides = new user();
 $sql = $previousrides->userdashboard($_SESSION['username'], 3);
-echo mysqli_num_rows($sql); ?>
+if ($sql == '0')
+{
+    echo "<h2>No Data Avialable</h2>";
+}
+else 
+{
+echo mysqli_num_rows($sql); 
+}?>
     </h2>
     </div>
 </div></a>
@@ -63,7 +75,13 @@ echo mysqli_num_rows($sql); ?>
         <?php
 $previousrides = new user();
 $sql = $previousrides->userdashboard($_SESSION['username'], 4);
-echo mysqli_num_rows($sql); ?>
+if ($sql == '0')
+{
+    echo "<h2>No Data Avialable</h2>";
+}
+ else{
+echo mysqli_num_rows($sql); 
+}?>
         </h2>
     </div>
     </div></a>
@@ -74,7 +92,13 @@ echo mysqli_num_rows($sql); ?>
         <?php
 $previousrides = new user();
 $sql = $previousrides->userdashboard($_SESSION['username'], 5);
-echo mysqli_num_rows($sql); ?>
+if ($sql == '0')
+{
+    echo "<h2>No Data Avialable</h2>";
+} 
+else {
+echo mysqli_num_rows($sql);
+} ?>
         </h2>
     </div>
     </div></a>

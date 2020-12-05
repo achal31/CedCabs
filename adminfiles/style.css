@@ -49,6 +49,22 @@ th {
     margin-top: 10%;
 }
 
+select {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+#availability {
+    background-color: white;
+    color: #4a6fdc;
+    padding: 5px;
+    border: 2px solid #4a6fdc;
+}
+
+#availability:focus {
+    outline: 0px;
+}
+
 .right {
     font-size: 22px !important;
     text-align: left!important;
@@ -101,4 +117,21 @@ div.hide>li>a {
     padding: 3px 12px 3px 12px;
     color: #4a6fdc !important;
     text-decoration: none;
+}
+
+#admininvoicehead {
+    margin-left: 36%;
+}
+
+.adminlink {
+    float: left;
+}
+
+.admininvo {
+    text-align: center;
+}
+
+.admintable {
+    margin-top: 6%;
+    margin-left: 32%;
 }

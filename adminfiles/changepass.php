@@ -44,18 +44,18 @@ else if ($_SESSION['usertype'] == '1')
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminpanel.php">
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Admin</div>
+    <div class="sidebar-brand-text mx-3">CEDCAB</div>
 </a>
 
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
 <!-- Nav Item - Dashboard -->
-<li class="nav-item active">
+<li class="nav-item">
     <a class="nav-link" href="adminpanel.php">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
@@ -72,7 +72,8 @@ else if ($_SESSION['usertype'] == '1')
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
+        <i class="fa fa-taxi"
+></i>
         <span>Manager Rides</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -89,7 +90,8 @@ else if ($_SESSION['usertype'] == '1')
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-wrench"></i>
+        <i class="fa fa-bell"
+></i>
         <span>Manager Requests</span>
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -113,7 +115,8 @@ else if ($_SESSION['usertype'] == '1')
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-        <i class="fas fa-fw fa-folder"></i>
+        <i class="fa fa-map-marker"
+></i>
         <span>Manage Location</span>
     </a>
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -129,7 +132,8 @@ else if ($_SESSION['usertype'] == '1')
 </div>
 <li class="nav-item">
     <a class="nav-link" href="printInvoice.php?status=2">
-        <i class="fas fa-fw fa-table"></i>
+        <i class="fa fa-print"
+></i>
         <span>Print Invoice</span></a>
 </li>
 
@@ -138,16 +142,18 @@ else if ($_SESSION['usertype'] == '1')
    Account Settings
 </div>
 <!-- Nav Item - Charts -->
-<li class="nav-item">
+<li class="nav-item active">
     <a class="nav-link" href="changepass.php">
-        <i class="fas fa-fw fa-chart-area"></i>
+        <i class="fa fa-cogs"
+></i>
         <span>Change Password</span></a>
 </li>
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">
 <a class="nav-link" href="../logout.php">
-        <i class="fas fa-fw fa-table"></i>
+        <i class="fa fa-times"
+></i>
         <span>Log out</span></a>
 </li>
 
@@ -178,14 +184,7 @@ else if ($_SESSION['usertype'] == '1')
 
         <!-- Topbar Search -->
         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-        <i class="fas fa-search fa-sm"></i>
-    </button>
-                </div>
-            </div>
+        <h3 class="m-0 font-weight-bold text-primary">WELCOME,ADMIN</h3>
         </form>
 
         <!-- Topbar Navbar -->
@@ -228,16 +227,21 @@ if (isset($_POST['submit']))
                    <!-- Page Heading -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Add New Location</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">CHANGE PASSWORD</h6>
                         </div>
 <!-------------------------------CHANGE PASSWORD FORM------------------------------------------>
                         <form method="post" action="changepass.php">
-                            <input type="password" placeholder="Enter the password" name="current">
-                            <input type="password" placeholder="Enter the New Password" name="new">
-                            <input type="password" placeholder="Enter the Password Again" name="confirm">
+                         <p>
+                            <input type="password" placeholder="Enter the Current password" class="addlocation" name="current" required>
+                        </p>
+                        <p>
+                            <input type="password" placeholder="Enter the New Password" class="addlocation" pattern=".{8,}" name="new" required>
+                         </p>
+                         <p>
+                            <input type="password" placeholder="Enter the Password Again" class="addlocation" pattern=".{8,}" name="confirm" required>
+                        </p>
                             <input type="submit" value="Update" name="submit" class="triggerbtn ">
                         </form>
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -247,7 +251,8 @@ if (isset($_POST['submit']))
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                       <span>Copyright &copy; Designed By Achal</span>
+
                     </div>
                 </div>
             </footer>

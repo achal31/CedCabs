@@ -1,5 +1,21 @@
 <!-----------------------PAGE USED TO REGISTER THE USER TO THE DATABASE--------------->
 <?php
+if (!isset($_SESSION))
+{
+    session_start();
+
+}
+if(isset($_SESSION['usertype']))
+{
+if ($_SESSION['usertype'] == '0')
+{
+    header("Location:adminfiles/adminpanel.php");
+}
+else if($_SESSION['usertype'] == '1')
+{
+  header("Location:userDashboard.php");
+}
+}
 include ('header.php');
 include_once ('function.php');
 $userdata = new dbfunction();

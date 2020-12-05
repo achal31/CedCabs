@@ -42,18 +42,18 @@ if (!isset($_SESSION['username'])) {
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminpanel.php">
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Admin</div>
+    <div class="sidebar-brand-text mx-3">CEDCAB</div>
 </a>
 
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
 <!-- Nav Item - Dashboard -->
-<li class="nav-item active">
+<li class="nav-item ">
     <a class="nav-link" href="adminpanel.php">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
@@ -70,7 +70,8 @@ if (!isset($_SESSION['username'])) {
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
+        <i class="fa fa-taxi"
+></i>
         <span>Manager Rides</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -85,9 +86,10 @@ if (!isset($_SESSION['username'])) {
 </li>
 
 <!-- Nav Item - Utilities Collapse Menu -->
-<li class="nav-item">
+<li class="nav-item active">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-wrench"></i>
+        <i class="fa fa-bell"
+></i>
         <span>Manager Requests</span>
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -111,7 +113,8 @@ if (!isset($_SESSION['username'])) {
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-        <i class="fas fa-fw fa-folder"></i>
+        <i class="fa fa-map-marker"
+></i>
         <span>Manage Location</span>
     </a>
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -127,7 +130,8 @@ if (!isset($_SESSION['username'])) {
 </div>
 <li class="nav-item">
     <a class="nav-link" href="printInvoice.php?status=2">
-        <i class="fas fa-fw fa-table"></i>
+        <i class="fa fa-print"
+></i>
         <span>Print Invoice</span></a>
 </li>
 
@@ -138,14 +142,16 @@ if (!isset($_SESSION['username'])) {
 <!-- Nav Item - Charts -->
 <li class="nav-item">
     <a class="nav-link" href="changepass.php">
-        <i class="fas fa-fw fa-chart-area"></i>
+        <i class="fa fa-times"
+></i>
         <span>Change Password</span></a>
 </li>
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">
 <a class="nav-link" href="../logout.php">
-        <i class="fas fa-fw fa-table"></i>
+        <i class="fa fa-print"
+></i>
         <span>Log out</span></a>
 </li>
 
@@ -177,14 +183,7 @@ if (!isset($_SESSION['username'])) {
 
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" disabled>
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-                            </div>
-                        </div>
+                    <h3 class="m-0 font-weight-bold text-primary">WELCOME,ADMIN</h3>
                     </form>
 
                     <!-- Topbar Navbar -->
@@ -218,28 +217,31 @@ if (!isset($_SESSION['username'])) {
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                <div class="card shadow mb-4">
+
         <div id="filtermenu">
     <ul id="filter">
     <button id="name1" class="triggerbtn">SORT BY USERNAME</button>
     <button id="date1" class="triggerbtn">SORT BY DATE</button>
+    <button class="triggerbtn"><a href="manageUser.php?request=<?php if(isset($_GET['request'])){ echo $_GET['request']; } ?>">CLEAN FILTER</a></button>
     <div id="name" class="hide">
     <li>
-        <a href="manageUser.php?filter=user_name&order=ASC&request=<?php if (isset($_GET['request'])) { echo $_GET['request']; } ?>">Ascending Order</a>
+        <a id="nameasc" href="manageUser.php?id=name&inner=nameasc&filter=user_name&order=ASC&request=<?php if (isset($_GET['request'])) { echo $_GET['request']; } ?>">Ascending Order</a>
     </li>
     
     <li>
-        <a href="manageUser.php?filter=user_name&order=DESC&request=<?php if (isset($_GET['request'])) { echo $_GET['request']; } ?>">Descending Order</a>
+        <a id="namedsc" href="manageUser.php?id=name&inner=namedsc&filter=user_name&order=DESC&request=<?php if (isset($_GET['request'])) { echo $_GET['request']; } ?>">Descending Order</a>
     </li>
 
     </div>
     <div id="date" class="hide">
     
     <li>
-        <a href="manageUser.php?filter=dateofsignup&order=ASC&request=<?php if (isset($_GET['request'])) { echo $_GET['request']; } ?>">Ascending Order</a>
+        <a id="dateasc" href="manageUser.php?id=date&inner=dateasc&filter=dateofsignup&order=ASC&request=<?php if (isset($_GET['request'])) { echo $_GET['request']; } ?>">Ascending Order</a>
     </li>
     
     <li>
-        <a href="manageUser.php?filter=dateofsignup&order=DESC&request=<?php if (isset($_GET['request'])) { echo $_GET['request']; } ?>">Descending Order</a>
+        <a id="datedsc" href="manageUser.php?id=date&inner=datedsc&filter=dateofsignup&order=DESC&request=<?php if (isset($_GET['request'])) { echo $_GET['request']; } ?>">Descending Order</a>
     </li>
     </div>
 <!-- Page Heading -->
@@ -276,25 +278,25 @@ if (isset($_GET['request'])) {
         $html .= "<th>Date Of SignUp</th>";
         $html .= "<th>Mobile Number</th>";
         $html .= "<th>Status</th>";
+        if($_GET['request']!=2)
+        {
         $html .= "<th>Block/Unblock</th>";
+        }
         $html .= "</tr></thead>";
         if ($_GET['request'] == 0) {
-            echo '<div class="card shadow mb-4">
-                        <div class="card-header py-3">
+            echo ' <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">BLOCKED USER</h6>
                         </div>';
             
             
         }
         if ($_GET['request'] == 1) {
-            echo ' <div class="card shadow mb-4">
-            <div class="card-header py-3">
+            echo ' <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">UNBLOCKED USER</h6>
             </div>';
         }
         if ($_GET['request'] == 2) {
-            echo ' <div class="card shadow mb-4">
-            <div class="card-header py-3">
+            echo ' <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">ALL USER</h6>
             </div>';
         }
@@ -313,19 +315,22 @@ if (isset($_GET['request'])) {
             } else {
                 $html .= "<td>Unblock</td>";
             }
-            
-            $html .= "<td><a href='manageUser.php?userid=$result[user_id]&status=1&request=2'  class='link'>Block/UnBlock</a></td>";
+            if($_GET['request']!=2)
+            {
+            $html .= "<td><a onClick=\"javascript: return confirm('Please confirm your Action');\" href='manageUser.php?userid=$result[user_id]&status=1&request=2'  class='link'>Block/UnBlock</a></td>";
+            }
             $html .= "</tr>";
             $i++;
         }
         $html .= "</tbody></table>";
         
         echo $html;
-        echo "</div>";
+        echo "</div></div>";
     }
 }
 ?>
 </div>
+                </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -336,7 +341,8 @@ if (isset($_GET['request'])) {
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                       <span>Copyright &copy; Designed By Achal</span>
+
                     </div>
                 </div>
             </footer>
@@ -385,3 +391,17 @@ if (isset($_GET['request'])) {
 </body>
 
 </html>
+<script>
+
+    $(document).ready(function(){
+        <?php if (isset($_GET['id']))
+{ ?>
+        $("#<?php echo $_GET['id'] ?>").show();
+        $("#<?php echo $_GET['inner'] ?>").css("cssText", "color: red !important;",);
+       
+        <?php
+}
+?>
+    
+    })
+</script>

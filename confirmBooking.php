@@ -5,6 +5,10 @@ if (!isset($_SESSION))
     session_start();
 
 }
+if(empty($_POST['pickup']) && empty($_SESSION['userdata']))
+{
+    header("Location:index.php");
+}
 ?>
 <div id="confirmbookingpanel">
 <?php
@@ -69,13 +73,13 @@ if (isset($_POST['book']))
             echo "<div id='confirm'><h3 id='headingconfirm'>ThankYou For Booking,Your Request Has Been Send</h3>
     <h4 id='invo'>Booking Invoice</h4>";
             $totaldistance = $userdata->calculateFare($_SESSION['username'], $pickup, $drop, $weight, $fare, $cabtype);
-            $html .= "<tr><th>PickUp Location</th><td>$pickup</td></tr>";
-            $html .= "<tr><th>Drop Location</th><td>$drop</td></tr>";
-            $html .= "<tr><th>Cab Type</th><td>$cabtype</td></tr>";
-            $html .= "<tr><th>Ride Date</th><td>$date</td></tr>";
-            $html .= "<tr><th>Total Distance</th><td>$totaldistance</td></tr>";
-            $html .= "<tr><th>Luggage</th><td>$weight</td></tr>";
-            $html .= "<tr><th>Total Fare</th> <td>$fare</td></tr>";
+            $html .= "<tr><th class='confirmbooking'>PickUp Location</th><td class='confirmbooking'>$pickup</td></tr>";
+            $html .= "<tr><th class='confirmbooking'>Drop Location</th><td class='confirmbooking'>$drop</td></tr>";
+            $html .= "<tr><th class='confirmbooking'>Cab Type</th><td class='confirmbooking'>$cabtype</td></tr>";
+            $html .= "<tr><th class='confirmbooking'>Ride Date</th><td class='confirmbooking'>$date</td></tr>";
+            $html .= "<tr><th class='confirmbooking'>Total Distance</th><td class='confirmbooking'>$totaldistance</td></tr>";
+            $html .= "<tr><th class='confirmbooking'>Luggage</th><td class='confirmbooking'>$weight</td></tr>";
+            $html .= "<tr><th class='confirmbooking'>Total Fare</th> <td class='confirmbooking'>$fare</td></tr>";
             $html .= "</table>";
             echo $html;
             echo "</div>";
@@ -98,13 +102,13 @@ else if (isset($_SESSION['userdata']))
     <h4 id='invo'>Booking Invoice</h4>";
         $html = "";
         $html .= "<table id='rideinvoice'>";
-        $html .= "<tr><th>PickUp Location</th><td>" . $_SESSION['userdata']['pickup'] . "</td></tr>";
-        $html .= "<tr><th>Drop Location</th><td>" . $_SESSION['userdata']['drop'] . "</td></tr>";
-        $html .= "<tr><th>Cab Type</th><td>" . $_SESSION['userdata']['cabtype'] . "</td></tr>";
-        $html .= "<tr><th>Ride Date</th><td>" . $_SESSION['userdata']['date'] . "</td></tr>";
-        $html .= "<tr><th>Total Distance</th><td>$totaldistance</td></tr>";
-        $html .= "<tr><th>Luggage</th><td>" . $_SESSION['userdata']['weight'] . "</td></tr>";
-        $html .= "<tr><th>Total Fare</th><td>" . $_SESSION['userdata']['fare'] . "</td></tr>";
+        $html .= "<tr><th  class='confirmbooking'>PickUp Location</th><td class='confirmbooking'>" . $_SESSION['userdata']['pickup'] . "</td></tr>";
+        $html .= "<tr><th class='confirmbooking'>Drop Location</th><td class='confirmbooking'>" . $_SESSION['userdata']['drop'] . "</td></tr>";
+        $html .= "<tr><th class='confirmbooking'>Cab Type</th><td class='confirmbooking'>" . $_SESSION['userdata']['cabtype'] . "</td></tr>";
+        $html .= "<tr><th class='confirmbooking'>Ride Date</th><td class='confirmbooking'>" . $_SESSION['userdata']['date'] . "</td></tr>";
+        $html .= "<tr><th class='confirmbooking'>Total Distance</th><td class='confirmbooking'>$totaldistance</td></tr>";
+        $html .= "<tr><th class='confirmbooking'>Luggage</th><td class='confirmbooking'>" . $_SESSION['userdata']['weight'] . "</td></tr>";
+        $html .= "<tr><th class='confirmbooking'>Total Fare</th><td class='confirmbooking'>" . $_SESSION['userdata']['fare'] . "</td></tr>";
         $html .= "</table>";
         echo $html;
         echo "</div>";

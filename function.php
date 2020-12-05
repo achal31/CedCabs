@@ -19,6 +19,7 @@ class dbfunction
     public function 
     registration($name, $fullname, $date, $number, $pass)
     {   $name=trim($name);
+        $name=strtolower($name);
         $fullname=trim($fullname);
         $checkusername = mysqli_query($this->dbh, "SELECT * FROM tbl_user WHERE `user_name`='$name'");
         $result        = $checkusername->num_rows;
@@ -40,7 +41,7 @@ class dbfunction
     public function signin($name, $pasword,$remember)
     {
         $password     = md5($pasword);
-        $signindetail = mysqli_query($this->dbh, "SELECT * FROM tbl_user where BINARY user_name='$name' and Password='$password'");
+        $signindetail = mysqli_query($this->dbh, "SELECT * FROM tbl_user where  user_name='$name' and Password='$password'");
         
         $userdata = mysqli_fetch_assoc($signindetail);
         $result   = $signindetail->num_rows;

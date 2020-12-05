@@ -60,8 +60,8 @@ class admin
     {
         switch($status)
         { 
-            case 0:case 1:{$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE `isblock`=$status");break;}
-            case 2:$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user");break;
+            case 0:case 1:{$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE `isblock`=$status AND `is_admin`='1'");break;}
+            case 2:$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE `is_admin`='1'");break;
         }
         if (mysqli_num_rows($fetchRides) > 0)
         {
@@ -78,8 +78,8 @@ class admin
     {
         switch($request)
         {
-            case 0:case 1:{$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user ORDER BY $filter $order");break;}
-            case 3:$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE `isblock`=$request ORDER BY $filter $order");break;
+            case 0:case 1:{$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE `isblock`=$request and `is_admin`='1' ORDER BY $filter $order");break;}
+            case 2:$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_user WHERE `is_admin`='1' ORDER BY $filter $order");break;
         }
         if (mysqli_num_rows($fetchRides) > 0)
         {
@@ -100,10 +100,12 @@ class admin
             if ($ridedata['isblock'] == '0')
             {
                 $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_user SET `isblock`='1' WHERE `user_id`='$userid'");
+                echo "<script>window.location.href='manageUser.php?request=0'</script>";
             }
             else
             {
                 $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_user SET `isblock`='0' WHERE `user_id`='$userid'");
+                echo "<script>window.location.href='manageUser.php?request=1'</script>";
             }
 
         }
@@ -151,16 +153,25 @@ public function locationavailability($locationid)
     while ($ridedata = @mysqli_fetch_array($fetchUser))
     {
         /*----------------------To change Location to Not Available---------------------*/
-        if ($ridedata['is_available'] == '0')
-        {
-            $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `is_available`='1' WHERE `id`='$locationid'");
-        }
-         /*----------------------To change Location to Available---------------------*/
-        else
-        {
+         $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `is_available`='1' WHERE `id`='$locationid'");
+        
+        
+    }
+
+}
+public function locationUnavailability($locationid)
+{
+
+    $fetchUser = mysqli_query($this->dbh, "SELECT * FROM tbl_location WHERE `id`= $locationid");
+
+    while ($ridedata = @mysqli_fetch_array($fetchUser))
+    {
+        /*----------------------To change Location to Not Available---------------------*/
+      
+        
             $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `is_available`='0' WHERE `id`='$locationid'");
         }
-    }
+    
 
 }
 /*---------------------Function To Delete the Location------------------------------*/
@@ -185,11 +196,37 @@ public function newlocation($name, $distance)
     }
 }
 
- /*---------------------Function To Update Location----------------------------------*/
-public function Updatelocation($id, $locationname, $distance)
+public function availablelocation($filter,$order)
 {
-    $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `name`='$locationname' ,`distance`='$distance' WHERE `id`='$id'");
+    $fetchRides = mysqli_query($this->dbh, "SELECT * FROM tbl_location WHERE `$filter`='$order'");
+    if (mysqli_num_rows($fetchRides) > 0)
+   {
+       return $fetchRides;
+   }
+   else
+   {
+       return 0;
+   }
+
+}
+ /*---------------------Function To Update Location----------------------------------*/
+public function Updatelocation($id, $locationname, $distance,$availablility)
+{
+
+    $checkusername = mysqli_query($this->dbh, "SELECT * FROM tbl_location WHERE `name`='$locationname'");
+    $result        = $checkusername->num_rows;
+    if ($result == 1) {
+
+    $fetchUser = mysqli_query($this->dbh, "UPDATE tbl_location SET `name`='$locationname' ,`distance`='$distance' ,`is_available`='$availablility' WHERE `id`='$id'");
+    if($fetchUser)
+    {
     echo "<script>window.location.href='manageLocation.php'</script>";
+    }
+    else {
+        echo "<script>alert('Location Name Already Exist');</script>"; 
+    }
+}
+
 }
 /***********************************LOCATION PART END******************************** */
 
@@ -230,29 +267,20 @@ public function Updatelocation($id, $locationname, $distance)
             case 1:
                 $week = (substr($list, -2) - 1);
                 if ($status == 3)
-                {
-                    $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE WEEK(`ride_date`)='$week'");
-                }
-                else
-                {
+                {$fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE WEEK(`ride_date`)='$week'");
+                }else{
                     $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE WEEK(`ride_date`)='$week' AND `status`='$status'");
-                    break;
-                }
+                }break;
 
             case 2:
                 if ($status == 3)
-                {
+                { 
                     $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE  DATE(`ride_date`) BETWEEN '$list' AND '$order'");
-                }
-                else
-                {
+                }else{
                     $fetchRides = mysqli_query($this->dbh, "SELECT * FROM `tbl_ride` WHERE `status`='$status' AND  DATE(`ride_date`) BETWEEN '$list' AND '$order'");
-                    break;
-                }
+                }break;
 
-            case 3:
-                $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE  `status`=$status");
-            break;
+            case 3:$fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE  `status`=$status");break;
         }
         if (mysqli_num_rows($fetchRides) > 0)
         {
@@ -268,10 +296,12 @@ public function Updatelocation($id, $locationname, $distance)
     public function acceptRide($userid)
     {
         $fetchRides = mysqli_query($this->dbh, "UPDATE tbl_ride SET `status`='2' WHERE ride_id='$userid'");
+        echo "<script>window.location.href='rideRequest.php?status=1'</script>";
     }
     public function declineRide($userid)
     {
         $fetchRides = mysqli_query($this->dbh, "UPDATE tbl_ride SET `status`='0' WHERE ride_id='$userid'");
+        echo "<script>window.location.href='rideRequest.php?status=1'</script>";
     }
 
 
@@ -285,7 +315,7 @@ public function Updatelocation($id, $locationname, $distance)
         }
         else if ($filter == 'cab_type')
         {
-            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `$filter`='$order' AND `status`='2' OR`status`='0'");
+            $fetchRides = mysqli_query($this->dbh, "SELECT * From tbl_ride WHERE `$filter`='$order' ");
         }
         else if ($filter == 1 && $order == 1)
         {
@@ -342,16 +372,26 @@ public function Updatelocation($id, $locationname, $distance)
             }
         }
         else {
-            echo "<script>alert('Updated Already Used Password Is Not Allowed');</script>";
+            echo "<script>alert('Already Used Password Is Not Allowed To Update');</script>";
         }
         }
         else
         {
-            echo "<script>alert('Wrong Detail Entered Please Cheack And Try Again');</script>";
+            echo "<script>alert('Wrong Detail Entered Please Check And Try Again');</script>";
         }
     }
-
-
+public function checkname($userid)
+{
+    $fetchRides = mysqli_query($this->dbh, "SELECT * FROM tbl_user where `user_id`='$userid'"); 
+    if (mysqli_num_rows($fetchRides) > 0)
+    {
+        return $fetchRides;
+    }
+    else
+    {
+        return 0;
+    }
+}
 /***************************************END OF THE ADMIN CLASS********************************** */
 public function fetchRidedates()
 {

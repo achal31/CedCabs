@@ -9,6 +9,7 @@ $(document).ready(function() {
         $("#cab").css({ "display": "none" });
         $("#status").css({ "display": "none" });
         $("#name").css({ "display": "none" });
+        $("#available").css({ "display": "none" });
     })
     $("#fare1").click(function() {
         $("#fare").toggle();
@@ -71,6 +72,7 @@ $(document).ready(function() {
         $("#date").css({ "display": "none" });
         $("#status").css({ "display": "none" });
         $("#cab").css({ "display": "none" });
+        $("#available").css({ "display": "none" });
     })
     $("#status1").click(function() {
         $("#distance").css({ "display": "none" });
@@ -83,4 +85,18 @@ $(document).ready(function() {
         $("#name").css({ "display": "none" });
 
     })
+
+    $("#available1").click(function() {
+        $("#status").css({ "display": "none" });
+        $("#distance").css({ "display": "none" });
+        $("#available").toggle();
+        $("#fare").css({ "display": "none" });
+        $("#weight").css({ "display": "none" });
+        $("#week").css({ "display": "none" });
+        $("#date").css({ "display": "none" });
+        $("#cab").css({ "display": "none" });
+        $("#name").css({ "display": "none" });
+
+    })
+
 });
