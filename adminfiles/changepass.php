@@ -25,7 +25,7 @@ else if ($_SESSION['usertype'] == '1')
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Admin Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -235,10 +235,12 @@ if (isset($_POST['submit']))
                             <input type="password" placeholder="Enter the Current password" class="addlocation" name="current" required>
                         </p>
                         <p>
-                            <input type="password" placeholder="Enter the New Password" class="addlocation" pattern=".{8,}" name="new" required>
+                            <input type="password" placeholder="Enter the New Password" class="addlocation" id="password" name="new" pattern=".{8,}" oninvalid="InvalidMsg(this);" 
+            oninput="InvalidMsg(this);" required>
                          </p>
                          <p>
-                            <input type="password" placeholder="Enter the Password Again" class="addlocation" pattern=".{8,}" name="confirm" required>
+                            <input type="password" placeholder="Enter the Password Again" class="addlocation" id="repassword" name="confirm" pattern=".{8,}" oninvalid="InvalidMsg(this);" 
+            oninput="InvalidMsg(this);" required>
                         </p>
                             <input type="submit" value="Update" name="submit" class="triggerbtn ">
                         </form>
@@ -301,3 +303,22 @@ if (isset($_POST['submit']))
 </body>
 
 </html>
+<script>
+  function InvalidMsg(textbox) { 
+   if(textbox.id=='password'||textbox.id=='repassword')
+{
+  if (textbox.value === '') { 
+      textbox.setCustomValidity 
+            ('Entering a Password is necessary!'); 
+  } else if (textbox.validity.patternMismatch) { 
+      textbox.setCustomValidity 
+            ('Please Enter 8 digit Password which is valid!'); 
+  } else { 
+      textbox.setCustomValidity(''); 
+  } 
+}
+} 
+  
+
+</script>
+

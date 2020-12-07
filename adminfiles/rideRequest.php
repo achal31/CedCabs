@@ -21,7 +21,7 @@ if (!isset($_SESSION['username'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Admin Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -309,10 +309,12 @@ if (isset($_GET['rideid'])) {
         
         $userdata = new admin();
         $userdata->acceptRide($_GET['rideid']);
+     
     } else if (isset($_GET['decline'])) {
         
         $userdata = new admin();
         $userdata->declineRide($_GET['rideid']);
+       
     }
 }
 ?>

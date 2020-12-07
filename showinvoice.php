@@ -20,6 +20,8 @@ include('header.php');
 
 <div id="page-top">
 <?php
+if(isset($_GET['pickup']))
+{
 $pickup      = $_GET['pickup'];
 $drop        = $_GET['drop'];
 $date        = $_GET['date'];
@@ -50,5 +52,6 @@ $weight      = $_GET['weight'];
 
 </div>
 <?php 
+}
 include('footer.php');
 ?>

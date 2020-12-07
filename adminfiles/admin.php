@@ -296,11 +296,13 @@ public function Updatelocation($id, $locationname, $distance,$availablility)
     public function acceptRide($userid)
     {
         $fetchRides = mysqli_query($this->dbh, "UPDATE tbl_ride SET `status`='2' WHERE ride_id='$userid'");
+        echo "<script>alert('The Ride Request Has Been Approved');</script>";
         echo "<script>window.location.href='rideRequest.php?status=1'</script>";
     }
     public function declineRide($userid)
     {
         $fetchRides = mysqli_query($this->dbh, "UPDATE tbl_ride SET `status`='0' WHERE ride_id='$userid'");
+        echo "<script>alert('The Ride Request Has Been Declined');</script>";
         echo "<script>window.location.href='rideRequest.php?status=1'</script>";
     }
 
@@ -341,7 +343,9 @@ public function Updatelocation($id, $locationname, $distance,$availablility)
     /*---------------Function Used To Delete the Ride Details----------------------------*/
     public function deleterideDetail($id)
     {
+        echo "<script>alert('The Ride Detail Has Been Deleted);</script>";
         $fetchUser = mysqli_query($this->dbh, "DELETE FROM tbl_ride  WHERE `ride_id`='$id'");
+        
     }
 
  /********************************ALL RIDES PART END ****************************************/   
@@ -368,7 +372,7 @@ public function Updatelocation($id, $locationname, $distance,$availablility)
             }
             else
             {
-                echo "<script>alert('Wrong Detail Entered Please Check And Try Again');</script>";
+                echo "<script>alert('New Password And Confirm Password Field Doesnt match');</script>";
             }
         }
         else {
@@ -377,7 +381,7 @@ public function Updatelocation($id, $locationname, $distance,$availablility)
         }
         else
         {
-            echo "<script>alert('Wrong Detail Entered Please Check And Try Again');</script>";
+            echo "<script>alert('Data Doesnt Match With Your Account');</script>";
         }
     }
 public function checkname($userid)

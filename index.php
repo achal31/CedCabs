@@ -91,7 +91,7 @@ foreach ($sql as $locationdata)
 
                             <div class="col-sm-6 col-md-6 col-lg-6 my-2">
                                 <!-----------Field For Getting the Weight------->
-                                <input type="number" class="form-control" placeholder="Enter the weight in kg" maxlength="4" id="weight" name="weight">
+                                <input type="text" class="form-control" placeholder="Enter the weight in kg" maxlength="4" id="weight" name="weight">
                             </div>
 
                             <div class="col-lg-4"></div>

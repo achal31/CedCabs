@@ -98,7 +98,7 @@ class dbfunction
             }
             
         } else {
-            echo "<script>alert('Wrong Password');</script>";
+            echo "<script>alert('Something Went Wrong Please Check the detail and try again');</script>";
         }
     }
 

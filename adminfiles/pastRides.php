@@ -25,7 +25,7 @@ else if ($_SESSION['usertype'] == '1')
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Admin Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -289,6 +289,7 @@ else if ($_SESSION['usertype'] == '1')
 include_once ('admin.php');
 if (isset($_GET['delete']))
 {
+    
     $id = $_GET['id'];
     $userdata = new admin();
     $userdata->deleterideDetail($id);

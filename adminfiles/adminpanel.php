@@ -21,7 +21,7 @@ if (!isset($_SESSION['username'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Admin Dashboard</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -253,9 +253,6 @@ echo $total;
 
 
 ?></div>
-<script>
-    
-</script>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-inr fa-2x text-gray-300"></i>
@@ -319,15 +316,14 @@ echo "<input type='text' value='$sql' id='blockuser' hidden>";
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                  
-                        <div class="card border-left-warning shadow h-100 py-2">
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            <a class="collapse-item" href="rideRequest.php?status=0"> Cancelled Ride Requests</a>
-                                            </div>
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                              Cancelled Rides</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php
 
 /*-----------------------TO SHOW THE COUNT OF THE CANCELLED RIDES-----------------------------*/
@@ -337,12 +333,15 @@ echo "<input type='text' value='$sql' id='cancelled' hidden>";
 ?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        <!-- Earnings (Monthly) Card Example -->
+                        </div>
+
+
+
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
@@ -380,7 +379,7 @@ echo "<input type='text' value='$sql' id='completed' hidden>";
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            <a class="collapse-item" href="rideRequest.php?status=1">Pending Ride Requests</a></div>
+                                            <a class="collapse-item" href="rideRequest.php?status=1">Pending Rides</a></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php
 
 /*-----------------------TO SHOW THE COUNT OF THE PENDING RIDES-----------------------------*/

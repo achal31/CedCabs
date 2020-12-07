@@ -46,9 +46,11 @@ if ($_POST['Save'] == 'UpdateNumber')
         <form action="userSettings.php" method="POST">
         <input placeholder="Enter Current Number" name="current" class="detail"  pattern="[1-9]{1}[0-9]{9}" required>
         <p></p>
-        <input placeholder="Enter New Number" name="new" class="detail"  pattern="[1-9]{1}[0-9]{9}" required>
+        <input placeholder="Enter New Number" name="new" class="detail"  pattern="[1-9]{1}[0-9]{9}" id="phone" oninvalid="InvalidMsg(this);" 
+            oninput="InvalidMsg(this);" required>
         <p></p>
-        <input placeholder="Please Confirm Number" name="conf" class="detail"  pattern="[1-9]{1}[0-9]{9}" required>
+        <input placeholder="Please Confirm Number" name="conf" class="detail" id="cnfrmphone"  pattern="[1-9]{1}[0-9]{9}" oninvalid="InvalidMsg(this);" 
+            oninput="InvalidMsg(this);" required>
         <p></p>
         <input type="submit" value="UpdateNumber" name="Save" class="detailbutton">
         </form>
@@ -56,11 +58,13 @@ if ($_POST['Save'] == 'UpdateNumber')
 
     <div id="changename">
     <form action="userSettings.php" method="POST">
-        <input  placeholder="Enter Current Full Name" name="current"  class="detail" value="<?php if(isset($_SESSION['userid'])){ echo $_SESSION['userid'];} ?>"   required>
+        <input  placeholder="Enter Current Full Name" name="current"  class="detail" value="<?php if(isset($_SESSION['userid'])){ echo $_SESSION['userid'];} ?>" disabled   required>
         <p></p>
-        <input  placeholder="Enter New Full Name" name="new" class="detail" required>
+        <input  placeholder="Enter New Full Name" name="new" class="detail" pattern="^[a-zA-Z ]*$" id="fullname" oninvalid="InvalidMsg(this);" 
+            oninput="InvalidMsg(this);" required>
         <p></p>
-        <input  placeholder="Please Confirm Full Name" name="conf" class="detail" required>
+        <input  placeholder="Please Confirm Full Name" name="conf" class="detail" pattern="^[a-zA-Z ]*$" id="confirmname" oninvalid="InvalidMsg(this);" 
+            oninput="InvalidMsg(this);" vrequired>
         <p></p>
         <input type="submit" value="Updatename" name="Save" class="detailbutton">
         </form>
@@ -69,3 +73,34 @@ if ($_POST['Save'] == 'UpdateNumber')
 <div id=pad></div>
 </div>
 <?php include ('footer.php'); ?>
+<script>
+  function InvalidMsg(textbox) { 
+    if(textbox.id=='phone'||textbox.id=='cnfrmphone')
+  {
+  if (textbox.value === '') { 
+      textbox.setCustomValidity 
+            ('Entering an Phone Number is necessary!'); 
+  } else if (textbox.validity.patternMismatch) { 
+      textbox.setCustomValidity 
+            ('Please enter an 10 digit Phone Number which is valid!'); 
+  } else { 
+      textbox.setCustomValidity(''); 
+  } 
+}
+else if(textbox.id=='fullname'||textbox.id=='confirmname')
+{
+  if (textbox.value === '') { 
+      textbox.setCustomValidity 
+            ('Entering a Full Name is necessary!'); 
+  } else if (textbox.validity.patternMismatch) { 
+      textbox.setCustomValidity 
+            ('Full Name Should Start from Alphabet and Shouldnt contain any numbers!'); 
+  } else { 
+      textbox.setCustomValidity(''); 
+  } 
+}
+
+} 
+  
+    
+</script>

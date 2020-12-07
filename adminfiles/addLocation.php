@@ -26,7 +26,7 @@ else if ($_SESSION['usertype'] == '1')
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Admin Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -238,7 +238,8 @@ if (isset($_GET['edit']))
 
 /*--------------TO ADD AND UPDATE THE ELOCATION-----------------*/
 if (isset($_POST['Save']))
-{
+{   
+    $userdata = new admin();
     if ($_POST['Save'] == 'Add Location')
     {
 
@@ -246,7 +247,6 @@ if (isset($_POST['Save']))
         {
             $locationname = $_POST['location'];
             $distance = $_POST['distance'];
-            $userdata = new admin();
             $userdata->newlocation($locationname, $distance);
         }
         else
@@ -261,7 +261,6 @@ if (isset($_POST['Save']))
         $distance = $_POST['distance'];
         $id = $_POST['id'];
         $availablility=$_POST['availability'];
-        $userdata = new admin();
         $userdata->Updatelocation($id, $locationname, $distance,$availablility);
     }
 }

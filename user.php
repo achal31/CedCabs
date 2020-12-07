@@ -108,12 +108,12 @@ class user
             }
             else
             {
-                echo "<script>alert('Wrong Detail Entered Please Check And Try Again');</script>";
+                echo "<script>alert(' Fields doesnt have same Data');</script>";
             }
         }
         else
         {
-            echo "<script>alert('Wrong Detail Entered Please Cheack And Try Again');</script>";
+            echo "<script>alert('Data Doesnt Match with your UserId');</script>";
         }
     }
 
