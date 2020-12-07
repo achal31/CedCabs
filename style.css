@@ -278,8 +278,12 @@ th {
     color: black !important;
 }
 
+#userspending {
+    color: #FD50FA;
+}
+
 #pendingrides {
-    color: yellow;
+    color: #FDDB60;
 }
 
 #completedrides {
@@ -293,7 +297,7 @@ th {
 
 #totalrides {
     margin-top: 50px;
-    color: chartreuse;
+    color: white;
 }
 
 .filter {
@@ -383,8 +387,8 @@ div.hide>li>a:hover {
     float: left;
     text-align: center;
     margin-left: 40px;
-    background-color: black;
     border-radius: 100px;
+    background-color: black
 }
 
 .content {
